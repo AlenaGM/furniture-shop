@@ -18,8 +18,53 @@
         </div>
       </div>
     </div>
+    <div class="header-menu">
+      <a
+        class="header-menu__link"
+        href="element.path"
+        v-for="(element, i) of menu"
+        :key="i"
+      >
+        {{ element.name }}
+      </a>
+    </div>
   </header>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const menu = [
+  {
+    name: "Plant pots",
+    path: "/plantpots",
+  },
+  {
+    name: "Ceramics",
+    path: "/ceramics",
+  },
+  {
+    name: "Tables",
+    path: "/tables",
+  },
+  {
+    name: "Chairs",
+    path: "/chairs",
+  },
+  {
+    name: "Crockery",
+    path: "/crockery",
+  },
+  {
+    name: "Tableware",
+    path: "/tableware",
+  },
+  {
+    name: "Cutlery",
+    path: "/cutlery",
+  },
+];
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -49,6 +94,20 @@
     text-align: center;
     &:hover {
       text-decoration: underline;
+    }
+  }
+  &-menu {
+    height: 62px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__link {
+      margin: 0 22px;
+      color: #726e8d;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

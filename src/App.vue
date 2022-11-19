@@ -1,10 +1,14 @@
 <script setup>
 import Header from "./components/layout/Header.vue";
+import Hero from "./components/Hero.vue";
+import AboutBrand from "./components/AboutBrand.vue";
 </script>
 
 <template>
   <div class="container">
-    <Header></Header>
+    <Header />
+    <Hero />
+    <AboutBrand />
   </div>
 </template>
 
@@ -20,6 +24,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  color: #22202e;
+}
+
+img {
+  max-width: 100%;
 }
 
 .container {
