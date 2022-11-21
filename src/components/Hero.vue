@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import HeroInfo from "./HeroInfo.vue";
+import HeroInfo from "@/components/HeroInfo.vue";
 </script>
 
 <style lang="scss">

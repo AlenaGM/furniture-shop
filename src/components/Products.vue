@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from "vue";
-import Product from "../components/Product.vue";
+import Product from "@/components/Product.vue";
 
 const products = ref([
   {
