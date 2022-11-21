@@ -69,7 +69,7 @@ const menu = [
 <style lang="scss" scoped>
 .header {
   height: 132px;
-  background: #fff;
+  background: var(--white);
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -87,10 +87,10 @@ const menu = [
     }
   }
   &-logo {
-    color: #22202e;
+    color: var(--black);
     font-size: 24px;
     text-decoration: none;
-    font-family: "Clash Display", sans-serif;
+    font-family: var(--clash);
     text-align: center;
     &:hover {
       text-decoration: underline;
@@ -103,7 +103,7 @@ const menu = [
     align-items: center;
     &__link {
       margin: 0 22px;
-      color: #726e8d;
+      color: var(--lilac);
       text-decoration: none;
       &:hover {
         text-decoration: underline;

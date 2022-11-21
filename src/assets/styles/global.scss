@@ -1,5 +1,16 @@
-@import url("https://fonts.cdnfonts.com/css/satoshi");
-@import url("https://fonts.cdnfonts.com/css/clash-display");
+@import "./fonts.scss";
+
+:root {
+  --satoshi: "Satoshi", sans-serif;
+  --clash: "Clash Display", sans-serif;
+
+  --white: #fff;
+  --black: #22202e;
+  --space: #2a254b;
+  --black-coral: #5b5676;
+  --lilac: #726e8d;
+  --purple-navy: #505977;
+}
 
 * {
   box-sizing: border-box;
@@ -8,9 +19,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Satoshi", sans-serif;
+  font-family: var(--satoshi);
   font-size: 16px;
-  color: #22202e;
+  color: var(--black);
 }
 
 img {

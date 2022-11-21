@@ -36,11 +36,11 @@ const props = defineProps({
   },
   colorDescription: {
     type: String,
-    default: "#5B5676",
+    default: "#5b5676",
   },
   colorLink: {
     type: String,
-    default: "#5B5676",
+    default: "#5b5676",
   },
   background: {
     type: String,
@@ -52,7 +52,7 @@ const props = defineProps({
 <style lang="scss">
 .hero {
   &-info {
-    background: #fff;
+    background: var(--white);
     max-width: 630px;
     padding: 50px 60px;
     min-height: 444px;
@@ -60,20 +60,20 @@ const props = defineProps({
     flex-direction: column;
     justify-content: space-between;
     &__title {
-      font-family: "Clash Display", sans-serif;
+      font-family: var(--clash);
       font-size: 32px;
       font-weight: 400;
       line-height: 45px;
       margin: 0 0 20px 0;
     }
     &__description {
-      color: #5b5676;
+      color: var(--black-coral);
       font-size: 18px;
-      font-family: "Satoshi", sans-serif;
+      font-family: var(--satoshi);
       line-height: 27px;
     }
     &-link {
-      color: #2a254b;
+      color: var(--space);
       text-decoration: none;
       width: 170px;
       height: 56px;

@@ -58,7 +58,7 @@ const products = ref([
   &-link {
     display: block;
     text-align: center;
-    color: #2a254b;
+    color: var(--space);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;

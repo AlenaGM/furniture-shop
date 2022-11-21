@@ -4,10 +4,10 @@
       title="It started with a small idea"
       description="A global brand with local beginnings, our story begain in a small studio in South London in early 2014"
       link="#"
-      background="#2A254B"
-      colorTitle="#fff"
-      colorDescription="#fff"
-      colorLink="#fff"
+      background="var(--space)"
+      colorTitle="var(--white)"
+      colorDescription="var(--white)"
+      colorLink="var(--white)"
     />
     <img src="/img/idea-room.jpg" alt="room" />
   </div>

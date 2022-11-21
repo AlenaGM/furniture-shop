@@ -1,0 +1,22 @@
+@font-face {
+  font-family: satoshi;
+  font-weight: 400;
+  font-style: normal;
+  src: local("Satoshi"), url("/fonts/Satoshi-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: clash display;
+  font-weight: 400;
+  font-style: normal;
+  src: local("Clash Display"),
+    url("/fonts/ClashDisplay-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: clash display;
+  font-weight: 500;
+  font-style: normal;
+  src: local("Clash Display"),
+    url("/fonts/ClashDisplay-Medium.woff") format("woff");
+}

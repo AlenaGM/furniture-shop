@@ -52,8 +52,8 @@ const about = [
   padding: 80px 80px 130px 80px;
   &__title {
     text-align: center;
-    color: #2a254b;
-    font-family: "Clash Display", sans-serif;
+    color: var(--space);
+    font-family: var(--clash);
     font-size: 24px;
     font-weight: 400;
     line-height: 34px;
@@ -71,8 +71,8 @@ const about = [
     }
     &__title {
       margin: 0 0 12px 0;
-      color: #2a254b;
-      font-family: "Clash Display", sans-serif;
+      color: var(--space);
+      font-family: var(--clash);
       font-size: 20px;
       font-weight: 400;
       line-height: 28px;
