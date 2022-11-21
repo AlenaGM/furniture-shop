@@ -10,7 +10,9 @@
         >{{ description }}</span
       >
     </div>
-    <Button color="secondary" type="link" to="/"> View collection </Button>
+    <Button :color="colorLink || 'secondary'" type="link" to="/">
+      View collection
+    </Button>
   </div>
 </template>
 
@@ -40,7 +42,7 @@ const props = defineProps({
   },
   colorLink: {
     type: String,
-    default: "#5b5676",
+    required: false,
   },
   background: {
     type: String,

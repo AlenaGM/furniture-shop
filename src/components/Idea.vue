@@ -7,7 +7,6 @@
       background="var(--space)"
       colorTitle="var(--white)"
       colorDescription="var(--white)"
-      colorLink="var(--white)"
     />
     <img src="/img/idea-room.jpg" alt="room" />
   </div>

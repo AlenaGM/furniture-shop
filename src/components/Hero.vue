@@ -2,7 +2,9 @@
   <div class="hero">
     <HeroInfo
       title="Luxury homeware for people who love timeless design quality"
+      description="Shop the new Spring 2022 collection today"
       link="#"
+      colorLink="lightgray"
     />
   </div>
 </template>
