@@ -24,5 +24,9 @@ import HeroInfo from "./HeroInfo.vue";
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
+
+  img {
+    //min-height: 444px;
+  }
 }
 </style>

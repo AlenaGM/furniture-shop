@@ -4,7 +4,7 @@
       <img :src="img" :alt="title" class="product-image" />
     </a>
     <a href="#" class="product-name">{{ title }}</a>
-    <span class="product-price">{{ price }}</span>
+    <span class="product-price">£{{ price }}</span>
   </div>
 </template>
 
