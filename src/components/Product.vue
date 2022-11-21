@@ -1,9 +1,9 @@
 <template>
   <div class="product">
-    <a href="#">
+    <router-link to="/">
       <img :src="img" :alt="title" class="product-image" />
-    </a>
-    <a href="#" class="product-name">{{ title }}</a>
+    </router-link>
+    <router-link to="/" class="product-name">{{ title }}</router-link>
     <span class="product-price">£{{ price }}</span>
   </div>
 </template>

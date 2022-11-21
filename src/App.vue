@@ -1,20 +1,10 @@
 <template>
   <div class="container">
-    <Header></Header>
-    <Hero />
-    <About />
-    <Products />
-    <Idea />
+    <router-view />
   </div>
 </template>
 
-<script setup>
-import Header from "@/components/layout/Header.vue";
-import Hero from "@/components/Hero.vue";
-import About from "@/components/About.vue";
-import Products from "@/components/Products.vue";
-import Idea from "@/components/Idea.vue";
-</script>
+<script setup></script>
 
 <style lang="scss">
 @import "./assets/styles/global.scss";
