@@ -10,7 +10,9 @@
       />
     </div>
     <div class="products-link">
-      <Button color="lightgray" type="link" to="/"> View collection </Button>
+      <ui-button color="lightgray" type="link" to="/">
+        View collection
+      </ui-button>
     </div>
   </div>
 </template>
@@ -18,7 +20,7 @@
 <script setup>
 import { ref } from "vue";
 import Product from "@/components/Product.vue";
-import Button from "@/components/ui/Button.vue";
+import uiButton from "@/components/ui/Button.vue";
 
 const products = ref([
   {

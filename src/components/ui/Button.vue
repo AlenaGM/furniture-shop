@@ -8,6 +8,7 @@
         'btn--primary': color === 'primary',
         'btn--secondary': color === 'secondary',
         'btn--lightgray': color === 'lightgray',
+        'btn--white': color === 'white',
       },
     ]"
   >
@@ -23,6 +24,7 @@
         'btn--primary': color === 'primary',
         'btn--secondary': color === 'secondary',
         'btn--lightgray': color === 'lightgray',
+        'btn--white': color === 'white',
       },
     ]"
   >
@@ -76,6 +78,10 @@ const props = defineProps({
   &--lightgray {
     color: var(--space);
     background: #f9f9f9;
+  }
+  &--white {
+    color: var(--space);
+    background: var(--white);
   }
 }
 </style>

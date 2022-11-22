@@ -10,14 +10,14 @@
         >{{ description }}</span
       >
     </div>
-    <Button :color="colorLink || 'secondary'" type="link" to="/">
+    <ui-button :color="colorLink || 'secondary'" type="link" to="/">
       View collection
-    </Button>
+    </ui-button>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/ui/Button.vue";
+import uiButton from "@/components/ui/Button.vue";
 
 const props = defineProps({
   title: {
