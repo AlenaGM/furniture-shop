@@ -90,6 +90,9 @@ import SubscribeForm from "@/components//SubscribeForm.vue";
   color: var(--white);
   &-content {
     padding: 58px 82px 25px 82px;
+    @media screen and (max-width: 1024px) {
+      padding: 58px 30px 25px 30px;
+    }
   }
   &-top {
     display: grid;
@@ -97,12 +100,21 @@ import SubscribeForm from "@/components//SubscribeForm.vue";
     column-gap: 110px;
     border-bottom: 1px solid var(--primary);
     padding-bottom: 48px;
+    @media screen and (max-width: 1150px) {
+      column-gap: 10px;
+      grid-template-columns: 450px 1fr;
+    }
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   &-menu {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
     &__title {
-      display: block;
       display: block;
       font-family: var(--clash);
       font-size: 16px;

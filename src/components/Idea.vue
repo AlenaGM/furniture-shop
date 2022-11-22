@@ -8,7 +8,7 @@
       colorTitle="var(--white)"
       colorDescription="var(--white)"
     />
-    <img src="/img/idea-room.jpg" alt="room" />
+    <img src="/img/idea-room.jpg" alt="room" class="idea-image" />
   </div>
 </template>
 
@@ -24,8 +24,9 @@ import HeroInfo from "@/components/HeroInfo.vue";
   grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
 
-  img {
-    //min-height: 444px;
+  &-image {
+    object-fit: cover;
+    height: 100%;
   }
 }
 </style>

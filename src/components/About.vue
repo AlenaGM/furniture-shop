@@ -63,16 +63,21 @@ const about = [
     display: grid;
     grid-template-columns: repeat(4, 210px);
     justify-content: space-between;
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
   }
   &-element {
+    color: var(--dark-primary);
     background: var(--light-gray);
+    padding: 48px;
     &__img {
       display: block;
       margin-bottom: 12px;
     }
     &__title {
       margin: 0 0 12px 0;
-      color: var(--dark-primary);
       font-family: var(--clash);
       font-size: 20px;
       font-weight: 400;

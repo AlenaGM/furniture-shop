@@ -64,6 +64,7 @@ const props = defineProps({
   border: none;
   font-size: 16px;
   height: 56px;
+  white-space: nowrap;
   &:hover {
     opacity: 0.8;
   }
