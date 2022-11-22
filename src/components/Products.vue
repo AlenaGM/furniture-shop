@@ -10,7 +10,7 @@
       />
     </div>
     <div class="products-link">
-      <ui-button color="lightgray" type="link" to="/">
+      <ui-button :mobileFullWidth="true" color="lightgray" type="link" to="/">
         View collection
       </ui-button>
     </div>
@@ -61,6 +61,9 @@ const products = ref([
     grid-template-columns: repeat(2, 1fr);
     row-gap: 20px;
     justify-items: center;
+  }
+  @media screen and (max-width: 767px) {
+    padding: 0;
   }
   &-container {
     margin-bottom: 56px;

@@ -9,6 +9,7 @@
         'btn--secondary': color === 'secondary',
         'btn--lightgray': color === 'lightgray',
         'btn--white': color === 'white',
+        'btn--fullwidth': mobileFullWidth,
       },
     ]"
   >
@@ -25,6 +26,7 @@
         'btn--secondary': color === 'secondary',
         'btn--lightgray': color === 'lightgray',
         'btn--white': color === 'white',
+        'btn--fullwidth': mobileFullWidth,
       },
     ]"
   >
@@ -50,6 +52,10 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  mobileFullWidth: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
@@ -65,6 +71,10 @@ const props = defineProps({
   font-size: 16px;
   height: 56px;
   white-space: nowrap;
+  @media screen and (max-width: 767px) {
+    padding: 0 15px;
+    font-size: 15px;
+  }
   &:hover {
     opacity: 0.8;
   }
@@ -83,6 +93,11 @@ const props = defineProps({
   &--white {
     color: var(--dark-primary);
     background: var(--white);
+  }
+  &--fullwidth {
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
   }
 }
 </style>

@@ -43,11 +43,17 @@ const props = defineProps({
     &:hover {
       text-decoration: underline;
     }
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+    }
   }
   &-price {
     font-size: 18px;
     font-weight: 400;
     line-height: 27px;
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 }
 </style>

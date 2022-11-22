@@ -50,6 +50,9 @@ const about = [
 <style lang="scss" scoped>
 .about {
   padding: 80px 80px 130px 80px;
+  @media screen and (max-width: 767px) {
+    padding: 48px 0;
+  }
   &__title {
     text-align: center;
     color: var(--dark-primary);
@@ -58,6 +61,12 @@ const about = [
     font-weight: 400;
     line-height: 34px;
     margin: 0 0 84px 0;
+    @media screen and (max-width: 767px) {
+      text-align: left;
+      font-size: 20px;
+      line-height: 28px;
+      margin: 0 0 36px 0;
+    }
   }
   &-elements {
     display: grid;
@@ -67,11 +76,17 @@ const about = [
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
   }
   &-element {
     color: var(--dark-primary);
     background: var(--light-gray);
     padding: 48px;
+    @media screen and (max-width: 767px) {
+      padding: 36px 24px;
+    }
     &__img {
       display: block;
       margin-bottom: 12px;
