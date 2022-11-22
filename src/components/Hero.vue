@@ -6,7 +6,7 @@
       link="#"
       colorLink="lightgray"
     />
-    <img class="hero-info__image" src="/img/hero.jpg" alt="" />
+    <img class="hero-info__image" src="/img/hero.jpg" alt="room" />
   </div>
 </template>
 

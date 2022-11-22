@@ -37,5 +37,15 @@ const props = defineProps({
   &__input {
     flex-grow: 1;
   }
+
+  @media screen and (max-width: 349px) {
+    flex-direction: column;
+  }
+
+  &__input {
+    @media screen and (max-width: 349px) {
+      margin-bottom: 16px;
+    }
+  }
 }
 </style>

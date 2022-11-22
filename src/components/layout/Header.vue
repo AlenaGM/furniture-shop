@@ -1,9 +1,15 @@
 <template>
   <header class="header">
     <div class="header-top">
-      <div class="header-top-search">
-        <img src="/svg/header-search.svg" alt="search" />
+      <div class="header-top-left">
+        <div class="header-top-search">
+          <img src="/svg/header-search.svg" alt="search" />
+        </div>
+        <div class="header-top-mobile-menu">
+          <img src="/svg/menu.svg" alt="mobile-menu" />
+        </div>
       </div>
+
       <router-link to="/" class="header-logo">Avion</router-link>
       <div class="header-top-right">
         <div href="#" class="header-top-right__cart">
@@ -70,6 +76,9 @@ const menu = [
 .header {
   height: 132px;
   background: var(--white);
+  @media screen and (max-width: 767px) {
+    height: auto;
+  }
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -77,12 +86,37 @@ const menu = [
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 28px;
+    @media screen and (max-width: 767px) {
+      margin: 0;
+      border: none;
+      height: auto;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+    }
     &-right {
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
       &__cart {
         margin-right: 16px;
+      }
+    }
+    &-left {
+      display: flex;
+      align-items: center;
+      @media screen and (max-width: 767px) {
+        order: 2;
+      }
+    }
+    &-mobile-menu {
+      display: none;
+      @media screen and (max-width: 767px) {
+        display: block;
+        margin-left: 16px;
       }
     }
   }
@@ -92,6 +126,9 @@ const menu = [
     text-decoration: none;
     font-family: var(--clash);
     text-align: center;
+    @media screen and (max-width: 767px) {
+      order: 1;
+    }
     &:hover {
       text-decoration: underline;
     }
@@ -101,6 +138,9 @@ const menu = [
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
     &__link {
       margin: 0 22px;
       color: var(--lilac);

@@ -64,6 +64,7 @@ const products = ref([
   }
   @media screen and (max-width: 767px) {
     padding: 0;
+    margin-bottom: 40px;
   }
   &-container {
     margin-bottom: 56px;
