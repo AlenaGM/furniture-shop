@@ -69,18 +69,18 @@ const props = defineProps({
   }
   &--primary {
     color: var(--white);
-    background: var(--space);
+    background: var(--dark-primary);
   }
   &--secondary {
     color: var(--white);
     background: rgba(249, 249, 249, 0.15);
   }
   &--lightgray {
-    color: var(--space);
+    color: var(--dark-primary);
     background: #f9f9f9;
   }
   &--white {
-    color: var(--space);
+    color: var(--dark-primary);
     background: var(--white);
   }
 }

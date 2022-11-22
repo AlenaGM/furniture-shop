@@ -52,7 +52,7 @@ const about = [
   padding: 80px 80px 130px 80px;
   &__title {
     text-align: center;
-    color: var(--space);
+    color: var(--dark-primary);
     font-family: var(--clash);
     font-size: 24px;
     font-weight: 400;
@@ -65,13 +65,14 @@ const about = [
     justify-content: space-between;
   }
   &-element {
+    background: var(--light-gray);
     &__img {
       display: block;
       margin-bottom: 12px;
     }
     &__title {
       margin: 0 0 12px 0;
-      color: var(--space);
+      color: var(--dark-primary);
       font-family: var(--clash);
       font-size: 20px;
       font-weight: 400;

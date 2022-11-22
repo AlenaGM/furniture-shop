@@ -33,7 +33,7 @@ const props = defineProps({
   }
   &-name {
     display: block;
-    color: var(--space);
+    color: var(--dark-primary);
     font-family: var(--clash);
     font-size: 20px;
     font-weight: 400;
