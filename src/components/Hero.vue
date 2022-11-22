@@ -30,7 +30,11 @@ import HeroInfo from "@/components/HeroInfo.vue";
     padding-right: 0;
   }
   &-info__image {
-    width: 100%;
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+      width: 100%;
+    }
   }
 }
 </style>
