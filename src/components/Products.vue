@@ -3,6 +3,7 @@
     <div class="products">
       <Product
         v-for="product of products"
+        :id="product.id"
         :key="product.id"
         :img="product.img"
         :title="product.title"
@@ -22,32 +23,11 @@ import { ref } from "vue";
 import Product from "@/components/Product.vue";
 import uiButton from "@/components/ui/Button.vue";
 
-const products = ref([
-  {
-    id: 1,
-    img: "/img/product-chair.jpg",
-    title: "The Dandy chair",
-    price: 250,
+const props = defineProps({
+  products: {
+    required: true,
   },
-  {
-    id: 2,
-    img: "/img/product-vases.jpg",
-    title: "Rustic Vase Set",
-    price: 155,
-  },
-  {
-    id: 3,
-    img: "/img/product-vase.jpg",
-    title: "The Silky Vase",
-    price: 125,
-  },
-  {
-    id: 4,
-    img: "/img/product-lamp.jpg",
-    title: "The Lucy Lamp",
-    price: 399,
-  },
-]);
+});
 </script>
 
 <style lang="scss" scoped>
