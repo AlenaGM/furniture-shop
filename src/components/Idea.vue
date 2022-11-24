@@ -26,6 +26,7 @@ import HeroInfo from "@/components/HeroInfo.vue";
   column-gap: 16px;
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
+    justify-items: center;
     padding: 0;
   }
   &-image {
