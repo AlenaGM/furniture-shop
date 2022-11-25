@@ -4,11 +4,11 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/furniture-shop/",
   plugins: [vue()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
   },
-  base: "/furniture-shop/",
 });

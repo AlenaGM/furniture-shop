@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <router-link to="/" class="header-logo">Avion</router-link>
+      <router-link to="/furniture-shop/" class="header-logo">Avion</router-link>
       <div class="header-top-right">
         <div class="header-top-right__cart">
           <router-link to="/cart">
