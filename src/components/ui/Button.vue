@@ -1,13 +1,13 @@
 <template>
   <button
-    v-if="type === button"
+    v-if="type === 'button'"
     class="btn"
     :class="[
       'btn',
       {
-        'btn--primary': color === 'primary',
+        'btn--dark-primary': color === 'dark-primary',
         'btn--secondary': color === 'secondary',
-        'btn--lightgray': color === 'lightgray',
+        'btn--light-gray': color === 'light-gray',
         'btn--white': color === 'white',
         'btn--fullwidth': mobileFullWidth,
       },
@@ -22,9 +22,9 @@
     :class="[
       'btn',
       {
-        'btn--primary': color === 'primary',
+        'btn--dark-primary': color === 'dark-primary',
         'btn--secondary': color === 'secondary',
-        'btn--lightgray': color === 'lightgray',
+        'btn--light-gray': color === 'light-gray',
         'btn--white': color === 'white',
         'btn--fullwidth': mobileFullWidth,
       },
@@ -42,7 +42,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "primary",
+    default: "dark-primary",
   },
   type: {
     type: String,
@@ -78,7 +78,7 @@ const props = defineProps({
   &:hover {
     opacity: 0.8;
   }
-  &--primary {
+  &--dark-primary {
     color: var(--white);
     background: var(--dark-primary);
   }
@@ -86,9 +86,9 @@ const props = defineProps({
     color: var(--white);
     background: rgba(249, 249, 249, 0.15);
   }
-  &--lightgray {
+  &--light-gray {
     color: var(--dark-primary);
-    background: #f9f9f9;
+    background: var(--light-gray);
   }
   &--white {
     color: var(--dark-primary);

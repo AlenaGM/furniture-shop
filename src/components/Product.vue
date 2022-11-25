@@ -1,9 +1,11 @@
 <template>
   <div class="product">
-    <router-link :to="`/${id}`">
+    <router-link :to="`products/${id}`">
       <img :src="img" :alt="title" class="product-image" />
     </router-link>
-    <router-link :to="`/${id}`" class="product-name">{{ title }}</router-link>
+    <router-link :to="`products/${id}`" class="product-name">{{
+      title
+    }}</router-link>
     <span class="product-price">£{{ price }}</span>
   </div>
 </template>
@@ -29,7 +31,7 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product {
   &-image {
     display: block;
@@ -53,9 +55,11 @@ const props = defineProps({
     }
   }
   &-price {
+    display: block;
     font-size: 18px;
     font-weight: 400;
     line-height: 27px;
+    color: var(--dark-primary);
     @media screen and (max-width: 767px) {
       font-size: 16px;
     }

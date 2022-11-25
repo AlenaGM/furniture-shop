@@ -64,12 +64,12 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .hero {
   &-info {
     background: var(--white);
     max-width: 630px;
-    padding: 50px 60px;
+    padding: 50px 55px;
     min-height: 444px;
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@
         <img
           :src="element.img"
           :alt="element.title"
-          class="about-element__image"
+          class="about-element__img"
         />
         <h4 class="about-element__title">{{ element.title }}</h4>
         <span class="about-element__description">

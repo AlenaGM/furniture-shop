@@ -38,16 +38,16 @@
 </template>
 
 <script setup>
-import SubscribeForm from "@/components//SubscribeForm.vue";
+import SubscribeForm from "@/components/SubscribeForm.vue";
 </script>
 
 <style lang="scss" scoped>
 .subscribe {
-  background: url("img/subscribe.jpg");
+  background: url("/img/subscribe.jpg");
   background-size: cover;
   padding: 97px 0 86px 0;
   @media screen and (max-width: 767px) {
-    background-image: url("img/subscribe-mobile.jpg");
+    background-image: url("/img/subscribe-mobile.jpg");
     padding: 24px;
     margin: 0 -24px;
   }
@@ -55,6 +55,7 @@ import SubscribeForm from "@/components//SubscribeForm.vue";
     max-width: 500px;
     margin: auto;
     text-align: center;
+    color: var(--white);
     @media screen and (max-width: 767px) {
       text-align: left;
     }

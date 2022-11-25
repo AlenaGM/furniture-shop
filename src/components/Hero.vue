@@ -4,7 +4,7 @@
       title="Luxury homeware for people who love timeless design quality"
       description="Shop the new Spring 2022 collection today"
       link="#"
-      colorLink="lightgray"
+      colorLink="light-gray"
     />
     <img class="hero-image" src="/img/hero.jpg" alt="room" />
   </div>
@@ -14,7 +14,7 @@
 import HeroInfo from "@/components/HeroInfo.vue";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .hero {
   background: url("/img/hero.jpg");
   height: 704px;

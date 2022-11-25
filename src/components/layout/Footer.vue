@@ -5,42 +5,46 @@
         <div class="footer-menu">
           <div class="footer-menu-column">
             <span class="footer-menu__title">Menu</span>
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link"
               >New arrivals</router-link
             >
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link"
               >Best sellers</router-link
             >
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link"
               >Recently viewed</router-link
             >
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link"
               >Popular this week</router-link
             >
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link"
               >All products</router-link
             >
           </div>
           <div class="footer-menu-column">
             <span class="footer-menu__title">Categories</span>
-            <router-link to="" class="footer-menu__link">Crockery</router-link>
-            <router-link to="" class="footer-menu__link">Furniture</router-link>
-            <router-link to="" class="footer-menu__link">Homeware</router-link>
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link">Crockery</router-link>
+            <router-link to="/" class="footer-menu__link"
+              >Furniture</router-link
+            >
+            <router-link to="/" class="footer-menu__link">Homeware</router-link>
+            <router-link to="/" class="footer-menu__link"
               >Plant pots</router-link
             >
-            <router-link to="" class="footer-menu__link">Chairs</router-link>
-            <router-link to="" class="footer-menu__link">Crockery</router-link>
+            <router-link to="/" class="footer-menu__link">Chairs</router-link>
+            <router-link to="/" class="footer-menu__link">Crockery</router-link>
           </div>
           <div class="footer-menu-column">
             <span class="footer-menu__title">Our company</span>
-            <router-link to="" class="footer-menu__link">About us</router-link>
-            <router-link to="" class="footer-menu__link">Vacancies</router-link>
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link">About us</router-link>
+            <router-link to="/" class="footer-menu__link"
+              >Vacancies</router-link
+            >
+            <router-link to="/" class="footer-menu__link"
               >Contact us</router-link
             >
-            <router-link to="" class="footer-menu__link">Privacy</router-link>
-            <router-link to="" class="footer-menu__link"
+            <router-link to="/" class="footer-menu__link">Privacy</router-link>
+            <router-link to="/" class="footer-menu__link"
               >Returns policy</router-link
             >
           </div>
@@ -81,7 +85,7 @@
 </template>
 
 <script setup>
-import SubscribeForm from "@/components//SubscribeForm.vue";
+import SubscribeForm from "@/components/SubscribeForm.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -115,7 +119,7 @@ import SubscribeForm from "@/components//SubscribeForm.vue";
     }
     @media screen and (max-width: 767px) {
       grid-template-columns: 1fr;
-      padding-bottom: 16px;
+      padding-bottom: 24px;
     }
   }
   &-menu {

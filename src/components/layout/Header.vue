@@ -22,6 +22,9 @@
         <div class="header-top-right__cart">
           <router-link to="/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
+            <span class="header-top-right__count" v-if="cartStore.cart.length">
+              {{ cartStore.cart.length }}
+            </span>
           </router-link>
         </div>
         <div class="header-top-right__user">
@@ -56,7 +59,10 @@
 
 <script setup>
 import { ref } from "vue";
-//import { useCartStore } from "@/store/cart.js";
+import { useCartStore } from "@/store/cart.js";
+
+const isOpenedMobileMenu = ref(false);
+const cartStore = useCartStore();
 
 const menu = [
   {
@@ -88,9 +94,6 @@ const menu = [
     path: "/cutlery",
   },
 ];
-
-const isOpenedMobileMenu = ref(false);
-//const cartStore = useCartStore();
 </script>
 
 <style lang="scss" scoped>
@@ -150,7 +153,7 @@ const isOpenedMobileMenu = ref(false);
         height: 15px;
         background: #000;
         border-radius: 50%;
-        color: #fff;
+        color: var(--white);
         font-size: 10px;
         text-decoration: none;
         display: flex;
@@ -201,7 +204,7 @@ const isOpenedMobileMenu = ref(false);
       &__link {
         display: block;
         margin-bottom: 20px;
-        color: var(--gray);
+        color: var(--black);
         text-decoration: none;
         &:last-child {
           margin-bottom: 0;

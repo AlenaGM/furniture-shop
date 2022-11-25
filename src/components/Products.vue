@@ -11,7 +11,13 @@
       />
     </div>
     <div class="products-link">
-      <ui-button :mobileFullWidth="true" color="lightgray" type="link" to="/">
+      <ui-button
+        :mobileFullWidth="true"
+        color="light-gray"
+        type="link"
+        to="/"
+        class="products-link"
+      >
         View collection
       </ui-button>
     </div>
@@ -50,7 +56,6 @@ const props = defineProps({
     margin-bottom: 56px;
   }
   &-link {
-    display: block;
     text-align: center;
   }
 }
