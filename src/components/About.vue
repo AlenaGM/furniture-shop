@@ -22,24 +22,24 @@ import { ref } from "vue";
 
 const about = [
   {
-    img: "/svg/about-delivery.svg",
+    img: "/furniture-shop/svg/about-delivery.svg",
     title: "Next day as standard",
     description: "Order before 3pm and get your order the next day as standard",
   },
   {
-    img: "/svg/about-checkmark.svg",
+    img: "/furniture-shop/svg/about-checkmark.svg",
     title: "Made by true artisans",
     description:
       "Handmade crafted goods made with real passion and craftmanship",
   },
   {
-    img: "/svg/about-purchase.svg",
+    img: "/furniture-shop/svg/about-purchase.svg",
     title: "Unbeatable prices",
     description:
       "For our materials and quality you won’t find better prices anywhere",
   },
   {
-    img: "/svg/about-sprout.svg",
+    img: "/furniture-shop/svg/about-sprout.svg",
     title: "Recycled packaging",
     description:
       "We use 100% recycled to ensure our footprint is more manageable",
