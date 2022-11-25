@@ -6,12 +6,12 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/",
+      path: "/furniture-shop/",
       name: "Index",
       component: Index,
     },
     {
-      path: "/products/:id",
+      path: "/furniture-shop/products/:id",
       name: "Product",
       component: Product,
     },
