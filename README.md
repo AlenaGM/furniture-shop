@@ -2,12 +2,6 @@
 
 _E-commerce website built with VueJS and Pinia._ <br>
 
-## Features
-- Film-search via API-request;
-- Personal favourite films collection with possibility to add/delete movies;
-- Separate list for movies that have already been watched;
-- Information on favourite and watched movies is stored in LocalStorage;
-
 ## Tech stack
 
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vue3 + Vite<br>
