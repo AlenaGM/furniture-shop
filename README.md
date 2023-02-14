@@ -1,6 +1,6 @@
 # Avion Furniture Shop 🛋️
 
-_E-commerce website built with VueJS and Pinia._ <br>
+_E-commerce website built with VueJS 3 and Pinia._ <br>
 
 ## Tech stack
 
@@ -22,9 +22,9 @@ _E-commerce website built with VueJS and Pinia._ <br>
 
 
   <br><br>
-  \* _Project  built when following [Frontend Skills' Course]_ 
+  \* _Project  built while following [Frontend Skills' Course]_ 
   
 
-   [Frontend Skills' Course]: <https://www.youtube.com/watch?v=ok9PE-XwXro&list=PL2hgv2vHkQ7DE77DNxPPEqzdk89PA4gkX>
+   [Frontend Skills' Course]: <https://www.youtube.com/watch?v=bNeasXdk-_8&list=PL2hgv2vHkQ7CGDm0GsjCahJ2vyJTLjlu1>
    [Avion Furniture]: <https://alenagm.github.io/furniture-shop/>
 
