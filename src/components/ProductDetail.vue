@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <div>
+    <div class="product-image">
       <img :src="product.image" :alt="product.name" />
     </div>
     <div>
@@ -75,16 +75,31 @@ const changeQuantity = (type) => {
   background: var(--light-gray);
   padding: 50px 80px;
   display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 500px;
+  align-items: start;
+  grid-template-columns: minmax(300px, 600px) minmax(400px, 1fr);
   column-gap: 65px;
   margin-bottom: 65px;
+  &-image {
+    img {
+      object-fit: cover;
+    }
+  }
+  @media screen and (max-width: 1092px) {
+    padding: 30px;
+    column-gap: 30px;
+  }
+  @media screen and (max-width: 840px) {
+    grid-template-columns: 1fr;
+  }
   &-name {
     margin: 0 0 16px 0;
     font-family: var(--clash);
     font-size: 36px;
     font-weight: 400;
     line-height: 44px;
+    @media screen and (max-width: 840px) {
+      margin: 30px 0 16px 0;
+    }
   }
   &-price {
     display: block;
