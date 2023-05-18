@@ -2,6 +2,8 @@
 
 _E-commerce website built with VueJS 3 and Pinia._ <br>
 
+In making
+
 ## Tech stack
 
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vue3 + Vite<br>
