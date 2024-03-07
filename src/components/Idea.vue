@@ -1,8 +1,10 @@
 <template>
   <div class="idea">
-    <HeroInfo
+    <InfoBlock
       title="It started with a small idea"
       description="A global brand with local beginnings, our story begain in a small studio in South London in early 2014"
+      link="/furniture-shop/about"
+      btnText="Our story"
       background="var(--dark-primary)"
       colorTitle="var(--white)"
       colorDescription="var(--white)"
@@ -13,7 +15,7 @@
 </template>
 
 <script setup>
-import HeroInfo from "@/components/HeroInfo.vue";
+import InfoBlock from "@/components/InfoBlock.vue";
 </script>
 
 <style lang="scss" scoped>

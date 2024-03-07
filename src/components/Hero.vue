@@ -1,9 +1,9 @@
 <template>
   <div class="hero">
-    <HeroInfo
+    <InfoBlock
       title="Luxury homeware for people who love timeless design quality"
       description="Shop the new Spring 2022 collection today"
-      link="#"
+      link="/furniture-shop/products"
       colorLink="light-gray"
     />
     <img class="hero-image" src="/img/hero.jpg" alt="room" />
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import HeroInfo from "@/components/HeroInfo.vue";
+import InfoBlock from "@/components/InfoBlock.vue";
 </script>
 
 <style lang="scss" scoped>

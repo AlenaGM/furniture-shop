@@ -20,7 +20,7 @@
       <router-link to="/furniture-shop/" class="header-logo">Avion</router-link>
       <div class="header-top-right">
         <div class="header-top-right__cart">
-          <router-link to="/cart">
+          <router-link to="/furniture-shop/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartStore.cart.length }}
@@ -28,7 +28,7 @@
           </router-link>
         </div>
         <div class="header-top-right__user">
-          <router-link to="/user">
+          <router-link to="/furniture-shop/">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
@@ -66,32 +66,32 @@ const cartStore = useCartStore();
 
 const menu = [
   {
-    name: "Plant pots",
-    path: "/plantpots",
+    name: "All products",
+    path: "/furniture-shop/products/",
   },
   {
-    name: "Ceramics",
-    path: "/ceramics",
+    name: "New arrivals",
+    path: "/furniture-shop/products/",
   },
   {
-    name: "Tables",
-    path: "/tables",
+    name: "Furniture",
+    path: "/furniture-shop/products/",
   },
   {
-    name: "Chairs",
-    path: "/chairs",
+    name: "Lighting",
+    path: "/furniture-shop/products/",
   },
   {
-    name: "Crockery",
-    path: "/crockery",
+    name: "Decoration",
+    path: "/furniture-shop/products/",
   },
   {
     name: "Tableware",
-    path: "/tableware",
+    path: "/furniture-shop/products/",
   },
   {
-    name: "Cutlery",
-    path: "/cutlery",
+    name: "Textiles",
+    path: "/furniture-shop/products/",
   },
 ];
 </script>
@@ -119,6 +119,11 @@ const menu = [
       display: flex;
       justify-content: space-between;
     }
+    &-search {
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
     &__icon {
       display: block;
     }
@@ -126,7 +131,7 @@ const menu = [
       display: flex;
       align-items: center;
       @media screen and (max-width: 767px) {
-        order: 2;
+        order: 3;
       }
     }
     &-mobile-menu {
@@ -141,7 +146,7 @@ const menu = [
       align-items: center;
       justify-content: flex-end;
       @media screen and (max-width: 767px) {
-        display: none;
+        order: 2;
       }
       &__cart {
         margin-right: 16px;
@@ -172,6 +177,7 @@ const menu = [
     text-align: center;
     @media screen and (max-width: 767px) {
       order: 1;
+      margin-right: auto;
     }
     &:hover {
       text-decoration: underline;

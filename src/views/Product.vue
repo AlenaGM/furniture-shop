@@ -1,7 +1,7 @@
 <template>
   <ProductDetail :product="currentProduct" v-if="currentProduct" />
   <PopularProducts />
-  <About />
+  <Difference />
   <Subscribe />
 </template>
 
@@ -10,7 +10,7 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
 import ProductDetail from "@/components/ProductDetail.vue";
-import About from "@/components/About.vue";
+import Difference from "@/components/Difference.vue";
 import Subscribe from "@/components/Subscribe.vue";
 import PopularProducts from "@/components/PopularProducts.vue";
 

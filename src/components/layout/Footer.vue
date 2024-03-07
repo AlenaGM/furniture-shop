@@ -5,47 +5,56 @@
         <div class="footer-menu">
           <div class="footer-menu-column">
             <span class="footer-menu__title">Menu</span>
-            <router-link to="/" class="footer-menu__link"
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
+              >All products</router-link
+            >
+            <router-link to="/furniture-shop/" class="footer-menu__link"
               >New arrivals</router-link
             >
-            <router-link to="/" class="footer-menu__link"
+            <router-link to="/furniture-shop/" class="footer-menu__link"
               >Best sellers</router-link
             >
-            <router-link to="/" class="footer-menu__link"
-              >Recently viewed</router-link
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Last chance</router-link
             >
-            <router-link to="/" class="footer-menu__link"
-              >Popular this week</router-link
-            >
-            <router-link to="/" class="footer-menu__link"
-              >All products</router-link
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Gift cards</router-link
             >
           </div>
           <div class="footer-menu-column">
             <span class="footer-menu__title">Categories</span>
-            <router-link to="/" class="footer-menu__link">Crockery</router-link>
-            <router-link to="/" class="footer-menu__link"
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
               >Furniture</router-link
             >
-            <router-link to="/" class="footer-menu__link">Homeware</router-link>
-            <router-link to="/" class="footer-menu__link"
-              >Plant pots</router-link
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
+              >Lighting</router-link
             >
-            <router-link to="/" class="footer-menu__link">Chairs</router-link>
-            <router-link to="/" class="footer-menu__link">Crockery</router-link>
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
+              >Decoration</router-link
+            >
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
+              >Tableware</router-link
+            >
+            <router-link to="/furniture-shop/products" class="footer-menu__link"
+              >Textiles</router-link
+            >
           </div>
           <div class="footer-menu-column">
-            <span class="footer-menu__title">Our company</span>
-            <router-link to="/" class="footer-menu__link">About us</router-link>
-            <router-link to="/" class="footer-menu__link"
-              >Vacancies</router-link
+            <span class="footer-menu__title">About us</span>
+            <router-link to="/furniture-shop/about" class="footer-menu__link"
+              >Our story</router-link
             >
-            <router-link to="/" class="footer-menu__link"
-              >Contact us</router-link
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Get in touch</router-link
             >
-            <router-link to="/" class="footer-menu__link">Privacy</router-link>
-            <router-link to="/" class="footer-menu__link"
-              >Returns policy</router-link
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Shipping information</router-link
+            >
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Returns & exchanges</router-link
+            >
+            <router-link to="/furniture-shop/" class="footer-menu__link"
+              >Privacy policy</router-link
             >
           </div>
         </div>
@@ -58,7 +67,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-bottom__copyright">Copyright 2022 Avion LTD</span>
+        <span class="footer-bottom__copyright">Copyright 2024 Avion LTD</span>
         <span class="footer-bottom-socials">
           <a href="#" class="footer-bottom-socials__link">
             <img src="/svg/linkedin.svg" alt="linkedin" />

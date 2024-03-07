@@ -15,10 +15,9 @@
         :mobileFullWidth="true"
         color="light-gray"
         type="link"
-        to="/"
+        to="/furniture-shop/products"
         class="products-link"
-      >
-        View collection
+        >View collection
       </ui-button>
     </div>
   </div>

@@ -1,15 +1,15 @@
 <template>
-  <div class="about">
-    <h3 class="about__title">What makes our brand different</h3>
-    <div class="about-elements">
-      <div class="about-element" v-for="(element, i) of about" :key="i">
+  <div class="difference">
+    <h3 class="difference__title">What makes our brand different</h3>
+    <div class="difference-elements">
+      <div class="difference-element" v-for="(element, i) of about" :key="i">
         <img
           :src="element.img"
           :alt="element.title"
-          class="about-element__img"
+          class="difference-element__img"
         />
-        <h4 class="about-element__title">{{ element.title }}</h4>
-        <span class="about-element__description">
+        <h4 class="difference-element__title">{{ element.title }}</h4>
+        <span class="difference-element__description">
           {{ element.description }}
         </span>
       </div>
@@ -18,8 +18,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 const about = [
   {
     img: "/furniture-shop/svg/about-delivery.svg",
@@ -48,7 +46,7 @@ const about = [
 </script>
 
 <style lang="scss" scoped>
-.about {
+.difference {
   padding: 80px 80px 130px 80px;
   @media screen and (max-width: 767px) {
     padding: 48px 0;
@@ -60,7 +58,7 @@ const about = [
     font-size: 24px;
     font-weight: 400;
     line-height: 34px;
-    margin: 0 0 84px 0;
+    margin: 0 0 80px 0;
     @media screen and (max-width: 767px) {
       text-align: left;
       font-size: 20px;
