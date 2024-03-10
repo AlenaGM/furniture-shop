@@ -1,6 +1,6 @@
 <template>
-  <ProductDetail :product="currentProduct" v-if="currentProduct" />
-  <PopularProducts />
+  <ProductDetails :product="currentProduct" v-if="currentProduct" />
+  <PopularProducts @click="fetchProductDetails" />
   <Difference />
   <Subscribe />
 </template>
@@ -9,7 +9,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
-import ProductDetail from "@/components/ProductDetail.vue";
+import ProductDetails from "@/components/ProductDetails.vue";
 import Difference from "@/components/Difference.vue";
 import Subscribe from "@/components/Subscribe.vue";
 import PopularProducts from "@/components/PopularProducts.vue";
@@ -20,7 +20,11 @@ const productId = ref("");
 const currentProduct = ref({});
 
 onMounted(async () => {
+  fetchProductDetails();
+});
+
+const fetchProductDetails = async () => {
   productId.value = route.params.id;
   currentProduct.value = await api.getProduct(productId.value);
-});
+};
 </script>

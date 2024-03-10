@@ -6,14 +6,6 @@ export const HTTP = axios.create({
 });
 
 export default {
-  async getAllProducts() {
-    try {
-      const response = await HTTP.get("/products/popular");
-      return response.data;
-    } catch (e) {
-      console.log(e);
-    }
-  },
   async getPopularProducts() {
     try {
       const response = await HTTP.get("/products/popular");

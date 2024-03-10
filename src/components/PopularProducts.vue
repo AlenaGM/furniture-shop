@@ -1,11 +1,24 @@
 <template>
-  <Loader v-if="loading" />
-  <Products :products="popularProducts" v-else />
+  <div class="products-container">
+    <Loader v-if="loading" />
+    <Products :products="popularProducts" v-else />
+    <div class="products-link">
+      <ui-button
+        class="products-link"
+        type="link"
+        to="/furniture-shop/products"
+        color="light-gray"
+        :mobileFullWidth="true"
+        >View collection
+      </ui-button>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import Products from "@/components/Products.vue";
+import uiButton from "@/components/ui/Button.vue";
 import Loader from "@/components/ui/Loader.vue";
 import api from "@/api";
 
@@ -17,3 +30,17 @@ onMounted(async () => {
   loading.value = false;
 });
 </script>
+
+<style lang="scss" scoped>
+.products {
+  &-container {
+    margin-bottom: 64px;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 48px;
+    }
+  }
+  &-link {
+    text-align: center;
+  }
+}
+</style>

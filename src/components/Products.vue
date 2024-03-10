@@ -1,32 +1,18 @@
 <template>
-  <div class="products-container">
-    <div class="products">
-      <Product
-        v-for="product of products"
-        :id="product.id"
-        :key="product.id"
-        :img="product.img"
-        :title="product.title"
-        :price="product.price"
-      />
-    </div>
-    <div class="products-link">
-      <ui-button
-        :mobileFullWidth="true"
-        color="light-gray"
-        type="link"
-        to="/furniture-shop/products"
-        class="products-link"
-        >View collection
-      </ui-button>
-    </div>
+  <div class="products">
+    <Product
+      v-for="product of products"
+      :id="product.id"
+      :key="product.id"
+      :img="product.img"
+      :title="product.title"
+      :price="product.price"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import Product from "@/components/Product.vue";
-import uiButton from "@/components/ui/Button.vue";
 
 const props = defineProps({
   products: {
@@ -49,13 +35,7 @@ const props = defineProps({
   }
   @media screen and (max-width: 767px) {
     padding: 0;
-    margin-bottom: 40px;
-  }
-  &-container {
-    margin-bottom: 56px;
-  }
-  &-link {
-    text-align: center;
+    margin-bottom: 36px;
   }
 }
 </style>

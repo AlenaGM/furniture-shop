@@ -6,6 +6,7 @@
       link="/furniture-shop/about"
       btnText="Our story"
       background="var(--dark-primary)"
+      colorLink="secondary"
       colorTitle="var(--white)"
       colorDescription="var(--white)"
       :mobilePadding="true"
@@ -21,13 +22,14 @@ import InfoBlock from "@/components/InfoBlock.vue";
 <style lang="scss" scoped>
 .idea {
   padding: 0 80px;
-  margin-bottom: 60px;
+  margin-bottom: 130px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
     justify-items: center;
+    margin-bottom: 48px;
     padding: 0;
   }
   &-image {
@@ -36,6 +38,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
     @media screen and (max-width: 767px) {
       margin-top: 24px;
       height: auto;
+      width: 100%;
     }
   }
 }

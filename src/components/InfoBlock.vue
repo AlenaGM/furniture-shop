@@ -4,7 +4,7 @@
     :style="{ backgroundColor: background }"
     :class="{ 'infoblock--mobile-padding': mobilePadding }"
   >
-    <div class="infoblock-text">
+    <div>
       <h2 class="infoblock__title" :style="{ color: colorTitle }">
         {{ title }}
       </h2>
@@ -37,13 +37,13 @@ const props = defineProps({
     type: String,
     required: false,
   },
-  link: {
-    type: String,
-    required: false,
-  },
   btnText: {
     type: String,
     default: "View collection",
+  },
+  link: {
+    type: String,
+    required: false,
   },
   colorTitle: {
     type: String,
@@ -71,25 +71,24 @@ const props = defineProps({
 <style lang="scss" scoped>
 .infoblock {
   background: var(--white);
-  max-width: 630px;
-  padding: 50px 55px;
   min-height: 444px;
+  max-width: 640px;
+  padding: 48px 64px;
   display: grid;
   align-content: space-between;
   justify-items: start;
+  @media screen and (max-width: 1024px) {
+    padding: 24px 32px;
+  }
   @media screen and (max-width: 767px) {
     min-height: 282px;
+    max-width: none;
+    padding: 24px 0px;
   }
-  &--mobile-padding {
-    @media screen and (max-width: 767px) {
-      padding: 36px 24px;
-      min-height: 282px;
-    }
-  }
-  &-text {
+  div {
     margin: 0 0 20px 0;
     @media screen and (max-width: 767px) {
-      margin-bottom: 32px;
+      margin-bottom: 0 0 32px 0;
     }
   }
   &__title {
@@ -106,7 +105,12 @@ const props = defineProps({
     color: var(--black-coral);
     font-size: 18px;
     font-family: var(--satoshi);
-    line-height: 27px;
+    line-height: 150%;
+  }
+  &--mobile-padding {
+    @media screen and (max-width: 767px) {
+      padding: 24px;
+    }
   }
 }
 </style>

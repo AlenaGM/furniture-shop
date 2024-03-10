@@ -16,20 +16,19 @@
           <img src="/svg/menu.svg" alt="menu" class="header-top__icon" />
         </div>
       </div>
-
       <router-link to="/furniture-shop/" class="header-logo">Avion</router-link>
       <div class="header-top-right">
+        <div class="header-top-right__user">
+          <router-link to="/furniture-shop/">
+            <img src="/svg/header-user.svg" alt="user" />
+          </router-link>
+        </div>
         <div class="header-top-right__cart">
           <router-link to="/furniture-shop/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
-              {{ cartStore.cart.length }}
+              {{ cartItems }}
             </span>
-          </router-link>
-        </div>
-        <div class="header-top-right__user">
-          <router-link to="/furniture-shop/">
-            <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
       </div>
@@ -58,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
 
 const isOpenedMobileMenu = ref(false);
@@ -94,6 +93,15 @@ const menu = [
     path: "/furniture-shop/products/",
   },
 ];
+
+const cartItems = computed(() => {
+  let totalItems = 0;
+
+  for (let item of cartStore.cart) {
+    totalItems += item.count;
+  }
+  return totalItems;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -149,7 +157,6 @@ const menu = [
         order: 2;
       }
       &__cart {
-        margin-right: 16px;
         position: relative;
       }
       &__count {
@@ -166,6 +173,9 @@ const menu = [
         align-items: center;
         left: -50%;
         bottom: 0;
+      }
+      &__user {
+        margin-right: 16px;
       }
     }
   }
@@ -192,9 +202,11 @@ const menu = [
       display: none;
     }
     &__link {
-      margin: 0 22px;
       color: var(--lilac);
       text-decoration: none;
+      &:not(:last-of-type) {
+        margin: 0 40px 0 0;
+      }
       &:hover {
         text-decoration: underline;
       }

@@ -1,8 +1,7 @@
-<template>all products</template>
+<template>
+  <Collection />
+</template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-
-const route = useRoute();
-const router = useRouter();
+import Collection from "@/components/Collection.vue";
 </script>

@@ -8,22 +8,25 @@
       title="From a studio in London to a global brand with over 400 outlets"
       description="When we started Avion, the idea was simple. Make high quality furniture affordable and available for the mass market. Handmade, and lovingly crafted furniture and homeware is what we live, breathe and design so our Chelsea boutique become the hotbed for the London interior design community."
       link="/furniture-shop/products"
-      colorLink="light-gray"
+      colorLink="dark-primary"
       btnText="View collection"
-      background="var(--white)"
+      background="var(--light-gray)"
       colorTitle="var(--dark-primary)"
       colorDescription="var(--dark-primary)"
       :mobilePadding="true"
     />
+
     <img src="/img/story-studio.jpg" alt="room" class="story-image" />
+
     <img src="/img/story-service.jpg" alt="room" class="story-image" />
+
     <InfoBlock
       title="Our service isn’t just personal, it’s actually hyper personally exquisite"
       description="At Avion, we believe in providing a level of personalized service that goes above and beyond. Our team is dedicated to creating an exquisite shopping experience tailored specifically to your needs and preferences. From helping you select the perfect piece of furniture to ensuring it fits perfectly in your space, we are committed to making your shopping experience truly exceptional."
       link="/furniture-shop/"
-      colorLink="light-gray"
+      colorLink="dark-primary"
       btnText="Get in touch"
-      background="var(--white)"
+      background="var(--light-gray)"
       colorTitle="var(--dark-primary)"
       colorDescription="var(--dark-primary)"
       :mobilePadding="true"
@@ -39,9 +42,9 @@ import InfoBlock from "@/components/InfoBlock.vue";
 .story {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr 1fr;
   column-gap: 0px;
   justify-items: center;
-  grid-template-rows: auto 1fr 1fr;
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -62,7 +65,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
       text-align: left;
       font-size: 32px;
       line-height: 140%;
-      padding: 32px 0;
+      padding: 48px 0 36px;
     }
   }
   &-image {
@@ -74,11 +77,5 @@ import InfoBlock from "@/components/InfoBlock.vue";
 
 .infoblock {
   max-width: none;
-  @media screen and (max-width: 767px) {
-    padding: 36px 0px;
-  }
-  &__title {
-    color: var(--dark-primary);
-  }
 }
 </style>

@@ -6,7 +6,9 @@
       link="/furniture-shop/products"
       colorLink="light-gray"
     />
-    <img class="hero-image" src="/img/hero.jpg" alt="room" />
+    <div class="hero-image">
+      <img src="/img/hero.jpg" alt="room" />
+    </div>
   </div>
 </template>
 
@@ -22,18 +24,25 @@ import InfoBlock from "@/components/InfoBlock.vue";
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 80px;
+  padding: 0 80px;
   @media screen and (max-width: 767px) {
     display: block;
     height: auto;
     background: transparent;
-    padding-right: 0;
+    padding: 0;
   }
   &-image {
-    max-width: 100%;
-    display: none;
+    img {
+      max-width: 100%;
+      display: none;
+      @media screen and (max-width: 767px) {
+        display: block;
+        width: 100%;
+      }
+    }
     @media screen and (max-width: 767px) {
-      display: block;
+      position: relative;
+      margin: 0 -24px;
     }
   }
 }

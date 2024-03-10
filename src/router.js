@@ -34,6 +34,9 @@ const router = createRouter({
       component: Cart,
     },
   ],
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 export default router;
