@@ -92,7 +92,7 @@ const props = defineProps({
     }
   }
   &__title {
-    font-family: var(--clash);
+    font-family: var(--second-family);
     font-size: 32px;
     font-weight: 400;
     line-height: 140%;
@@ -102,9 +102,9 @@ const props = defineProps({
     }
   }
   &__description {
-    color: var(--black-coral);
+    color: var(--dark-primary);
     font-size: 18px;
-    font-family: var(--satoshi);
+    font-family: var(--font-family);
     line-height: 150%;
   }
   &--mobile-padding {

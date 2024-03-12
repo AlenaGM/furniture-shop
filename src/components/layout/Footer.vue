@@ -5,57 +5,107 @@
         <div class="footer-menu">
           <div class="footer-menu-column">
             <span class="footer-menu__title">Menu</span>
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >All products</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >New arrivals</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Best sellers</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Last chance</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Gift cards</router-link
-            >
+            <ul>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >All products</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >New arrivals</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Best sellers</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Last chance</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Gift cards</router-link
+                >
+              </li>
+            </ul>
           </div>
           <div class="footer-menu-column">
             <span class="footer-menu__title">Categories</span>
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >Furniture</router-link
-            >
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >Lighting</router-link
-            >
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >Decoration</router-link
-            >
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >Tableware</router-link
-            >
-            <router-link to="/furniture-shop/products" class="footer-menu__link"
-              >Textiles</router-link
-            >
+            <ul>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >Furniture</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >Lighting</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >Decoration</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >Tableware</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  to="/furniture-shop/products"
+                  class="footer-menu__link"
+                  >Textiles</router-link
+                >
+              </li>
+            </ul>
           </div>
           <div class="footer-menu-column">
             <span class="footer-menu__title">About us</span>
-            <router-link to="/furniture-shop/about" class="footer-menu__link"
-              >Our story</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Get in touch</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Shipping information</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Returns & exchanges</router-link
-            >
-            <router-link to="/furniture-shop/" class="footer-menu__link"
-              >Privacy policy</router-link
-            >
+            <ul>
+              <li>
+                <router-link
+                  to="/furniture-shop/about"
+                  class="footer-menu__link"
+                  >Our story</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Get in touch</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Shipping information</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Returns & exchanges</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/furniture-shop/" class="footer-menu__link"
+                  >Privacy policy</router-link
+                >
+              </li>
+            </ul>
           </div>
         </div>
         <div class="footer-subscribe">
@@ -101,9 +151,6 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 .footer {
   background: var(--dark-primary);
   color: var(--white);
-  @media screen and (max-width: 767px) {
-    margin: 0 -24px;
-  }
   &-content {
     padding: 58px 82px 25px 82px;
     @media screen and (max-width: 1024px) {
@@ -139,31 +186,48 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     }
     &__title {
       display: block;
-      font-family: var(--clash);
+      font-family: var(--second-family);
       font-size: 16px;
       font-weight: 400;
       line-height: 20px;
       margin-bottom: 12px;
     }
     &__link {
-      display: block;
       color: var(--white);
-      font-family: var(--satoshi);
+      font-family: var(--font-family);
       font-size: 14px;
       font-weight: 400;
       line-height: 19px;
       text-decoration: none;
-      margin-bottom: 12px;
-      &:last-child {
-        margin-bottom: 0;
+      display: inline-block;
+      &::after {
+        content: "";
+        background: var(--white);
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        height: 1px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
       }
       &:hover {
-        text-decoration: underline;
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
       }
     }
     &-column {
       @media screen and (max-width: 767px) {
         margin-bottom: 40px;
+      }
+      li {
+        margin-bottom: 12px;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

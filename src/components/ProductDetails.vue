@@ -1,36 +1,36 @@
 <template>
-  <div class="product">
-    <div class="product-image">
+  <div class="details">
+    <div class="details-image">
       <img :src="product.image" :alt="product.name" />
     </div>
     <div>
-      <h2 class="product-name">{{ product.name }}</h2>
-      <span class="product-price">£{{ product.price }}</span>
-      <div class="product-block product-description">
-        <span class="product-block__title">Product description</span>
+      <h2 class="details-name">{{ product.name }}</h2>
+      <span class="details-price">£{{ product.price }}</span>
+      <div class="details-block detailst-description">
+        <span class="detailst-block__title">Product description</span>
         <div v-html="product.description"></div>
       </div>
-      <div class="product-block">
-        <span class="product-block__title">Dimensions</span>
+      <div class="details-block">
+        <span class="details-block__title">Dimensions</span>
         <span
-          class="product-param"
+          class="details-param"
           v-for="(param, i) of product.params"
           :key="i"
         >
           {{ param.title }}: {{ param.value }}
         </span>
       </div>
-      <div class="product-block">
-        <span class="product-block__title">Quantity</span>
-        <div class="product-quantity">
+      <div class="details-block">
+        <span class="details-block__title">Quantity</span>
+        <div class="details-quantity">
           <span
-            class="product-quantity-symbol"
+            class="details-quantity-symbol"
             @click="changeQuantity('minus')"
           >
             -
           </span>
-          <span class="product-quantity-value">{{ quantity }}</span>
-          <span class="product-quantity-symbol" @click="changeQuantity('plus')">
+          <span class="details-quantity-value">{{ quantity }}</span>
+          <span class="details-quantity-symbol" @click="changeQuantity('plus')">
             +
           </span>
         </div>
@@ -71,7 +71,7 @@ const changeQuantity = (type) => {
 </script>
 
 <style lang="scss" scoped>
-.product {
+.details {
   background: var(--light-gray);
   padding: 50px 80px;
   display: grid;
@@ -93,7 +93,7 @@ const changeQuantity = (type) => {
   }
   &-name {
     margin: 0 0 16px 0;
-    font-family: var(--clash);
+    font-family: var(--second-family);
     font-size: 36px;
     font-weight: 400;
     line-height: 44px;
@@ -112,7 +112,7 @@ const changeQuantity = (type) => {
     margin-bottom: 40px;
     &__title {
       display: block;
-      font-family: var(--clash);
+      font-family: var(--second-family);
       margin-bottom: 14px;
     }
   }

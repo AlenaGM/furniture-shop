@@ -3,7 +3,7 @@
     <input
       type="text"
       placeholder="your@email.com"
-      class="input-text subscribe-form__input"
+      class="input subscribe-form__input"
       :style="{ backgroundColor: bgInput, color: colorText }"
     />
     <ui-button :color="colorButton || 'dark-primary'">Sign Up</ui-button>

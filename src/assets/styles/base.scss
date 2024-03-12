@@ -1,0 +1,198 @@
+@import "@/assets/styles/fonts.scss";
+
+// variables
+:root {
+  --font-family: "Satoshi", sans-serif;
+  --second-family: "Clash Display", sans-serif;
+
+  --white: #fff;
+  --light-gray: #f9f9f9;
+  --border-gray: #ebe8f4;
+  --border-dark: #cac6da;
+
+  --black: #22202e;
+
+  --primary: #4e4d93;
+  --dark-primary: #2a254b;
+  --light-primary: #726e8d;
+
+  --section-gap: 160px;
+  --section-gap-mobile: 80px;
+}
+
+// styles reset & body styles
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 320px;
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+  color: var(--dark-primary);
+  background-color: var(--white);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  color: var(--black);
+}
+
+h2 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 140%;
+  color: var(--dark-primary);
+  margin-bottom: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 140%;
+  color: var(--dark-primary);
+  margin-bottom: 80px;
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+h4 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  color: var(--dark-primary);
+  margin-bottom: 80px;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--dark-primary);
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
+}
+
+.text-sm {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--dark-primary);
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.input {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  min-height: 56px;
+  padding: 0 32px;
+  border: none;
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+}
+
+//layout
+#app {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template: auto 1fr auto / 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.header,
+.main,
+.footer {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) minmax(auto, 1392px) minmax(
+      1.5rem,
+      1fr
+    );
+}
+
+.header-top,
+.header-menu,
+.difference,
+.idea,
+.products-container,
+.collection,
+.details,
+.story,
+.cart {
+  grid-column: 2;
+}
+
+.hero,
+.subscribe,
+.footer {
+  grid-column: 1/4;
+  max-width: 1440px;
+}

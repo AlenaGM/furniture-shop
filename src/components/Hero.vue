@@ -5,6 +5,7 @@
       description="Shop the new Spring 2022 collection today"
       link="/furniture-shop/products"
       colorLink="light-gray"
+      class="hero-info"
     />
     <div class="hero-image">
       <img src="/img/hero.jpg" alt="room" />
@@ -31,6 +32,12 @@ import InfoBlock from "@/components/InfoBlock.vue";
     background: transparent;
     padding: 0;
   }
+  &-info {
+    @media screen and (max-width: 767px) {
+      position: relative;
+      margin: 0 24px;
+    }
+  }
   &-image {
     img {
       max-width: 100%;
@@ -42,7 +49,6 @@ import InfoBlock from "@/components/InfoBlock.vue";
     }
     @media screen and (max-width: 767px) {
       position: relative;
-      margin: 0 -24px;
     }
   }
 }

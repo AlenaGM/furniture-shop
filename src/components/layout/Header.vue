@@ -16,7 +16,9 @@
           <img src="/svg/menu.svg" alt="menu" class="header-top__icon" />
         </div>
       </div>
-      <router-link to="/furniture-shop/" class="header-logo">Avion</router-link>
+      <router-link to="/furniture-shop/" class="header-logo"
+        ><h1 class="header-logo__title">Avion</h1></router-link
+      >
       <div class="header-top-right">
         <div class="header-top-right__user">
           <router-link to="/furniture-shop/">
@@ -108,24 +110,19 @@ const cartItems = computed(() => {
 .header {
   height: 132px;
   background: var(--white);
-  position: relative;
   @media screen and (max-width: 767px) {
     height: auto;
   }
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 70px;
     align-items: center;
+    padding: 20px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 0 28px;
     @media screen and (max-width: 767px) {
-      margin: 0;
       border: none;
       height: auto;
-      padding: 20px 0;
       display: flex;
-      justify-content: space-between;
     }
     &-search {
       @media screen and (max-width: 767px) {
@@ -177,20 +174,44 @@ const cartItems = computed(() => {
       &__user {
         margin-right: 16px;
       }
+      &__cart,
+      &__user a img {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          transform: scale(1.3);
+          transition: all 0.3s ease;
+        }
+      }
     }
   }
   &-logo {
-    color: var(--black);
-    font-size: 24px;
-    text-decoration: none;
-    font-family: var(--clash);
     text-align: center;
+    &__title {
+      text-decoration: none;
+      display: inline-block;
+      &::after {
+        content: "";
+        background: var(--black);
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        height: 1.7px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+      &:hover {
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
+      }
+    }
     @media screen and (max-width: 767px) {
       order: 1;
       margin-right: auto;
-    }
-    &:hover {
-      text-decoration: underline;
     }
   }
   &-menu {
@@ -202,13 +223,31 @@ const cartItems = computed(() => {
       display: none;
     }
     &__link {
-      color: var(--lilac);
+      color: var(--light-primary);
       text-decoration: none;
       &:not(:last-of-type) {
         margin: 0 40px 0 0;
       }
+      text-decoration: none;
+      display: inline-block;
+      &::after {
+        content: "";
+        background: var(--light-primary);
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        height: 1.5px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
       &:hover {
-        text-decoration: underline;
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+          color: inherit;
+        }
       }
     }
     &-mobile {

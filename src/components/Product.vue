@@ -41,14 +41,30 @@ const props = defineProps({
   &-name {
     display: block;
     color: var(--dark-primary);
-    font-family: var(--clash);
+    font-family: var(--second-family);
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
     text-decoration: none;
     margin-bottom: 8px;
+    display: inline-block;
+    &::after {
+      content: "";
+      background: var(--dark-primary);
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      height: 1.5px;
+      width: 0;
+      transition: width 0.25s ease;
+    }
     &:hover {
-      text-decoration: underline;
+      cursor: pointer;
+      &::after {
+        width: 100%;
+        transition: width 0.25s ease;
+        color: inherit;
+      }
     }
     @media screen and (max-width: 767px) {
       font-size: 18px;

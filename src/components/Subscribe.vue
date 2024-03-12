@@ -49,7 +49,6 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   @media screen and (max-width: 767px) {
     background-image: url("/img/subscribe-mobile.jpg");
     padding: 24px;
-    margin: 0 -24px;
   }
   &-content {
     max-width: 500px;
@@ -63,7 +62,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   &-title {
     display: block;
     margin: 0 0 12px 0;
-    font-family: var(--clash);
+    font-family: var(--second-family);
     color: var(--white);
     font-size: 32px;
     font-weight: 400;
@@ -75,7 +74,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   }
   &-description {
     display: block;
-    font-family: var(--satoshi);
+    font-family: var(--font-family);
     color: var(--white);
     font-size: 18px;
     font-weight: 400;
@@ -111,7 +110,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       margin-right: 9px;
     }
     &__name {
-      font-family: var(--satoshi);
+      font-family: var(--font-family);
       color: var(--white);
       font-size: 16px;
       font-weight: 400;

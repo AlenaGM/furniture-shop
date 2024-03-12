@@ -19,7 +19,7 @@
           </td>
           <td>
             <router-link :to="`/furniture-shop/products/${item.id}`">
-              <span>{{ item.name }}</span>
+              <span class="cart__item_name">{{ item.name }}</span>
             </router-link>
             {{
               new Intl.NumberFormat("fr-FR", {
@@ -162,9 +162,8 @@ const placeOrder = () => {
 .table {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--black);
+  color: var(--dark-primary);
   span {
-    color: inherit;
     font-size: 18px;
     font-weight: 600;
   }
@@ -186,13 +185,28 @@ const placeOrder = () => {
       }
     }
     &:nth-of-type(2) {
-      span:hover {
-        cursor: pointer;
-        text-decoration: underline 2px;
-      }
-      a:nth-of-type(2):hover {
-        cursor: pointer;
-        text-decoration: underline 2px;
+      a {
+        display: block;
+        text-decoration: none;
+        color: var(--dark-primary);
+        &::after {
+          content: "";
+          background: var(--dark-primary);
+          position: absolute;
+          bottom: 2px;
+          left: 50%;
+          height: 1.5px;
+          width: 0;
+          transform: translateX(-50%);
+          transition: width 0.3s ease;
+        }
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
+        }
       }
       div:nth-of-type(2) {
         font-size: 14px;
@@ -205,14 +219,27 @@ const placeOrder = () => {
     &:last-of-type {
       display: inline-flex;
       justify-self: center;
-      cursor: pointer;
-      img {
-        width: 20px;
-        margin-left: 8px;
+      display: block;
+      text-decoration: none;
+      color: var(--dark-primary);
+      &::after {
+        content: "";
+        background: var(--dark-primary);
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        height: 1.5px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
       }
-    }
-    &:last-of-type:hover {
-      text-decoration: underline 2px;
+      &:hover {
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
+      }
     }
   }
   th {

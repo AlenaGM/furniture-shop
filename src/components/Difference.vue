@@ -20,24 +20,24 @@
 <script setup>
 const about = [
   {
-    img: "/furniture-shop/svg/about-delivery.svg",
+    img: "/svg/about-delivery.svg",
     title: "Next day as standard",
     description: "Order before 3pm and get your order the next day as standard",
   },
   {
-    img: "/furniture-shop/svg/about-checkmark.svg",
+    img: "/svg/about-checkmark.svg",
     title: "Made by true artisans",
     description:
       "Handmade crafted goods made with real passion and craftmanship",
   },
   {
-    img: "/furniture-shop/svg/about-purchase.svg",
+    img: "/svg/about-purchase.svg",
     title: "Unbeatable prices",
     description:
       "For our materials and quality you won’t find better prices anywhere",
   },
   {
-    img: "/furniture-shop/svg/about-sprout.svg",
+    img: "/svg/about-sprout.svg",
     title: "Recycled packaging",
     description:
       "We use 100% recycled to ensure our footprint is more manageable",
@@ -54,7 +54,7 @@ const about = [
   &__title {
     text-align: center;
     color: var(--dark-primary);
-    font-family: var(--clash);
+    font-family: var(--second-family);
     font-size: 24px;
     font-weight: 400;
     line-height: 34px;
@@ -92,7 +92,7 @@ const about = [
     }
     &__title {
       margin: 0 0 12px 0;
-      font-family: var(--clash);
+      font-family: var(--second-family);
       font-size: 20px;
       font-weight: 400;
       line-height: 28px;

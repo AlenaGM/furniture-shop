@@ -1,7 +1,7 @@
 <template>
   <div class="collection">
     <div class="collection__title">
-      <h1>All Products</h1>
+      <h2>All Products</h2>
     </div>
     <div class="products-container">
       <Loader v-if="loading" />
@@ -62,7 +62,7 @@ onMounted(async () => {
       margin: 0;
       text-align: left;
       color: var(--white);
-      font-family: var(--clash);
+      font-family: var(--second-family);
       font-size: 36px;
       font-weight: 400;
       line-height: 140%;
