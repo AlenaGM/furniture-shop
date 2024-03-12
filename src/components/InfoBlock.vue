@@ -18,7 +18,7 @@
       :mobileFullWidth="true"
       :color="colorLink || 'secondary'"
       type="link"
-      :to="link || '/furniture-shop/products'"
+      :to="link || '/products'"
     >
       {{ btnText }}
     </ui-button>

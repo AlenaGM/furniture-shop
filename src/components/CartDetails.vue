@@ -13,12 +13,12 @@
       <tbody>
         <tr v-for="(item, index) in cartStore.cart" :key="item.id">
           <td>
-            <router-link :to="`/furniture-shop/products/${item.id}`">
+            <router-link :to="`/products/${item.id}`">
               <img :src="item.image" :alt="item.name" />
             </router-link>
           </td>
           <td>
-            <router-link :to="`/furniture-shop/products/${item.id}`">
+            <router-link :to="`/products/${item.id}`">
               <span class="cart__item_name">{{ item.name }}</span>
             </router-link>
             {{
@@ -91,7 +91,7 @@
     <ui-button
       class="cart__order"
       type="link"
-      to="/furniture-shop/products"
+      to="/products"
       :mobileFullWidth="true"
       v-else
     >

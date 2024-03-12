@@ -17,16 +17,11 @@ in making...
 
 [Avion Furniture]
 
-
-## 	Result
+## Result
 
 <img width="35%" alt="screen capture" src="../main/src/assets/captureweb.jpeg">
 
+<br><br> \* _Project built while following [Frontend Skills' Course]_
 
-  <br><br>
-  \* _Project  built while following [Frontend Skills' Course]_ 
-  
-
-   [Frontend Skills' Course]: <https://www.youtube.com/watch?v=bNeasXdk-_8&list=PL2hgv2vHkQ7CGDm0GsjCahJ2vyJTLjlu1>
-   [Avion Furniture]: <https://alenagm.github.io/furniture-shop/>
-
+[Frontend Skills' Course]: https://www.youtube.com/watch?v=bNeasXdk-_8&list=PL2hgv2vHkQ7CGDm0GsjCahJ2vyJTLjlu1
+[Avion Furniture]: https://avion-furniture.netlify.app/

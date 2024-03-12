@@ -7,7 +7,7 @@
     <InfoBlock
       title="From a studio in London to a global brand with over 400 outlets"
       description="When we started Avion, the idea was simple. Make high quality furniture affordable and available for the mass market. Handmade, and lovingly crafted furniture and homeware is what we live, breathe and design so our Chelsea boutique become the hotbed for the London interior design community."
-      link="/furniture-shop/products"
+      link="/products"
       colorLink="dark-primary"
       btnText="View collection"
       background="var(--light-gray)"
@@ -23,7 +23,7 @@
     <InfoBlock
       title="Our service isn’t just personal, it’s actually hyper personally exquisite"
       description="At Avion, we believe in providing a level of personalized service that goes above and beyond. Our team is dedicated to creating an exquisite shopping experience tailored specifically to your needs and preferences. From helping you select the perfect piece of furniture to ensuring it fits perfectly in your space, we are committed to making your shopping experience truly exceptional."
-      link="/furniture-shop/"
+      link="/"
       colorLink="dark-primary"
       btnText="Get in touch"
       background="var(--light-gray)"

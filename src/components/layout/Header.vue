@@ -16,17 +16,17 @@
           <img src="/svg/menu.svg" alt="menu" class="header-top__icon" />
         </div>
       </div>
-      <router-link to="/furniture-shop/" class="header-logo"
+      <router-link to="/" class="header-logo"
         ><h1 class="header-logo__title">Avion</h1></router-link
       >
       <div class="header-top-right">
         <div class="header-top-right__user">
-          <router-link to="/furniture-shop/">
+          <router-link to="/">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
         <div class="header-top-right__cart">
-          <router-link to="/furniture-shop/cart">
+          <router-link to="/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartItems }}
@@ -68,31 +68,31 @@ const cartStore = useCartStore();
 const menu = [
   {
     name: "All products",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "New arrivals",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "Furniture",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "Lighting",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "Decoration",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "Tableware",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
   {
     name: "Textiles",
-    path: "/furniture-shop/products/",
+    path: "/products/",
   },
 ];
 

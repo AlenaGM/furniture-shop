@@ -7,29 +7,27 @@
             <span class="footer-menu__title">Menu</span>
             <ul>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >All products</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >New arrivals</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Best sellers</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Last chance</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Gift cards</router-link
                 >
               </li>
@@ -39,37 +37,27 @@
             <span class="footer-menu__title">Categories</span>
             <ul>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >Furniture</router-link
                 >
               </li>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >Lighting</router-link
                 >
               </li>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >Decoration</router-link
                 >
               </li>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >Tableware</router-link
                 >
               </li>
               <li>
-                <router-link
-                  to="/furniture-shop/products"
-                  class="footer-menu__link"
+                <router-link to="/products" class="footer-menu__link"
                   >Textiles</router-link
                 >
               </li>
@@ -79,29 +67,27 @@
             <span class="footer-menu__title">About us</span>
             <ul>
               <li>
-                <router-link
-                  to="/furniture-shop/about"
-                  class="footer-menu__link"
+                <router-link to="/about" class="footer-menu__link"
                   >Our story</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Get in touch</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Shipping information</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Returns & exchanges</router-link
                 >
               </li>
               <li>
-                <router-link to="/furniture-shop/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu__link"
                   >Privacy policy</router-link
                 >
               </li>

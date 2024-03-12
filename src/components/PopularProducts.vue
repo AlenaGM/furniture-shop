@@ -6,7 +6,7 @@
       <ui-button
         class="products-link"
         type="link"
-        to="/furniture-shop/products"
+        to="/products"
         color="light-gray"
         :mobileFullWidth="true"
         >View collection

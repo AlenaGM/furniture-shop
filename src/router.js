@@ -9,27 +9,27 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/furniture-shop/",
+      path: "/",
       name: "Index",
       component: Index,
     },
     {
-      path: "/furniture-shop/products/",
+      path: "/products/",
       name: "AllProducts",
       component: AllProducts,
     },
     {
-      path: "/furniture-shop/products/:id",
+      path: "/products/:id",
       name: "Product",
       component: Product,
     },
     {
-      path: "/furniture-shop/about",
+      path: "/about",
       name: "About",
       component: About,
     },
     {
-      path: "/furniture-shop/cart",
+      path: "/cart",
       name: "Cart",
       component: Cart,
     },

@@ -3,7 +3,7 @@
     <InfoBlock
       title="Luxury homeware for people who love timeless design quality"
       description="Shop the new Spring 2022 collection today"
-      link="/furniture-shop/products"
+      link="/products"
       colorLink="light-gray"
       class="hero-info"
     />
