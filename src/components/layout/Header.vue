@@ -160,7 +160,7 @@ const cartItems = computed(() => {
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.2);
           transition: all 0.3s ease;
         }
       }
@@ -172,11 +172,11 @@ const cartItems = computed(() => {
       display: none;
       margin-left: 16px;
       img {
-        width: 16px;
+        width: 24px;
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
-          transform: scale(1.3);
+          transform: scale(1.2);
           transition: all 0.3s ease;
         }
       }
@@ -225,13 +225,13 @@ const cartItems = computed(() => {
       }
       &__count {
         position: absolute;
-        left: -50%;
+        left: -30%;
         bottom: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 15px;
-        height: 15px;
+        width: 16px;
+        height: 16px;
         background: var(--black);
         border-radius: 50%;
         font-family: var(--font-family);
@@ -244,11 +244,11 @@ const cartItems = computed(() => {
       }
       &__cart,
       &__user a img {
-        width: 16px;
+        width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
-          transform: scale(1.3);
+          transform: scale(1.2);
           transition: all 0.3s ease;
         }
       }
