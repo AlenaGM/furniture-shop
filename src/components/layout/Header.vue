@@ -2,23 +2,28 @@
   <header class="header">
     <div class="header-top">
       <div class="header-top-left">
-        <div class="header-top-search">
-          <img
-            src="/svg/header-search.svg"
-            alt="search"
-            class="header-top__icon"
-          />
-        </div>
+        <router-link to="/" class="header-top-logo">
+          <img src="/favicon/favicon.ico" alt="logo" />
+        </router-link>
         <div
           class="header-top-mobile-menu"
-          @click="isOpenedMobileMenu = !isOpenedMobileMenu"
+          title="dropdown menu open and close"
         >
-          <img src="/svg/menu.svg" alt="menu" class="header-top__icon" />
+          <img
+            src="/svg/menu-open.svg"
+            alt="menu"
+            v-if="!isOpenedMobileMenu"
+            @click="isOpenedMobileMenu = true"
+          />
+          <img
+            src="/svg/menu-close.svg"
+            alt="menu"
+            v-if="isOpenedMobileMenu"
+            @click="isOpenedMobileMenu = false"
+          />
         </div>
       </div>
-      <router-link to="/" class="header-logo"
-        ><h1 class="header-logo__title">Avion</h1></router-link
-      >
+      <router-link to="/" class="header-top-name"><h1>Avion</h1></router-link>
       <div class="header-top-right">
         <div class="header-top-right__user">
           <router-link to="/">
@@ -45,12 +50,18 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div class="header-menu-mobile" v-if="isOpenedMobileMenu">
+    <div
+      class="header-dropdown"
+      v-if="isOpenedMobileMenu"
+      v-click-away="onClickAway"
+      v-scroll-lock="isOpenedMobileMenu"
+    >
       <router-link
-        class="header-menu-mobile__link"
+        class="header-dropdown__link"
         :to="element.path"
         v-for="(element, i) of menu"
         :key="i"
+        @click="isOpenedMobileMenu = false"
       >
         {{ element.name }}
       </router-link>
@@ -63,7 +74,10 @@ import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
 
 const isOpenedMobileMenu = ref(false);
-const cartStore = useCartStore();
+
+const onClickAway = () => {
+  isOpenedMobileMenu.value = false;
+};
 
 const menu = [
   {
@@ -96,6 +110,8 @@ const menu = [
   },
 ];
 
+const cartStore = useCartStore();
+
 const cartItems = computed(() => {
   let totalItems = 0;
 
@@ -108,49 +124,100 @@ const cartItems = computed(() => {
 
 <style lang="scss" scoped>
 .header {
-  height: 132px;
+  min-height: 128px;
+  grid-template-rows: 1fr minmax(1fr, auto);
   background: var(--white);
-  @media screen and (max-width: 767px) {
-    height: auto;
+  @media screen and (max-width: 768px) {
+    grid-template-rows: 1fr;
+    min-height: 64px;
   }
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 20px 0;
+    background: var(--white);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    @media screen and (max-width: 767px) {
-      border: none;
-      height: auto;
+    z-index: 100;
+    @media screen and (max-width: 768px) {
       display: flex;
-    }
-    &-search {
-      @media screen and (max-width: 767px) {
-        display: none;
-      }
-    }
-    &__icon {
-      display: block;
     }
     &-left {
       display: flex;
       align-items: center;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 768px) {
         order: 3;
+      }
+    }
+    &-logo {
+      width: 32px;
+      height: 32px;
+      display: block;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          transform: scale(1.1);
+          transition: all 0.3s ease;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        display: none;
       }
     }
     &-mobile-menu {
       display: none;
       margin-left: 16px;
-      @media screen and (max-width: 767px) {
+      img {
+        width: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          transform: scale(1.3);
+          transition: all 0.3s ease;
+        }
+      }
+      @media screen and (max-width: 768px) {
         display: block;
+      }
+    }
+    &-name {
+      text-align: center;
+      h1 {
+        text-decoration: none;
+        display: inline-block;
+        &::after {
+          content: "";
+          background: var(--black);
+          position: absolute;
+          bottom: 2px;
+          left: 50%;
+          height: 1.7px;
+          width: 0;
+          transform: translateX(-50%);
+          transition: width 0.3s ease;
+        }
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
+        }
+      }
+      @media screen and (max-width: 768px) {
+        order: 1;
+        margin-right: auto;
       }
     }
     &-right {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 768px) {
         order: 2;
       }
       &__cart {
@@ -158,24 +225,26 @@ const cartItems = computed(() => {
       }
       &__count {
         position: absolute;
-        width: 15px;
-        height: 15px;
-        background: #000;
-        border-radius: 50%;
-        color: var(--white);
-        font-size: 10px;
-        text-decoration: none;
+        left: -50%;
+        bottom: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        left: -50%;
-        bottom: 0;
+        width: 15px;
+        height: 15px;
+        background: var(--black);
+        border-radius: 50%;
+        font-family: var(--font-family);
+        font-size: 10px;
+        color: var(--white);
+        text-decoration: none;
       }
       &__user {
         margin-right: 16px;
       }
       &__cart,
       &__user a img {
+        width: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
@@ -185,49 +254,18 @@ const cartItems = computed(() => {
       }
     }
   }
-  &-logo {
-    text-align: center;
-    &__title {
-      text-decoration: none;
-      display: inline-block;
-      &::after {
-        content: "";
-        background: var(--black);
-        position: absolute;
-        bottom: 2px;
-        left: 50%;
-        height: 1.7px;
-        width: 0;
-        transform: translateX(-50%);
-        transition: width 0.3s ease;
-      }
-      &:hover {
-        cursor: pointer;
-        &::after {
-          width: 100%;
-          transition: width 0.3s ease;
-        }
-      }
-    }
-    @media screen and (max-width: 767px) {
-      order: 1;
-      margin-right: auto;
-    }
-  }
   &-menu {
-    height: 62px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    @media screen and (max-width: 767px) {
+    align-content: center;
+    column-gap: 36px;
+    row-gap: 4px;
+    @media screen and (max-width: 768px) {
       display: none;
     }
     &__link {
       color: var(--light-primary);
-      text-decoration: none;
-      &:not(:last-of-type) {
-        margin: 0 40px 0 0;
-      }
       text-decoration: none;
       display: inline-block;
       &::after {
@@ -250,26 +288,34 @@ const cartItems = computed(() => {
         }
       }
     }
-    &-mobile {
-      position: absolute;
-      background: var(--white);
-      padding: 40px 24px;
-      top: 60px;
-      border: 1px solid;
-      width: 100%;
-      padding: 10px;
-      &__link {
-        display: block;
-        margin-bottom: 20px;
-        color: var(--black);
-        text-decoration: none;
-        &:last-child {
-          margin-bottom: 0;
-        }
-        &:hover {
-          text-decoration: underline;
-        }
+  }
+  &-dropdown {
+    z-index: 90;
+    position: fixed;
+    top: 64px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-height: 100vh;
+    width: 80vw;
+    min-width: 240px;
+    max-width: 340px;
+    padding: 36px 54px;
+    background: var(--white);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    &__link {
+      display: block;
+      color: var(--light-primary);
+      margin-bottom: 20px;
+      text-decoration: none;
+      &:last-child {
+        margin-bottom: 54px;
       }
+    }
+    @media screen and (min-width: 768px) {
+      min-height: auto;
     }
   }
 }

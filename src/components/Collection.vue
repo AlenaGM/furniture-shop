@@ -38,7 +38,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .collection {
   margin-bottom: 130px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     margin-bottom: 48px;
   }
   &__title {
@@ -49,7 +49,7 @@ onMounted(async () => {
     padding: 36px 80px;
     display: flex;
     align-items: flex-end;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       background: url("/img/allproducts-mobile.jpg");
       background-size: cover;
       padding: 36px 24px;
@@ -66,7 +66,7 @@ onMounted(async () => {
       font-size: 36px;
       font-weight: 400;
       line-height: 140%;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 768px) {
         font-size: 32px;
         //padding: 48px 0 36px;
       }
@@ -77,7 +77,7 @@ onMounted(async () => {
 .products {
   &-container {
     margin-bottom: 64px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       margin-bottom: 48px;
     }
   }

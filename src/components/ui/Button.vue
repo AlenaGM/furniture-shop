@@ -72,7 +72,7 @@ const props = defineProps({
   height: 56px;
   min-width: 122px;
   white-space: nowrap;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     padding: 0 15px;
     font-size: 15px;
   }
@@ -96,7 +96,7 @@ const props = defineProps({
     background: var(--white);
   }
   &--fullwidth {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       width: 100%;
     }
   }

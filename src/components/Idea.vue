@@ -26,7 +26,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 16px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     justify-items: center;
     margin-bottom: 48px;
@@ -35,7 +35,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
   &-image {
     object-fit: cover;
     height: 100%;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       margin-top: 24px;
       height: auto;
       width: 100%;

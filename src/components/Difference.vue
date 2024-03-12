@@ -48,7 +48,7 @@ const about = [
 <style lang="scss" scoped>
 .difference {
   padding: 80px 80px 130px 80px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     padding: 48px 0;
   }
   &__title {
@@ -59,7 +59,7 @@ const about = [
     font-weight: 400;
     line-height: 34px;
     margin: 0 0 80px 0;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       text-align: left;
       font-size: 20px;
       line-height: 28px;
@@ -75,7 +75,7 @@ const about = [
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
     }
   }
@@ -83,7 +83,7 @@ const about = [
     color: var(--dark-primary);
     background: var(--light-gray);
     padding: 48px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       padding: 36px 24px;
     }
     &__img {

@@ -66,7 +66,7 @@ const props = defineProps({
         color: inherit;
       }
     }
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       font-size: 18px;
     }
   }
@@ -76,7 +76,7 @@ const props = defineProps({
     font-weight: 400;
     line-height: 27px;
     color: var(--dark-primary);
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       font-size: 16px;
     }
   }

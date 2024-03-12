@@ -26,14 +26,14 @@ import InfoBlock from "@/components/InfoBlock.vue";
   align-items: center;
   justify-content: flex-end;
   padding: 0 80px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: block;
     height: auto;
     background: transparent;
     padding: 0;
   }
   &-info {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       position: relative;
       margin: 0 24px;
     }
@@ -42,12 +42,12 @@ import InfoBlock from "@/components/InfoBlock.vue";
     img {
       max-width: 100%;
       display: none;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 768px) {
         display: block;
         width: 100%;
       }
     }
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       position: relative;
     }
   }

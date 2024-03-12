@@ -14,5 +14,5 @@ createApp(App)
   .use(pinia)
   .use(router)
   .use(VueClickAway)
-  .use(V3ScrollLock)
+  .use(V3ScrollLock, {})
   .mount("#app");

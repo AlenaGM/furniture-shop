@@ -46,7 +46,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   background: url("/img/subscribe.jpg");
   background-size: cover;
   padding: 97px 0 86px 0;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     background-image: url("/img/subscribe-mobile.jpg");
     padding: 24px;
   }
@@ -55,7 +55,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     margin: auto;
     text-align: center;
     color: var(--white);
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       text-align: left;
     }
   }
@@ -67,7 +67,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     font-size: 32px;
     font-weight: 400;
     line-height: 45px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       font-size: 24px;
       line-height: 34px;
     }
@@ -80,7 +80,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     font-weight: 400;
     line-height: 27px;
     margin-bottom: 30px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       font-size: 14px;
       line-height: 21px;
       margin-bottom: 20px;
@@ -90,7 +90,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       display: block;
     }
   }
@@ -99,11 +99,11 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     align-items: center;
     &:nth-child(2) {
       margin: 0 36px;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 768px) {
         margin: 0 0 8px 0;
       }
     }
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       margin-bottom: 8px;
     }
     &__icon {

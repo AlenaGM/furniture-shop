@@ -33,7 +33,7 @@ const props = defineProps({
     row-gap: 20px;
     justify-items: center;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     padding: 0;
     margin-bottom: 36px;
   }

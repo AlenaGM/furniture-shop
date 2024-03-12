@@ -80,14 +80,14 @@ const props = defineProps({
   @media screen and (max-width: 1024px) {
     padding: 24px 32px;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     min-height: 282px;
     max-width: none;
     padding: 24px 0px;
   }
   div {
     margin: 0 0 20px 0;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       margin-bottom: 0 0 32px 0;
     }
   }
@@ -97,7 +97,7 @@ const props = defineProps({
     font-weight: 400;
     line-height: 140%;
     margin: 0 0 20px 0;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       font-size: 20px;
     }
   }
@@ -108,7 +108,7 @@ const props = defineProps({
     line-height: 150%;
   }
   &--mobile-padding {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       padding: 24px;
     }
   }

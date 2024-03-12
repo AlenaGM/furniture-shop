@@ -45,7 +45,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
   grid-template-rows: auto 1fr 1fr;
   column-gap: 0px;
   justify-items: center;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
@@ -60,7 +60,7 @@ import InfoBlock from "@/components/InfoBlock.vue";
     font-weight: 400;
     line-height: 140%;
     max-width: 704px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       grid-column: span 1;
       text-align: left;
       font-size: 32px;

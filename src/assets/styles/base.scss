@@ -34,7 +34,6 @@
 
 body {
   min-height: 100vh;
-  min-width: 320px;
   width: 100%;
   font-family: var(--font-family);
   font-size: 16px;
@@ -80,7 +79,7 @@ h2 {
   line-height: 140%;
   color: var(--dark-primary);
   margin-bottom: 20px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     font-size: 24px;
   }
 }
@@ -92,7 +91,7 @@ h3 {
   line-height: 140%;
   color: var(--dark-primary);
   margin-bottom: 80px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     font-size: 20px;
     margin-bottom: 40px;
   }
@@ -113,7 +112,7 @@ h4 {
   font-size: 18px;
   line-height: 150%;
   color: var(--dark-primary);
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     font-size: 16px;
   }
 }
@@ -124,7 +123,7 @@ h4 {
   font-size: 16px;
   line-height: 150%;
   color: var(--dark-primary);
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     font-size: 14px;
   }
 }
@@ -137,7 +136,7 @@ h4 {
   min-height: 56px;
   padding: 0 32px;
   border: none;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     font-size: 14px;
     padding: 0 10px;
   }

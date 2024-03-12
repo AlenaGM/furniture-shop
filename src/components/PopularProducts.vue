@@ -35,7 +35,7 @@ onMounted(async () => {
 .products {
   &-container {
     margin-bottom: 64px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       margin-bottom: 48px;
     }
   }
