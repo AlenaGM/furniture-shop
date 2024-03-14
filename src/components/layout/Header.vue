@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header-top">
+    <div class="header-top" v-click-away="onClickAway">
       <div class="header-top-left">
         <router-link to="/" class="header-top-logo">
           <img src="/favicon/favicon.ico" alt="logo" />
@@ -8,30 +8,23 @@
         <div
           class="header-top-mobile-menu"
           title="dropdown menu open and close"
+          @click="onMobileMenuClick"
         >
-          <img
-            src="/svg/menu-open.svg"
-            alt="menu"
-            v-if="!isOpenedMobileMenu"
-            @click="isOpenedMobileMenu = true"
-          />
-          <img
-            src="/svg/menu-close.svg"
-            alt="menu"
-            v-if="isOpenedMobileMenu"
-            @click="isOpenedMobileMenu = false"
-          />
+          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
+          <img src="/svg/menu-close.svg" alt="menu" v-else />
         </div>
       </div>
-      <router-link to="/" class="header-top-name"><h1>Avion</h1></router-link>
+      <router-link to="/" class="header-top-name" @click="onClickAway"
+        ><div>Avion</div></router-link
+      >
       <div class="header-top-right">
         <div class="header-top-right__user">
-          <router-link to="/">
+          <router-link to="/" @click="onClickAway">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
         <div class="header-top-right__cart">
-          <router-link to="/cart">
+          <router-link to="/cart" @click="onClickAway">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartItems }}
@@ -50,21 +43,18 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div
-      class="header-dropdown"
-      v-if="isOpenedMobileMenu"
-      v-click-away="onClickAway"
-      v-scroll-lock="isOpenedMobileMenu"
-    >
-      <router-link
-        class="header-dropdown__link"
-        :to="element.path"
-        v-for="(element, i) of menu"
-        :key="i"
-        @click="isOpenedMobileMenu = false"
-      >
-        {{ element.name }}
-      </router-link>
+    <div class="header-dropdown__overlay" v-if="isOpenedMobileMenu">
+      <div class="header-dropdown" v-if="isOpenedMobileMenu">
+        <router-link
+          class="header-dropdown__link"
+          :to="element.path"
+          v-for="(element, i) of menu"
+          :key="i"
+          @click="isOpenedMobileMenu = false"
+        >
+          {{ element.name }}
+        </router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -77,7 +67,15 @@ const isOpenedMobileMenu = ref(false);
 
 const onClickAway = () => {
   isOpenedMobileMenu.value = false;
+  document.body.classList.remove("_lock");
 };
+
+const onMobileMenuClick = () => {
+  isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
+  document.body.classList.toggle("_lock");
+};
+
+//document.body.classList.toggle("_lock");
 
 const menu = [
   {
@@ -127,17 +125,19 @@ const cartItems = computed(() => {
   min-height: 128px;
   grid-template-rows: 1fr minmax(1fr, auto);
   background: var(--white);
+
   @media screen and (max-width: 768px) {
     grid-template-rows: 1fr;
     min-height: 64px;
   }
   &-top {
+    z-index: 100;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     background: var(--white);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: 100;
+
     @media screen and (max-width: 768px) {
       display: flex;
     }
@@ -159,9 +159,11 @@ const cartItems = computed(() => {
         object-fit: cover;
         cursor: pointer;
         transition: all 0.3s ease;
-        &:hover {
-          transform: scale(1.2);
-          transition: all 0.3s ease;
+        @media (any-pointer: fine) {
+          &:hover {
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+          }
         }
       }
       @media screen and (max-width: 768px) {
@@ -175,9 +177,11 @@ const cartItems = computed(() => {
         width: 24px;
         cursor: pointer;
         transition: all 0.3s ease;
-        &:hover {
-          transform: scale(1.2);
-          transition: all 0.3s ease;
+        @media (any-pointer: fine) {
+          &:hover {
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+          }
         }
       }
       @media screen and (max-width: 768px) {
@@ -186,9 +190,14 @@ const cartItems = computed(() => {
     }
     &-name {
       text-align: center;
-      h1 {
+      div {
         text-decoration: none;
         display: inline-block;
+        font-family: var(--second-family);
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 150%;
+        color: var(--black);
         &::after {
           content: "";
           background: var(--black);
@@ -200,11 +209,13 @@ const cartItems = computed(() => {
           transform: translateX(-50%);
           transition: width 0.3s ease;
         }
-        &:hover {
-          cursor: pointer;
-          &::after {
-            width: 100%;
-            transition: width 0.3s ease;
+        @media (any-pointer: fine) {
+          &:hover {
+            cursor: pointer;
+            &::after {
+              width: 100%;
+              transition: width 0.3s ease;
+            }
           }
         }
       }
@@ -247,9 +258,11 @@ const cartItems = computed(() => {
         width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
-        &:hover {
-          transform: scale(1.2);
-          transition: all 0.3s ease;
+        @media (any-pointer: fine) {
+          &:hover {
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+          }
         }
       }
     }
@@ -265,12 +278,12 @@ const cartItems = computed(() => {
       display: none;
     }
     &__link {
-      color: var(--light-primary);
+      color: var(--color-link);
       text-decoration: none;
       display: inline-block;
       &::after {
         content: "";
-        background: var(--light-primary);
+        background: var(--color-link);
         position: absolute;
         bottom: 2px;
         left: 50%;
@@ -279,12 +292,14 @@ const cartItems = computed(() => {
         transform: translateX(-50%);
         transition: width 0.3s ease;
       }
-      &:hover {
-        cursor: pointer;
-        &::after {
-          width: 100%;
-          transition: width 0.3s ease;
-          color: inherit;
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+            color: inherit;
+          }
         }
       }
     }
@@ -292,7 +307,7 @@ const cartItems = computed(() => {
   &-dropdown {
     z-index: 90;
     position: fixed;
-    top: 64px;
+    top: 0px;
     right: 0;
     display: flex;
     flex-direction: column;
@@ -301,18 +316,27 @@ const cartItems = computed(() => {
     width: 80vw;
     min-width: 240px;
     max-width: 340px;
-    padding: 36px 54px;
+    padding: 100px 64px 36px;
     background: var(--white);
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     &__link {
       display: block;
-      color: var(--light-primary);
+      color: var(--color-link);
       margin-bottom: 20px;
       text-decoration: none;
       &:last-child {
         margin-bottom: 54px;
       }
+    }
+    &__overlay {
+      background: rgba(34, 32, 46, 0.8);
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 80;
     }
     @media screen and (min-width: 768px) {
       min-height: auto;

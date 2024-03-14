@@ -66,18 +66,22 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  cursor: pointer;
   border: none;
   font-size: 16px;
   height: 56px;
   min-width: 122px;
   white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
   @media screen and (max-width: 768px) {
     padding: 0 15px;
     font-size: 15px;
   }
-  &:hover {
-    opacity: 0.8;
+  @media (any-pointer: fine) {
+    &:hover {
+      opacity: 0.8;
+      transition: opacity 0.25s ease;
+    }
   }
   &--dark-primary {
     color: var(--white);
@@ -85,7 +89,7 @@ const props = defineProps({
   }
   &--secondary {
     color: var(--white);
-    background: rgba(249, 249, 249, 0.15);
+    background: #f9f9f926;
   }
   &--light-gray {
     color: var(--dark-primary);

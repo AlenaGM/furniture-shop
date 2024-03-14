@@ -5,6 +5,9 @@
     :class="{ 'infoblock--mobile-padding': mobilePadding }"
   >
     <div>
+      <h1 class="infoblock__title" :style="{ color: colorTitle }">
+        {{ pageTitle }}
+      </h1>
       <h2 class="infoblock__title" :style="{ color: colorTitle }">
         {{ title }}
       </h2>
@@ -29,6 +32,10 @@
 import uiButton from "@/components/ui/Button.vue";
 
 const props = defineProps({
+  pageTitle: {
+    type: String,
+    required: false,
+  },
   title: {
     type: String,
     required: false,
@@ -47,11 +54,11 @@ const props = defineProps({
   },
   colorTitle: {
     type: String,
-    default: "",
+    default: "#2a254b",
   },
   colorDescription: {
     type: String,
-    default: "#5b5676",
+    default: "#505977",
   },
   colorLink: {
     type: String,
@@ -70,42 +77,37 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .infoblock {
-  background: var(--white);
-  min-height: 444px;
+  min-height: 440px;
   max-width: 640px;
   padding: 48px 64px;
   display: grid;
   align-content: space-between;
-  justify-items: start;
+  justify-items: center;
   @media screen and (max-width: 1024px) {
     padding: 24px 32px;
   }
   @media screen and (max-width: 768px) {
-    min-height: 282px;
-    max-width: none;
+    min-height: 300px;
     padding: 24px 0px;
+    max-width: none;
   }
   div {
-    margin: 0 0 20px 0;
+    margin: 0 0 48px 0;
     @media screen and (max-width: 768px) {
-      margin-bottom: 0 0 32px 0;
+      margin: 0 0 32px 0;
     }
   }
-  &__title {
-    font-family: var(--second-family);
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 140%;
-    margin: 0 0 20px 0;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
+  h1 {
+    max-width: 480px;
   }
   &__description {
-    color: var(--dark-primary);
-    font-size: 18px;
+    color: var(--color-text);
     font-family: var(--font-family);
+    font-size: 18px;
     line-height: 150%;
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+    }
   }
   &--mobile-padding {
     @media screen and (max-width: 768px) {

@@ -84,9 +84,9 @@
       class="cart__order"
       :mobileFullWidth="true"
       v-if="cartStore.cart.length"
-      @click="placeOrder"
+      @click="toCheckout"
     >
-      Place order
+      Go to checkout
     </ui-button>
     <ui-button
       class="cart__order"
@@ -116,7 +116,7 @@ const cartTotal = computed(() => {
   return totalPrice;
 });
 
-const placeOrder = () => {
+const toCheckout = () => {
   console.log("place order");
 };
 </script>
@@ -200,11 +200,13 @@ const placeOrder = () => {
           transform: translateX(-50%);
           transition: width 0.3s ease;
         }
-        &:hover {
-          cursor: pointer;
-          &::after {
-            width: 100%;
-            transition: width 0.3s ease;
+        @media (any-pointer: fine) {
+          &:hover {
+            cursor: pointer;
+            &::after {
+              width: 100%;
+              transition: width 0.3s ease;
+            }
           }
         }
       }
@@ -233,11 +235,13 @@ const placeOrder = () => {
         transform: translateX(-50%);
         transition: width 0.3s ease;
       }
-      &:hover {
-        cursor: pointer;
-        &::after {
-          width: 100%;
-          transition: width 0.3s ease;
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
         }
       }
     }

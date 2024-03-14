@@ -1,10 +1,12 @@
 <template>
   <div class="hero">
     <InfoBlock
-      title="Luxury homeware for people who love timeless design quality"
-      description="Shop the new Spring 2022 collection today"
+      pageTitle="Luxury homeware for people who love timeless design
+    quality"
+      :description="`Shop the new ${season} ${year} collection today`"
       link="/products"
       colorLink="light-gray"
+      mobilePadding
       class="hero-info"
     />
     <div class="hero-image">
@@ -15,6 +17,18 @@
 
 <script setup>
 import InfoBlock from "@/components/InfoBlock.vue";
+
+const date = new Date();
+const year = date.getFullYear() || "";
+const month = date.getMonth();
+
+let season;
+
+if (month === (11 || 0 || 1)) season = "Spring";
+else if (month === (2 || 3 || 4)) season = "Spring";
+else if (month === (5 || 6 || 7)) season = "Summer";
+else if (month === (8 || 9 || 10)) season = "Fall";
+else season = "";
 </script>
 
 <style lang="scss" scoped>
@@ -33,9 +47,11 @@ import InfoBlock from "@/components/InfoBlock.vue";
     padding: 0;
   }
   &-info {
+    min-height: 444px;
     @media screen and (max-width: 768px) {
       position: relative;
-      margin: 0 24px;
+      min-height: auto;
+      text-align: center;
     }
   }
   &-image {
@@ -44,7 +60,6 @@ import InfoBlock from "@/components/InfoBlock.vue";
       display: none;
       @media screen and (max-width: 768px) {
         display: block;
-        width: 100%;
       }
     }
     @media screen and (max-width: 768px) {

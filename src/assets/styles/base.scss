@@ -14,7 +14,9 @@
 
   --primary: #4e4d93;
   --dark-primary: #2a254b;
-  --light-primary: #726e8d;
+
+  --color-link: #726e8d;
+  --color-text: #505977;
 
   --section-gap: 160px;
   --section-gap-mobile: 80px;
@@ -46,6 +48,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body._lock {
+  overflow: hidden;
+  position: fixed;
+}
+
 img {
   max-width: 100%;
 }
@@ -67,9 +74,14 @@ li {
 h1 {
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 24px;
-  line-height: 150%;
-  color: var(--black);
+  font-size: 36px;
+  line-height: 140%;
+  color: var(--dark-primary);
+  margin-bottom: 32px;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 }
 
 h2 {
@@ -80,7 +92,7 @@ h2 {
   color: var(--dark-primary);
   margin-bottom: 20px;
   @media screen and (max-width: 768px) {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 
@@ -126,6 +138,10 @@ h4 {
   @media screen and (max-width: 768px) {
     font-size: 14px;
   }
+}
+
+p:not(:last-of-type) {
+  margin-bottom: 16px;
 }
 
 .input {
@@ -177,8 +193,6 @@ h4 {
     );
 }
 
-.header-top,
-.header-menu,
 .difference,
 .idea,
 .products-container,
@@ -194,4 +208,10 @@ h4 {
 .footer {
   grid-column: 1/4;
   max-width: 1440px;
+}
+
+.header-top,
+.header-menu {
+  grid-column: 1/4;
+  padding: 0 24px;
 }

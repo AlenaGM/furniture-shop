@@ -197,11 +197,13 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
         transform: translateX(-50%);
         transition: width 0.3s ease;
       }
-      &:hover {
-        cursor: pointer;
-        &::after {
-          width: 100%;
-          transition: width 0.3s ease;
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
         }
       }
     }
@@ -240,8 +242,10 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       justify-content: center;
       &__link {
         margin: 0 12px;
-        &:hover {
-          opacity: 0.8;
+        @media (any-pointer: fine) {
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

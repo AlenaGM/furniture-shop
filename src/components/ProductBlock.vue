@@ -58,12 +58,14 @@ const props = defineProps({
       width: 0;
       transition: width 0.25s ease;
     }
-    &:hover {
-      cursor: pointer;
-      &::after {
-        width: 100%;
-        transition: width 0.25s ease;
-        color: inherit;
+    @media (any-pointer: fine) {
+      &:hover {
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.25s ease;
+          color: inherit;
+        }
       }
     }
     @media screen and (max-width: 768px) {

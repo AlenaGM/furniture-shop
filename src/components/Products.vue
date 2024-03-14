@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <Product
+    <ProductBlock
       v-for="product of products"
       :id="product.id"
       :key="product.id"
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import Product from "@/components/Product.vue";
+import ProductBlock from "@/components/ProductBlock.vue";
 
 const props = defineProps({
   products: {
