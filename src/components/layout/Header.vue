@@ -1,6 +1,6 @@
 <template>
-  <header class="header">
-    <div class="header-top" v-click-away="onClickAway">
+  <header class="header" v-click-away="onClickAway">
+    <div class="header-top">
       <div class="header-top-left">
         <router-link to="/" class="header-top-logo">
           <img src="/favicon/favicon.ico" alt="logo" />
@@ -8,7 +8,7 @@
         <div
           class="header-top-mobile-menu"
           title="dropdown menu open and close"
-          @click="onMobileMenuClick"
+          @click="onMenuToggle"
         >
           <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
           <img src="/svg/menu-close.svg" alt="menu" v-else />
@@ -43,20 +43,19 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div class="header-dropdown__overlay" v-if="isOpenedMobileMenu">
-      <div class="header-dropdown" v-if="isOpenedMobileMenu">
-        <router-link
-          class="header-dropdown__link"
-          :to="element.path"
-          v-for="(element, i) of menu"
-          :key="i"
-          @click="isOpenedMobileMenu = false"
-        >
-          {{ element.name }}
-        </router-link>
-      </div>
+    <div class="header-dropdown" v-if="isOpenedMobileMenu">
+      <router-link
+        class="header-dropdown__link"
+        :to="element.path"
+        v-for="(element, i) of menu"
+        :key="i"
+        @click="onClickAway"
+      >
+        {{ element.name }}
+      </router-link>
     </div>
   </header>
+  <div class="header-dropdown__overlay" v-if="isOpenedMobileMenu"></div>
 </template>
 
 <script setup>
@@ -65,17 +64,15 @@ import { useCartStore } from "@/store/cart.js";
 
 const isOpenedMobileMenu = ref(false);
 
-const onClickAway = () => {
-  isOpenedMobileMenu.value = false;
-  document.body.classList.remove("_lock");
-};
-
-const onMobileMenuClick = () => {
+const onMenuToggle = () => {
   isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
   document.body.classList.toggle("_lock");
 };
 
-//document.body.classList.toggle("_lock");
+const onClickAway = () => {
+  isOpenedMobileMenu.value = false;
+  document.body.classList.remove("_lock");
+};
 
 const menu = [
   {
@@ -312,7 +309,7 @@ const cartItems = computed(() => {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    min-height: 100vh;
+    height: 100vh;
     width: 80vw;
     min-width: 240px;
     max-width: 340px;
@@ -322,11 +319,12 @@ const cartItems = computed(() => {
     overflow-y: auto;
     &__link {
       display: block;
+      font-size: 18px;
       color: var(--color-link);
       margin-bottom: 20px;
       text-decoration: none;
       &:last-child {
-        margin-bottom: 54px;
+        margin-bottom: 0;
       }
     }
     &__overlay {
