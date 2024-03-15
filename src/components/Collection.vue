@@ -1,7 +1,7 @@
 <template>
   <div class="collection">
     <div class="collection__title">
-      <h2>All Products</h2>
+      <h1>All Products</h1>
     </div>
     <div class="products-container">
       <Loader v-if="loading" />
@@ -44,9 +44,9 @@ onMounted(async () => {
   &__title {
     background: url("/img/allproducts.jpg");
     background-size: cover;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     min-height: 210px;
-    padding: 36px 80px;
+    padding: 40px 80px;
     display: flex;
     align-items: flex-end;
     @media screen and (max-width: 768px) {
@@ -66,6 +66,7 @@ onMounted(async () => {
       font-size: 36px;
       font-weight: 400;
       line-height: 140%;
+      padding: 0;
       @media screen and (max-width: 768px) {
         font-size: 32px;
         //padding: 48px 0 36px;

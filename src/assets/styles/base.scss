@@ -77,10 +77,10 @@ h1 {
   font-size: 36px;
   line-height: 140%;
   color: var(--dark-primary);
-  margin-bottom: 32px;
+  padding: 80px 0;
   @media screen and (max-width: 768px) {
     font-size: 24px;
-    margin-bottom: 20px;
+    padding: 40px 0;
   }
 }
 
@@ -212,6 +212,5 @@ p:not(:last-of-type) {
 
 .header-top,
 .header-menu {
-  grid-column: 1/4;
-  padding: 0 24px;
+  grid-column: 2;
 }

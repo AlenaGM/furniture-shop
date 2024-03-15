@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <h2 class="cart__title">Your shopping cart</h2>
+    <h1 class="cart__title">Your shopping cart</h1>
     <table class="cart__table table" v-if="cartStore.cart.length">
       <thead>
         <tr>

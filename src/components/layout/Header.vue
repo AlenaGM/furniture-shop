@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div class="header-menu">
+    <div class="header-menu" v-if="!isOpenedMobileMenu">
       <router-link
         class="header-menu__link"
         :to="element.path"
@@ -122,6 +122,7 @@ const cartItems = computed(() => {
   min-height: 128px;
   grid-template-rows: 1fr minmax(1fr, auto);
   background: var(--white);
+  z-index: 90;
   @media screen and (max-width: 768px) {
     grid-template-rows: 1fr;
     min-height: 64px;
@@ -300,7 +301,7 @@ const cartItems = computed(() => {
     }
   }
   &-dropdown {
-    z-index: 90;
+    z-index: 80;
     position: fixed;
     top: 0;
     right: 0;
@@ -335,7 +336,7 @@ const cartItems = computed(() => {
       position: fixed;
       left: 0;
       top: 0;
-      z-index: 80;
+      z-index: 70;
     }
   }
 }

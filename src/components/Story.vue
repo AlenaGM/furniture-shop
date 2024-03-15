@@ -1,9 +1,9 @@
 <template>
   <div class="story">
-    <h2 class="story__title">
+    <h1 class="story__title">
       A brand built on the love of craftmanship, quality and outstanding
       customer service
-    </h2>
+    </h1>
     <InfoBlock
       title="From a studio in London to a global brand with over 400 outlets"
       description="When we started Avion, the idea was simple. Make high quality furniture affordable and available for the mass market. Handmade, and lovingly crafted furniture and homeware is what we live, breathe and design so our Chelsea boutique become the hotbed for the London interior design community."
