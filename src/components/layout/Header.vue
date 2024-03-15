@@ -2,17 +2,9 @@
   <header class="header" v-click-away="onClickAway">
     <div class="header-top">
       <div class="header-top-left">
-        <router-link to="/" class="header-top-logo">
+        <router-link to="/" class="header-top-left__logo">
           <img src="/favicon/favicon.ico" alt="logo" />
         </router-link>
-        <div
-          class="header-top-mobile-menu"
-          title="dropdown menu open and close"
-          @click="onMenuToggle"
-        >
-          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
-          <img src="/svg/menu-close.svg" alt="menu" v-else />
-        </div>
       </div>
       <router-link to="/" class="header-top-name" @click="onClickAway"
         ><div>Avion</div></router-link
@@ -30,6 +22,14 @@
               {{ cartItems }}
             </span>
           </router-link>
+        </div>
+        <div
+          class="header-top-right__mobile-menu"
+          title="dropdown menu open and close"
+          @click="onMenuToggle"
+        >
+          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
+          <img src="/svg/menu-close.svg" alt="menu" v-else />
         </div>
       </div>
     </div>
@@ -67,11 +67,13 @@ const isOpenedMobileMenu = ref(false);
 const onMenuToggle = () => {
   isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
   document.body.classList.toggle("_lock");
+  console.log(isOpenedMobileMenu.value);
 };
 
 const onClickAway = () => {
   isOpenedMobileMenu.value = false;
   document.body.classList.remove("_lock");
+  console.log(isOpenedMobileMenu.value);
 };
 
 const menu = [
@@ -119,69 +121,45 @@ const cartItems = computed(() => {
 
 <style lang="scss" scoped>
 .header {
-  min-height: 128px;
-  grid-template-rows: 1fr minmax(1fr, auto);
-  background: var(--white);
   z-index: 90;
-  @media screen and (max-width: 768px) {
-    grid-template-rows: 1fr;
-    min-height: 64px;
-  }
+  background: var(--white);
   &-top {
-    z-index: 100;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    column-gap: 16px;
+    min-height: 64px;
     align-items: center;
-    background: var(--white);
+    justify-items: stretch;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 100;
     @media screen and (max-width: 768px) {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr;
     }
     &-left {
-      display: flex;
+      display: grid;
       align-items: center;
-      @media screen and (max-width: 768px) {
-        order: 3;
-      }
-    }
-    &-logo {
-      width: 32px;
-      height: 32px;
-      display: block;
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        object-fit: cover;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        @media (any-pointer: fine) {
-          &:hover {
-            transform: scale(1.2);
-            transition: all 0.3s ease;
+      &__logo {
+        width: 32px;
+        height: 32px;
+        display: block;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          object-fit: cover;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          @media (any-pointer: fine) {
+            &:hover {
+              transform: scale(1.2);
+              transition: all 0.3s ease;
+            }
           }
         }
       }
       @media screen and (max-width: 768px) {
         display: none;
-      }
-    }
-    &-mobile-menu {
-      display: none;
-      margin-left: 16px;
-      img {
-        width: 24px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        @media (any-pointer: fine) {
-          &:hover {
-            transform: scale(1.2);
-            transition: all 0.3s ease;
-          }
-        }
-      }
-      @media screen and (max-width: 768px) {
-        display: block;
       }
     }
     &-name {
@@ -216,17 +194,14 @@ const cartItems = computed(() => {
         }
       }
       @media screen and (max-width: 768px) {
-        order: 1;
         margin-right: auto;
       }
     }
     &-right {
-      display: flex;
+      display: inline-flex;
+      column-gap: 16px;
       align-items: center;
       justify-content: flex-end;
-      @media screen and (max-width: 768px) {
-        order: 2;
-      }
       &__cart {
         position: relative;
       }
@@ -246,11 +221,9 @@ const cartItems = computed(() => {
         color: var(--white);
         text-decoration: none;
       }
-      &__user {
-        margin-right: 16px;
-      }
       &__cart,
-      &__user a img {
+      &__user,
+      &__mobile-menu a img {
         width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -259,6 +232,15 @@ const cartItems = computed(() => {
             transform: scale(1.2);
             transition: all 0.3s ease;
           }
+        }
+      }
+      &__mobile-menu {
+        display: none;
+        img {
+          width: 24px;
+        }
+        @media screen and (max-width: 768px) {
+          display: block;
         }
       }
     }
@@ -270,6 +252,7 @@ const cartItems = computed(() => {
     align-content: center;
     column-gap: 36px;
     row-gap: 4px;
+    min-height: 64px;
     @media screen and (max-width: 768px) {
       display: none;
     }
@@ -309,15 +292,17 @@ const cartItems = computed(() => {
     flex-direction: column;
     align-items: flex-end;
     height: 100vh;
-    width: 80vw;
-    min-width: 240px;
+    width: 80%;
     max-width: 340px;
     padding: 100px 64px 36px;
     background: var(--white);
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     @media screen and (min-width: 768px) {
       min-height: auto;
+    }
+    @media screen and (max-width: 284px) {
+      width: 100%;
+      padding: 100px 24px 36px;
     }
     &__link {
       display: block;
@@ -334,7 +319,6 @@ const cartItems = computed(() => {
       height: 100vh;
       width: 100vw;
       position: fixed;
-      left: 0;
       top: 0;
       z-index: 70;
     }
