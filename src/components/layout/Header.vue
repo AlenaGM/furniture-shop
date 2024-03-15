@@ -122,7 +122,6 @@ const cartItems = computed(() => {
   min-height: 128px;
   grid-template-rows: 1fr minmax(1fr, auto);
   background: var(--white);
-
   @media screen and (max-width: 768px) {
     grid-template-rows: 1fr;
     min-height: 64px;
@@ -134,7 +133,6 @@ const cartItems = computed(() => {
     align-items: center;
     background: var(--white);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
     @media screen and (max-width: 768px) {
       display: flex;
     }
@@ -304,7 +302,7 @@ const cartItems = computed(() => {
   &-dropdown {
     z-index: 90;
     position: fixed;
-    top: 0px;
+    top: 0;
     right: 0;
     display: flex;
     flex-direction: column;
@@ -317,6 +315,9 @@ const cartItems = computed(() => {
     background: var(--white);
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    @media screen and (min-width: 768px) {
+      min-height: auto;
+    }
     &__link {
       display: block;
       font-size: 18px;
@@ -335,9 +336,6 @@ const cartItems = computed(() => {
       left: 0;
       top: 0;
       z-index: 80;
-    }
-    @media screen and (min-width: 768px) {
-      min-height: auto;
     }
   }
 }

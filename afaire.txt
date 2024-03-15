@@ -46,6 +46,8 @@ a {
   @media (any-pointer: coarse), (max-width: 1024px)
   @media (any-pointer: fine)
 
+ transition: all 0.3s ease;
+
 
   Checked components:
   1/ Infoblock;
