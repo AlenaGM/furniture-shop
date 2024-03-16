@@ -24,18 +24,15 @@ const props = defineProps({
 <style lang="scss" scoped>
 .products {
   display: grid;
-  padding: 0 80px;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 20px;
-  margin-bottom: 64px;
+  gap: 20px;
+  margin-bottom: 80px;
   @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 20px;
     justify-items: center;
   }
   @media screen and (max-width: 768px) {
-    padding: 0;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
   }
 }
 </style>

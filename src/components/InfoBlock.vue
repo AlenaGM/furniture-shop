@@ -82,7 +82,7 @@ const props = defineProps({
   padding: 48px 64px;
   display: grid;
   align-content: space-between;
-  justify-items: center;
+  justify-items: start;
   @media screen and (max-width: 1024px) {
     padding: 24px 32px;
   }
@@ -92,9 +92,9 @@ const props = defineProps({
     max-width: none;
   }
   div {
-    margin: 0 0 48px 0;
+    margin: 0 0 80px 0;
     @media screen and (max-width: 768px) {
-      margin: 0 0 32px 0;
+      margin: 0 0 40px 0;
     }
   }
   h1 {

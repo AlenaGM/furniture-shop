@@ -3,10 +3,10 @@
     <router-link :to="`/products/${id}`">
       <img :src="img" :alt="title" class="product-image" />
     </router-link>
-    <router-link :to="`/products/${id}`" class="product-name">{{
-      title
-    }}</router-link>
-    <span class="product-price">£{{ price }}</span>
+    <router-link :to="`/products/${id}`" class="product-name"
+      ><h4>{{ title }}</h4></router-link
+    >
+    <span class="product-price text">€{{ price }}</span>
   </div>
 </template>
 
@@ -35,19 +35,12 @@ const props = defineProps({
 .product {
   &-image {
     display: block;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     object-fit: cover;
   }
   &-name {
-    display: block;
-    color: var(--dark-primary);
-    font-family: var(--second-family);
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 28px;
-    text-decoration: none;
-    margin-bottom: 8px;
     display: inline-block;
+    text-decoration: none;
     &::after {
       content: "";
       background: var(--dark-primary);
@@ -68,19 +61,9 @@ const props = defineProps({
         }
       }
     }
-    @media screen and (max-width: 768px) {
-      font-size: 18px;
-    }
   }
   &-price {
     display: block;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
-    color: var(--dark-primary);
-    @media screen and (max-width: 768px) {
-      font-size: 16px;
-    }
   }
 }
 </style>

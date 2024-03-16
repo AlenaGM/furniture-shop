@@ -33,25 +33,37 @@ else season = "";
 
 <style lang="scss" scoped>
 .hero {
-  background: url("/img/hero.jpg");
-  height: 704px;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 80px;
+  background: url("/img/hero.jpg") 0 0 / cover no-repeat;
+  min-height: calc(100vh - 168px);
+  height: 744px;
+  display: grid;
+  align-content: space-around;
+  justify-items: end;
+  margin-bottom: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 40px 80px 80px;
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
   @media screen and (max-width: 768px) {
     display: block;
+    min-height: auto;
     height: auto;
     background: transparent;
-    padding: 0;
+    padding: 20px 24px 40px;
   }
   &-info {
-    min-height: 444px;
+    min-height: 440px;
+    max-width: none;
+    width: 100%;
+    grid-column: 2;
+    @media screen and (max-width: 1024px) {
+      grid-column: 1;
+    }
     @media screen and (max-width: 768px) {
       position: relative;
-      min-height: auto;
       text-align: center;
+      min-height: auto;
     }
   }
   &-image {

@@ -26,10 +26,19 @@
         <div
           class="header-top-right__mobile-menu"
           title="dropdown menu open and close"
-          @click="onMenuToggle"
         >
-          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
-          <img src="/svg/menu-close.svg" alt="menu" v-else />
+          <img
+            src="/svg/menu-open.svg"
+            alt="menu"
+            v-if="!isOpenedMobileMenu"
+            @click="onMenuToggle"
+          />
+          <img
+            src="/svg/menu-close.svg"
+            alt="menu"
+            v-else
+            @click="onClickAway"
+          />
         </div>
       </div>
     </div>
@@ -43,7 +52,7 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div class="header-dropdown" v-if="isOpenedMobileMenu">
+    <div class="header-dropdown">
       <router-link
         class="header-dropdown__link"
         :to="element.path"
@@ -67,13 +76,15 @@ const isOpenedMobileMenu = ref(false);
 const onMenuToggle = () => {
   isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
   document.body.classList.toggle("_lock");
-  console.log(isOpenedMobileMenu.value);
+  document.querySelector(".header-dropdown").style.right = "0";
 };
 
 const onClickAway = () => {
   isOpenedMobileMenu.value = false;
   document.body.classList.remove("_lock");
-  console.log(isOpenedMobileMenu.value);
+  document.querySelector(".header-dropdown").style.right = "-100%";
+  document.querySelector(".header-dropdown").style.transition =
+    "right 0.7s ease";
 };
 
 const menu = [
@@ -123,6 +134,9 @@ const cartItems = computed(() => {
 .header {
   z-index: 90;
   background: var(--white);
+  padding: 0 24px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -131,6 +145,7 @@ const cartItems = computed(() => {
     align-items: center;
     justify-items: stretch;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--white);
     z-index: 100;
     @media screen and (max-width: 768px) {
       display: grid;
@@ -221,9 +236,9 @@ const cartItems = computed(() => {
         color: var(--white);
         text-decoration: none;
       }
-      &__cart,
-      &__user,
-      &__mobile-menu a img {
+      &__cart a img,
+      &__user a img,
+      &__mobile-menu img {
         width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -285,9 +300,9 @@ const cartItems = computed(() => {
   }
   &-dropdown {
     z-index: 80;
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
+    right: -100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -297,6 +312,8 @@ const cartItems = computed(() => {
     padding: 100px 64px 36px;
     background: var(--white);
     overflow-y: auto;
+    transition: right 0.7s ease;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
     @media screen and (min-width: 768px) {
       min-height: auto;
     }
@@ -320,6 +337,7 @@ const cartItems = computed(() => {
       width: 100vw;
       position: fixed;
       top: 0;
+      opacity: 1;
       z-index: 70;
     }
   }

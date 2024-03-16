@@ -42,7 +42,7 @@ const props = defineProps({
 
   &__input {
     @media screen and (max-width: 349px) {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
   }
 }

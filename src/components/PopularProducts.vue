@@ -1,5 +1,6 @@
 <template>
   <div class="products-container">
+    <h2>Our Popular Products</h2>
     <Loader v-if="loading" />
     <Products :products="popularProducts" v-else />
     <div class="products-link">
@@ -34,9 +35,10 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .products {
   &-container {
-    margin-bottom: 64px;
+    display: grid;
+    padding: var(--section-gap);
     @media screen and (max-width: 768px) {
-      margin-bottom: 48px;
+      padding: var(--section-gap-mobile);
     }
   }
   &-link {

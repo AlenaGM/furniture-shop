@@ -47,8 +47,10 @@ a {
   @media (any-pointer: fine)
 
  transition: all 0.3s ease;
+ colum-gap 20px
 
 
   Checked components:
   1/ Infoblock;
   2/ Button
+  3/ header

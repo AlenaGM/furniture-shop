@@ -1,8 +1,8 @@
 <template>
   <div class="subscribe">
     <div class="subscribe-content">
-      <h3 class="subscribe-title">Join the club and get the benefits</h3>
-      <span class="subscribe-description"
+      <h2 class="subscribe-title">Join the club and get the benefits</h2>
+      <span class="subscribe-description text"
         >Sign up for our newsletter and receive exclusive offers on new ranges,
         sales, pop up stores and more</span
       >
@@ -13,7 +13,7 @@
             alt="checkbox"
             class="subscribe-check__icon"
           />
-          <span class="subscribe-check__name">Exclusive offers</span>
+          <span class="subscribe-check__name text-sm">Exclusive offers</span>
         </div>
         <div class="subscribe-check">
           <img
@@ -21,7 +21,7 @@
             alt="checkbox"
             class="subscribe-check__icon"
           />
-          <span class="subscribe-check__name">Free events</span>
+          <span class="subscribe-check__name text-sm">Free events</span>
         </div>
         <div class="subscribe-check">
           <img
@@ -29,7 +29,7 @@
             alt="checkbox"
             class="subscribe-check__icon"
           />
-          <span class="subscribe-check__name">Large discounts</span>
+          <span class="subscribe-check__name text-sm">Large discounts</span>
         </div>
       </div>
       <SubscribeForm />
@@ -45,13 +45,13 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 .subscribe {
   background: url("/img/subscribe.jpg");
   background-size: cover;
-  padding: 97px 0 86px 0;
+  padding: 40px 80px 80px;
   @media screen and (max-width: 768px) {
     background-image: url("/img/subscribe-mobile.jpg");
-    padding: 24px;
+    padding: 20px 24px 40px;
   }
   &-content {
-    max-width: 500px;
+    max-width: 560px;
     margin: auto;
     text-align: center;
     color: var(--white);
@@ -61,28 +61,13 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   }
   &-title {
     display: block;
-    margin: 0 0 12px 0;
-    font-family: var(--second-family);
     color: var(--white);
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 45px;
-    @media screen and (max-width: 768px) {
-      font-size: 24px;
-      line-height: 34px;
-    }
   }
   &-description {
     display: block;
-    font-family: var(--font-family);
     color: var(--white);
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
     margin-bottom: 30px;
     @media screen and (max-width: 768px) {
-      font-size: 14px;
-      line-height: 21px;
       margin-bottom: 20px;
     }
   }
@@ -110,11 +95,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       margin-right: 9px;
     }
     &__name {
-      font-family: var(--font-family);
       color: var(--white);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
     }
   }
 }

@@ -18,8 +18,8 @@
   --color-link: #726e8d;
   --color-text: #505977;
 
-  --section-gap: 160px;
-  --section-gap-mobile: 80px;
+  --section-gap: 40px 56px;
+  --section-gap-mobile: 20px 0;
 }
 
 // styles reset & body styles
@@ -78,10 +78,8 @@ h1 {
   font-size: 36px;
   line-height: 140%;
   color: var(--dark-primary);
-  padding: 80px 0;
   @media screen and (max-width: 768px) {
     font-size: 24px;
-    padding: 40px 0;
   }
 }
 
@@ -103,10 +101,10 @@ h3 {
   font-size: 24px;
   line-height: 140%;
   color: var(--dark-primary);
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   @media screen and (max-width: 768px) {
     font-size: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 }
 
@@ -116,7 +114,11 @@ h4 {
   font-size: 20px;
   line-height: 140%;
   color: var(--dark-primary);
-  margin-bottom: 80px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
 }
 
 .text {
@@ -188,9 +190,9 @@ p:not(:last-of-type) {
 .footer {
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(1.5rem, 1fr) minmax(auto, 1392px) minmax(
+  grid-template-columns: minmax(1.5rem, 80px) minmax(auto, 1280px) minmax(
       1.5rem,
-      1fr
+      80px
     );
 }
 
@@ -202,7 +204,8 @@ p:not(:last-of-type) {
 .collection,
 .details,
 .story,
-.cart {
+.cart,
+.footer-content {
   grid-column: 2;
 }
 

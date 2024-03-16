@@ -21,16 +21,14 @@ import InfoBlock from "@/components/InfoBlock.vue";
 
 <style lang="scss" scoped>
 .idea {
-  padding: 0 80px;
-  margin-bottom: 130px;
+  padding: var(--section-gap);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 16px;
+  column-gap: 20px;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     justify-items: center;
-    margin-bottom: 48px;
-    padding: 0;
+    padding: var(--section-gap-mobile);
   }
   &-image {
     object-fit: cover;
