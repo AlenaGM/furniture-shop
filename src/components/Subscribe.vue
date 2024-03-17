@@ -45,10 +45,10 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 .subscribe {
   background: url("/img/subscribe.jpg");
   background-size: cover;
-  padding: 40px 80px 80px;
+  padding: 40px 0 80px;
   @media screen and (max-width: 768px) {
     background-image: url("/img/subscribe-mobile.jpg");
-    padding: 20px 24px 40px;
+    padding: 20px 0 40px;
   }
   &-content {
     max-width: 560px;

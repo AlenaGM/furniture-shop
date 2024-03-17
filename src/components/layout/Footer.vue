@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-top">
         <div class="footer-menu">
@@ -126,7 +126,7 @@
         </span>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script setup>
@@ -138,12 +138,12 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   background: var(--dark-primary);
   color: var(--white);
   &-content {
-    padding: 58px 82px 25px 82px;
+    padding: 58px 0 25px;
     @media screen and (max-width: 1024px) {
-      padding: 58px 30px 25px 30px;
+      padding: 58px 0 25px;
     }
     @media screen and (max-width: 768px) {
-      padding: 40px 25px;
+      padding: 40px 0;
     }
   }
   &-top {

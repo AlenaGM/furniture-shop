@@ -26,19 +26,10 @@
         <div
           class="header-top-right__mobile-menu"
           title="dropdown menu open and close"
+          @click="onMenuToggle"
         >
-          <img
-            src="/svg/menu-open.svg"
-            alt="menu"
-            v-if="!isOpenedMobileMenu"
-            @click="onMenuToggle"
-          />
-          <img
-            src="/svg/menu-close.svg"
-            alt="menu"
-            v-else
-            @click="onClickAway"
-          />
+          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
+          <img src="/svg/menu-close.svg" alt="menu" v-else />
         </div>
       </div>
     </div>
@@ -52,7 +43,7 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div class="header-dropdown">
+    <div class="header-dropdown" v-if="isOpenedMobileMenu">
       <router-link
         class="header-dropdown__link"
         :to="element.path"
@@ -76,15 +67,11 @@ const isOpenedMobileMenu = ref(false);
 const onMenuToggle = () => {
   isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
   document.body.classList.toggle("_lock");
-  document.querySelector(".header-dropdown").style.right = "0";
 };
 
 const onClickAway = () => {
   isOpenedMobileMenu.value = false;
   document.body.classList.remove("_lock");
-  document.querySelector(".header-dropdown").style.right = "-100%";
-  document.querySelector(".header-dropdown").style.transition =
-    "right 0.7s ease";
 };
 
 const menu = [
@@ -302,7 +289,7 @@ const cartItems = computed(() => {
     z-index: 80;
     position: absolute;
     top: 0;
-    right: -100%;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

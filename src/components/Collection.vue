@@ -37,11 +37,14 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .collection {
+  display: grid;
   margin-bottom: 130px;
+  grid-template-rows: 210px 1fr;
   @media screen and (max-width: 768px) {
     margin-bottom: 48px;
   }
   &__title {
+    grid-row: 1;
     background: url("/img/allproducts.jpg");
     background-size: cover;
     margin-bottom: 40px;
@@ -77,6 +80,7 @@ onMounted(async () => {
 
 .products {
   &-container {
+    grid-row: 2;
     margin-bottom: 64px;
     @media screen and (max-width: 768px) {
       margin-bottom: 48px;
