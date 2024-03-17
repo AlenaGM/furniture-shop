@@ -47,9 +47,9 @@ const usp = [
 
 <style lang="scss" scoped>
 .difference {
-  padding: var(--section-gap);
+  margin: var(--section-gap);
   @media screen and (max-width: 768px) {
-    padding: var(--section-gap-mobile);
+    margin: var(--section-gap-mobile);
   }
   &__title {
     text-align: center;

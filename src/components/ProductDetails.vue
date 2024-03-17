@@ -1,46 +1,51 @@
 <template>
   <div class="details">
-    <div class="details-image">
-      <img :src="product.image" :alt="product.name" />
-    </div>
-    <div>
-      <h2 class="details-name">{{ product.name }}</h2>
-      <span class="details-price">£{{ product.price }}</span>
-      <div class="details-block detailst-description">
-        <span class="detailst-block__title">Product description</span>
-        <div v-html="product.description"></div>
+    <div class="details-content">
+      <div class="details-image">
+        <img :src="product.image" :alt="product.name" />
       </div>
-      <div class="details-block">
-        <span class="details-block__title">Dimensions</span>
-        <span
-          class="details-param"
-          v-for="(param, i) of product.params"
-          :key="i"
-        >
-          {{ param.title }}: {{ param.value }}
-        </span>
-      </div>
-      <div class="details-block">
-        <span class="details-block__title">Quantity</span>
-        <div class="details-quantity">
+      <div>
+        <h2 class="details-name">{{ product.name }}</h2>
+        <span class="details-price">£{{ product.price }}</span>
+        <div class="details-block detailst-description">
+          <span class="detailst-block__title">Product description</span>
+          <div v-html="product.description"></div>
+        </div>
+        <div class="details-block">
+          <span class="details-block__title">Dimensions</span>
           <span
-            class="details-quantity-symbol"
-            @click="changeQuantity('minus')"
+            class="details-param"
+            v-for="(param, i) of product.params"
+            :key="i"
           >
-            -
-          </span>
-          <span class="details-quantity-value">{{ quantity }}</span>
-          <span class="details-quantity-symbol" @click="changeQuantity('plus')">
-            +
+            {{ param.title }}: {{ param.value }}
           </span>
         </div>
+        <div class="details-block">
+          <span class="details-block__title">Quantity</span>
+          <div class="details-quantity">
+            <span
+              class="details-quantity-symbol"
+              @click="changeQuantity('minus')"
+            >
+              -
+            </span>
+            <span class="details-quantity-value">{{ quantity }}</span>
+            <span
+              class="details-quantity-symbol"
+              @click="changeQuantity('plus')"
+            >
+              +
+            </span>
+          </div>
+        </div>
+        <ui-button
+          color="dark-primary"
+          @click="cartStore.addToCart(product, quantity)"
+        >
+          Add to Cart
+        </ui-button>
       </div>
-      <ui-button
-        color="dark-primary"
-        @click="cartStore.addToCart(product, quantity)"
-      >
-        Add to Cart
-      </ui-button>
     </div>
   </div>
 </template>
@@ -73,12 +78,14 @@ const changeQuantity = (type) => {
 <style lang="scss" scoped>
 .details {
   background: var(--light-gray);
-  padding: 50px 80px;
-  display: grid;
-  align-items: start;
-  grid-template-columns: minmax(300px, 600px) minmax(400px, 1fr);
-  column-gap: 65px;
-  margin-bottom: 65px;
+  padding: 48px 0;
+  margin-bottom: 72px;
+  &-content {
+    display: grid;
+    align-items: start;
+    grid-template-columns: minmax(300px, 600px) minmax(400px, 1fr);
+    column-gap: 65px;
+  }
   &-image {
     img {
       object-fit: cover;
@@ -90,6 +97,9 @@ const changeQuantity = (type) => {
   }
   @media screen and (max-width: 840px) {
     grid-template-columns: 1fr;
+  }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 30px;
   }
   &-name {
     margin: 0 0 16px 0;

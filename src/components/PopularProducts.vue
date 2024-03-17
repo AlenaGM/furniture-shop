@@ -36,9 +36,9 @@ onMounted(async () => {
 .products {
   &-container {
     display: grid;
-    padding: var(--section-gap);
+    margin: var(--section-gap);
     @media screen and (max-width: 768px) {
-      padding: var(--section-gap-mobile);
+      margin: var(--section-gap-mobile);
     }
   }
   &-link {

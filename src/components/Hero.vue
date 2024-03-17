@@ -39,9 +39,9 @@ else season = "";
   display: grid;
   align-content: space-around;
   justify-items: end;
-  margin-bottom: 40px;
   grid-template-columns: repeat(2, 1fr);
   padding: 40px 80px 80px;
+  margin-bottom: 80px;
   @media screen and (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
@@ -51,6 +51,7 @@ else season = "";
     height: auto;
     background: transparent;
     padding: 20px 24px 40px;
+    margin-bottom: 40px;
   }
   &-info {
     min-height: 440px;

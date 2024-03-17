@@ -38,16 +38,15 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .collection {
   display: grid;
-  margin-bottom: 130px;
   grid-template-rows: 210px 1fr;
+  row-gap: 40px;
   @media screen and (max-width: 768px) {
-    margin-bottom: 48px;
+    row-gap: 20px;
   }
   &__title {
     grid-row: 1;
     background: url("/img/allproducts.jpg");
     background-size: cover;
-    margin-bottom: 40px;
     min-height: 210px;
     padding: 40px 80px;
     display: flex;
@@ -56,7 +55,6 @@ onMounted(async () => {
       background: url("/img/allproducts-mobile.jpg");
       background-size: cover;
       padding: 36px 24px;
-      margin: 0 -24px 36px;
       align-items: center;
       justify-content: center;
       min-height: 146px;
@@ -81,9 +79,9 @@ onMounted(async () => {
 .products {
   &-container {
     grid-row: 2;
-    margin-bottom: 64px;
+    margin: var(--section-gap);
     @media screen and (max-width: 768px) {
-      margin-bottom: 48px;
+      margin: var(--section-gap-mobile);
     }
   }
   &-link {

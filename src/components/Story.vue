@@ -45,9 +45,11 @@ import InfoBlock from "@/components/InfoBlock.vue";
   grid-template-rows: auto 1fr 1fr;
   column-gap: 0px;
   justify-items: center;
+  margin-bottom: 80px;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    margin-bottom: 40px;
   }
   &__title {
     grid-column: span 2;

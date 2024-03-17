@@ -124,6 +124,9 @@ const cartItems = computed(() => {
   padding: 0 24px;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  @media screen and (max-width: 768px) {
+    grid-template-rows: 1fr;
+  }
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

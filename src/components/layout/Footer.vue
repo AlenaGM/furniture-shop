@@ -138,12 +138,9 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   background: var(--dark-primary);
   color: var(--white);
   &-content {
-    padding: 58px 0 25px;
-    @media screen and (max-width: 1024px) {
-      padding: 58px 0 25px;
-    }
+    padding: 40px 0;
     @media screen and (max-width: 768px) {
-      padding: 40px 0;
+      padding: 20px 0;
     }
   }
   &-top {
@@ -151,7 +148,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     grid-template-columns: 540px 1fr;
     column-gap: 110px;
     border-bottom: 1px solid var(--primary);
-    padding-bottom: 48px;
+    padding-bottom: 40px;
     @media screen and (max-width: 1150px) {
       column-gap: 10px;
       grid-template-columns: 450px 1fr;
@@ -161,7 +158,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     }
     @media screen and (max-width: 768px) {
       grid-template-columns: 1fr;
-      padding-bottom: 24px;
+      padding-bottom: 20px;
     }
   }
   &-menu {
@@ -220,7 +217,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     }
   }
   &-bottom {
-    padding-top: 22px;
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     @media screen and (max-width: 768px) {
