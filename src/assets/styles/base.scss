@@ -187,18 +187,12 @@ p:not(:last-of-type) {
   grid-area: footer;
 }
 
+.main,
+.footer,
 .hero,
 .subscribe,
 .collection,
 .collection__title,
-.details {
-  grid-column: 1/4;
-}
-
-.main,
-.footer,
-.subscribe,
-.collection,
 .details {
   display: grid;
   grid-template-columns: minmax(1rem, 1fr) minmax(auto, 1280px) minmax(
@@ -207,14 +201,22 @@ p:not(:last-of-type) {
     );
 }
 
+.hero,
+.subscribe,
+.collection,
+.collection__title,
+.details {
+  grid-column: 1/4;
+}
+
 .hero-info,
 .difference,
 .products-container,
 .idea,
-.subscribe-content,
-.footer-content,
 .details-content,
 .story,
-.cart {
+.cart,
+.subscribe-content,
+.footer-content {
   grid-column: 2;
 }

@@ -7,7 +7,6 @@
           <th>Product</th>
           <th>Quantity</th>
           <th>Total</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -46,7 +45,6 @@
               </span>
             </div>
           </td>
-
           <td>
             <span>
               {{
@@ -63,23 +61,21 @@
       </tbody>
       <tfoot>
         <tr>
-          <th class="table__total">Subtotal:</th>
-          <th class="table__sum">
+          <th class="table__total">
+            <span>Subtotal</span>
+            {{
+              new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+              }).format(cartTotal)
+            }}
             <div>Taxes and shipping are calculated at checkout</div>
-            <span>
-              {{
-                new Intl.NumberFormat("fr-FR", {
-                  style: "currency",
-                  currency: "EUR",
-                  minimumFractionDigits: 0,
-                }).format(cartTotal)
-              }}
-            </span>
           </th>
         </tr>
       </tfoot>
     </table>
-    <div class="cart__emptyMessage" v-else>Корзина пуста</div>
+    <div class="cart__emptyMessage" v-else>Your shopping cart is empty</div>
     <ui-button
       class="cart__order"
       :mobileFullWidth="true"
@@ -92,6 +88,7 @@
       class="cart__order"
       type="link"
       to="/products"
+      color="light-gray"
       :mobileFullWidth="true"
       v-else
     >
@@ -124,21 +121,16 @@ const toCheckout = () => {
 <style lang="scss" scoped>
 .cart {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   align-items: flex-start;
-  @media screen and (max-width: 560px) {
+  align-items: center;
+  @media screen and (max-width: 768px) {
     align-items: center;
   }
   &__title {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 90%;
-    text-transform: uppercase;
-    margin: 60px 0 34px 0;
+    padding: 80px 0;
     @media screen and (max-width: 560px) {
-      font-size: 1.5rem;
-      margin: 17px 0 17px 0;
+      padding: 40px 0;
     }
   }
   &__emptyMessage {
@@ -146,27 +138,234 @@ const toCheckout = () => {
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
-    font-size: 1.25rem;
-    margin: 0 auto;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    color: var(--dark-primary);
+    margin: var(--section-gap);
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+      margin: var(--section-gap-mobile);
+    }
   }
   &__table {
     width: 100%;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-decoration: none;
+    color: var(--dark-primary);
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+    }
   }
   &__order {
-    margin: 50px auto 100px auto;
+    margin: var(--section-gap);
+    align-self: center;
     @media screen and (max-width: 560px) {
-      margin: 50px auto 50px auto;
+      margin: var(--section-gap-mobile);
     }
   }
 }
+
 .table {
-  font-size: 1rem;
-  font-weight: 500;
   color: var(--dark-primary);
   span {
-    font-size: 18px;
-    font-weight: 600;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--dark-primary);
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
   }
+  tr {
+    display: grid;
+    grid-template: 1fr / repeat(6, 1fr);
+    column-gap: 20px;
+    padding: 20px 0;
+    align-items: center;
+  }
+  thead {
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      font-family: var(--second-family);
+      font-size: 18px;
+      line-height: 140%;
+      color: var(--dark-primary);
+      padding: 20px 0;
+      @media screen and (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+    th {
+      &:first-of-type {
+        grid-column: span 3;
+        justify-self: start;
+      }
+      &:last-of-type {
+        justify-self: end;
+      }
+    }
+  }
+  tbody {
+    tr {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: var(--dark-primary);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+    td {
+      &:first-of-type {
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          cursor: pointer;
+        }
+      }
+      &:nth-of-type(2) {
+        grid-column: span 2;
+        padding: 20px 0;
+        text-align: left;
+        a {
+          display: block;
+          text-decoration: none;
+          color: var(--dark-primary);
+          span {
+            font-family: var(--second-family);
+            font-size: 24px;
+            line-height: 140%;
+            color: var(--dark-primary);
+            @media screen and (max-width: 768px) {
+              font-size: 20px;
+            }
+          }
+          &::after {
+            content: "";
+            background: var(--dark-primary);
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            height: 1.5px;
+            width: 0;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+          }
+          @media (any-pointer: fine) {
+            &:hover {
+              cursor: pointer;
+              &::after {
+                width: 100%;
+                transition: width 0.3s ease;
+              }
+            }
+          }
+        }
+        div:nth-of-type(2) {
+          font-size: 14px;
+        }
+      }
+      &:nth-of-type(3) {
+        display: inline-flex;
+        justify-self: center;
+      }
+      &:nth-of-type(4) {
+        display: inline-flex;
+        justify-self: end;
+        span {
+          font-size: 18px;
+        }
+      }
+      &:last-of-type {
+        display: block;
+        text-decoration: none;
+        justify-self: center;
+        &::after {
+          content: "";
+          background: var(--dark-primary);
+          position: absolute;
+          bottom: 2px;
+          left: 50%;
+          height: 1.5px;
+          width: 0;
+          transform: translateX(-50%);
+          transition: width 0.3s ease;
+        }
+        @media (any-pointer: fine) {
+          &:hover {
+            cursor: pointer;
+            &::after {
+              width: 100%;
+              transition: width 0.3s ease;
+            }
+          }
+        }
+      }
+    }
+  }
+  tfoot {
+    th {
+      grid-column: span 5;
+      justify-self: end;
+      align-self: start;
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 140%;
+      color: var(--dark-primary);
+      text-decoration: none;
+      text-align: right;
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+      span {
+        padding-right: 10px;
+        font-size: 24px;
+        font-family: var(--second-family);
+        @media screen and (max-width: 768px) {
+          font-size: 20px;
+        }
+      }
+      div {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: var(--dark-primary);
+        @media screen and (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.cart__item_name {
+}
+.product-quantity {
+}
+.product-quantity-symbol {
+}
+.product-quantity-value {
+}
+.table__total {
+}
+.table__sum {
+}
+
+/*
+.table {
+
   tr {
     display: grid;
     grid-template: 1fr/ 160px minmax(250px, 1fr) 120px 140px;
@@ -258,17 +457,15 @@ const toCheckout = () => {
   }
   thead,
   tfoot {
-    color: var(--semi-black);
+    border: 2px solid red;
   }
   thead {
-    border-top: 1px solid var(--third-black);
     tr {
       padding: 8px 0;
     }
   }
   tfoot {
     span {
-      color: var(--black);
       font-size: 18px;
       font-weight: 600;
     }
@@ -358,5 +555,5 @@ const toCheckout = () => {
       }
     }
   }
-}
+}*/
 </style>

@@ -6,7 +6,7 @@
     <div class="products-container">
       <Loader v-if="loading" />
       <Products :products="popularProducts" v-else />
-      <div class="products-link">
+      <div class="products-link" v-if="popularProducts.length > 24">
         <ui-button
           class="products-link"
           type="button"
@@ -39,18 +39,14 @@ onMounted(async () => {
 .collection {
   display: grid;
   grid-template-rows: 210px 1fr;
-  row-gap: 40px;
-  @media screen and (max-width: 768px) {
-    row-gap: 20px;
-  }
   &__title {
     grid-row: 1;
+    display: grid;
     background: url("/img/allproducts.jpg");
     background-size: cover;
+    align-items: end;
     min-height: 210px;
-    padding: 40px 80px;
-    display: flex;
-    align-items: flex-end;
+    padding: 40px 0;
     @media screen and (max-width: 768px) {
       background: url("/img/allproducts-mobile.jpg");
       background-size: cover;
@@ -60,6 +56,7 @@ onMounted(async () => {
       min-height: 146px;
     }
     h1 {
+      grid-column: 2;
       margin: 0;
       text-align: left;
       color: var(--white);
@@ -70,7 +67,7 @@ onMounted(async () => {
       padding: 0;
       @media screen and (max-width: 768px) {
         font-size: 32px;
-        //padding: 48px 0 36px;
+        text-align: center;
       }
     }
   }

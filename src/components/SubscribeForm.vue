@@ -32,6 +32,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .subscribe-form {
   display: flex;
+  max-width: 630px;
   &__input {
     flex-grow: 1;
   }

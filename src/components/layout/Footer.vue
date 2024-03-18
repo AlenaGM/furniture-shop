@@ -95,6 +95,7 @@
           </div>
         </div>
         <div class="footer-subscribe">
+          <span class="footer-menu__title">Join our mailing list</span>
           <SubscribeForm
             colorButton="white"
             bgInput="rgba(255, 255, 255, 0.15)"
@@ -103,7 +104,9 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-bottom__copyright">Copyright 2024 Avion LTD</span>
+        <span class="footer-bottom__copyright"
+          >Copyright {{ year }} Avion LTD</span
+        >
         <span class="footer-bottom-socials">
           <a href="#" class="footer-bottom-socials__link">
             <img src="/svg/linkedin.svg" alt="linkedin" />
@@ -131,6 +134,9 @@
 
 <script setup>
 import SubscribeForm from "@/components/SubscribeForm.vue";
+
+const date = new Date();
+const year = date.getFullYear() || "2024";
 </script>
 
 <style lang="scss" scoped>
@@ -145,27 +151,23 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
   }
   &-top {
     display: grid;
-    grid-template-columns: 540px 1fr;
-    column-gap: 110px;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
     border-bottom: 1px solid var(--primary);
     padding-bottom: 40px;
-    @media screen and (max-width: 1150px) {
-      column-gap: 10px;
-      grid-template-columns: 450px 1fr;
-    }
-    @media screen and (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 960px) {
       grid-template-columns: 1fr;
       padding-bottom: 20px;
     }
   }
   &-menu {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-auto-rows: 1fr;
     @media screen and (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 40px;
     }
     &__title {
       display: block;
@@ -205,9 +207,6 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       }
     }
     &-column {
-      @media screen and (max-width: 768px) {
-        margin-bottom: 40px;
-      }
       li {
         margin-bottom: 12px;
         &:last-child {
@@ -215,6 +214,10 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
         }
       }
     }
+  }
+  &-subscribe {
+    display: flex;
+    flex-direction: column;
   }
   &-bottom {
     padding-top: 20px;
@@ -230,19 +233,24 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       line-height: 19px;
       @media screen and (max-width: 768px) {
         display: block;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
       }
     }
     &-socials {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px 20px;
+      flex-wrap: wrap;
       &__link {
-        margin: 0 12px;
         @media (any-pointer: fine) {
           &:hover {
             opacity: 0.8;
           }
+        }
+        img {
+          width: 24px;
+          height: 24px;
         }
       }
     }

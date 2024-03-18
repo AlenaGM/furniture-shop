@@ -45,10 +45,10 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 .subscribe {
   background: url("/img/subscribe.jpg");
   background-size: cover;
-  padding: 40px 0 80px;
+  padding: 40px 0;
   @media screen and (max-width: 768px) {
     background-image: url("/img/subscribe-mobile.jpg");
-    padding: 20px 0 40px;
+    padding: 20px 0;
   }
   &-content {
     max-width: 560px;
@@ -88,8 +88,10 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
         margin: 0 0 8px 0;
       }
     }
-    @media screen and (max-width: 768px) {
-      margin-bottom: 8px;
+    &:not(:last-of-type) {
+      @media screen and (max-width: 768px) {
+        margin-bottom: 8px;
+      }
     }
     &__icon {
       margin-right: 9px;

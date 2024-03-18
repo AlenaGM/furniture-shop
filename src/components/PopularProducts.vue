@@ -1,6 +1,6 @@
 <template>
   <div class="products-container">
-    <h2>Our Popular Products</h2>
+    <h2>{{ sectionTitle }}</h2>
     <Loader v-if="loading" />
     <Products :products="popularProducts" v-else />
     <div class="products-link">
@@ -29,6 +29,13 @@ const loading = ref(true);
 onMounted(async () => {
   popularProducts.value = await api.getPopularProducts();
   loading.value = false;
+});
+
+const props = defineProps({
+  sectionTitle: {
+    type: String,
+    default: "Our popular products",
+  },
 });
 </script>
 

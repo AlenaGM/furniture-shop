@@ -1,6 +1,9 @@
 <template>
   <ProductDetails :product="currentProduct" v-if="currentProduct" />
-  <PopularProducts @click="fetchProductDetails" />
+  <PopularProducts
+    @click="fetchProductDetails"
+    sectionTitle="You may also like"
+  />
   <Difference />
   <Subscribe />
 </template>

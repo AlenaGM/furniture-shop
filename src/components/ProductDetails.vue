@@ -5,7 +5,7 @@
         <img :src="product.image" :alt="product.name" />
       </div>
       <div>
-        <h2 class="details-name">{{ product.name }}</h2>
+        <h1 class="details-name">{{ product.name }}</h1>
         <span class="details-price">£{{ product.price }}</span>
         <div class="details-block detailst-description">
           <span class="detailst-block__title">Product description</span>
@@ -70,7 +70,7 @@ const changeQuantity = (type) => {
     quantity.value === 1 ? (quantity.value = 1) : quantity.value--;
   }
   if (type === "plus") {
-    quantity.value === 3 ? (quantity.value = 3) : quantity.value++;
+    quantity.value === 5 ? (quantity.value = 5) : quantity.value++;
   }
 };
 </script>
@@ -79,42 +79,42 @@ const changeQuantity = (type) => {
 .details {
   background: var(--light-gray);
   padding: 48px 0;
-  margin-bottom: 72px;
+  margin-bottom: 32px;
+  @media screen and (max-width: 1024px) {
+    padding: 24px 0;
+    margin-bottom: 16px;
+  }
   &-content {
     display: grid;
     align-items: start;
-    grid-template-columns: minmax(300px, 600px) minmax(400px, 1fr);
-    column-gap: 65px;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 64px;
+    @media screen and (max-width: 1024px) {
+      column-gap: 40px;
+    }
+    @media screen and (max-width: 820px) {
+      grid-template-columns: 1fr;
+    }
   }
   &-image {
     img {
       object-fit: cover;
     }
   }
-  @media screen and (max-width: 1092px) {
-    padding: 30px;
-    column-gap: 30px;
-  }
-  @media screen and (max-width: 840px) {
-    grid-template-columns: 1fr;
-  }
-  @media screen and (max-width: 767px) {
-    margin-bottom: 30px;
-  }
   &-name {
-    margin: 0 0 16px 0;
+    margin: 0 0 12px 0;
     font-family: var(--second-family);
     font-size: 36px;
     font-weight: 400;
     line-height: 44px;
-    @media screen and (max-width: 840px) {
-      margin: 30px 0 16px 0;
+    @media screen and (max-width: 820px) {
+      margin: 40px 0 12px 0;
     }
   }
   &-price {
     display: block;
     font-size: 24px;
-    margin-bottom: 28px;
+    margin-bottom: 40px;
     font-weight: 400;
     line-height: 32px;
   }
@@ -135,15 +135,18 @@ const changeQuantity = (type) => {
   }
   &-quantity {
     background: var(--white);
-    width: 122px;
+    width: 145px;
     height: 46px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 15px;
     &-symbol {
       color: var(--border-gray);
       cursor: pointer;
+    }
+    @media screen and (max-width: 820px) {
+      width: 122px;
     }
   }
 }

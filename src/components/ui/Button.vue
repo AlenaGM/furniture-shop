@@ -68,6 +68,7 @@ const props = defineProps({
   text-decoration: none;
   border: none;
   font-size: 16px;
+  font-family: var(--font-family);
   height: 56px;
   min-width: 122px;
   white-space: nowrap;
