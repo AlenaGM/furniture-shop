@@ -144,7 +144,7 @@ const year = date.getFullYear() || "2024";
   background: var(--dark-primary);
   color: var(--white);
   &-content {
-    padding: 40px 0;
+    padding: 40px 0 20px;
     @media screen and (max-width: 768px) {
       padding: 20px 0;
     }

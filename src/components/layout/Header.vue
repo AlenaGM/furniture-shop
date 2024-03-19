@@ -329,6 +329,9 @@ const cartItems = computed(() => {
       top: 0;
       opacity: 1;
       z-index: 70;
+      @media screen and (max-width: 284px) {
+        display: none;
+      }
     }
   }
 }

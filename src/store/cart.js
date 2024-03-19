@@ -12,8 +12,8 @@ export const useCartStore = defineStore("cartStore", {
       }
     },
     addItem(index) {
-      this.cart[index].count === 3
-        ? (this.cart[index].count = 3)
+      this.cart[index].count === 5
+        ? (this.cart[index].count = 5)
         : this.cart[index].count++;
     },
     deleteItem(index) {

@@ -25,7 +25,7 @@
                 style: "currency",
                 currency: "EUR",
                 minimumFractionDigits: 0,
-              }).format(item.price)
+              }).format(item.price || 0)
             }}
           </td>
           <td>
@@ -55,7 +55,7 @@
                   style: "currency",
                   currency: "EUR",
                   minimumFractionDigits: 0,
-                }).format(item.count * item.price)
+                }).format(item.count * item.price || 0)
               }}
             </span>
           </td>
@@ -70,7 +70,7 @@
                 style: "currency",
                 currency: "EUR",
                 minimumFractionDigits: 0,
-              }).format(cartTotal)
+              }).format(cartTotal || 0)
             }}
             <div>Taxes and shipping are calculated at checkout</div>
           </th>
@@ -90,7 +90,6 @@
       class="cart__order"
       type="link"
       to="/products"
-      color="light-gray"
       :mobileFullWidth="true"
       v-else
     >
@@ -239,6 +238,10 @@ const toCheckout = () => {
       grid-template-columns: 1fr 2fr;
       row-gap: 20px;
     }
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
   }
   thead {
     tr {
@@ -296,6 +299,10 @@ const toCheckout = () => {
         font-size: 18px;
         @media screen and (max-width: 768px) {
           grid-column: span 1;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: baseline;
+          justify-content: space-between;
         }
         a {
           text-decoration: none;
@@ -305,6 +312,7 @@ const toCheckout = () => {
             font-size: 24px;
             line-height: 140%;
             color: var(--dark-primary);
+            margin-right: 6px;
             @media screen and (max-width: 768px) {
               font-size: 20px;
             }
@@ -339,8 +347,11 @@ const toCheckout = () => {
         flex-direction: column;
         row-gap: 12px;
         align-items: center;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 420px) {
           align-items: flex-start;
+          .cart-delete {
+            display: none;
+          }
         }
       }
       &:last-of-type {

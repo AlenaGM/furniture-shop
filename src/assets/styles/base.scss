@@ -37,7 +37,6 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  min-width: 320px;
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: normal;
@@ -173,6 +172,10 @@ p:not(:last-of-type) {
     "header"
     "main"
     "footer";
+}
+
+.banner {
+  grid-area: banner;
 }
 
 .header {
