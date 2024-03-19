@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <h1 class="cart__title">Your shopping cart</h1>
+    <h1 class="cart__title">Shopping cart</h1>
     <table class="cart__table table" v-if="cartStore.cart.length">
       <thead>
         <tr>
@@ -29,20 +29,23 @@
             }}
           </td>
           <td>
-            <div class="product-quantity">
+            <div class="cart-quantity">
               <span
-                class="product-quantity-symbol"
+                class="cart-quantity-symbol"
                 @click="cartStore.deleteItem(index)"
               >
                 -
               </span>
-              <span class="product-quantity-value">{{ item.count }}</span>
+              <span class="cart-quantity-value">{{ item.count }}</span>
               <span
-                class="product-quantity-symbol"
+                class="cart-quantity-symbol"
                 @click="cartStore.addItem(index)"
               >
                 +
               </span>
+            </div>
+            <div class="cart-delete" @click="cartStore.deleteFromCart(index)">
+              delete
             </div>
           </td>
           <td>
@@ -56,7 +59,6 @@
               }}
             </span>
           </td>
-          <td @click="cartStore.deleteFromCart(index)">delete</td>
         </tr>
       </tbody>
       <tfoot>
@@ -120,24 +122,25 @@ const toCheckout = () => {
 
 <style lang="scss" scoped>
 .cart {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-items: center;
+  background: var(--light-gray);
   @media screen and (max-width: 768px) {
-    align-items: center;
   }
   &__title {
-    padding: 80px 0;
-    @media screen and (max-width: 560px) {
-      padding: 40px 0;
+    grid-column: 2;
+    grid-row: 1;
+    padding: 80px 0 32px;
+    text-align: center;
+    @media screen and (max-width: 768px) {
+      padding: 40px 0 16px;
     }
   }
   &__emptyMessage {
+    grid-column: 2;
+    grid-row: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-grow: 1;
+    align-items: center;
     font-family: var(--second-family);
     font-weight: 400;
     font-size: 20px;
@@ -150,6 +153,10 @@ const toCheckout = () => {
     }
   }
   &__table {
+    grid-column: 2;
+    padding: 48px 64px;
+    background-color: var(--white);
+    grid-row: 2;
     width: 100%;
     font-family: var(--second-family);
     font-weight: 400;
@@ -159,13 +166,52 @@ const toCheckout = () => {
     color: var(--dark-primary);
     @media screen and (max-width: 768px) {
       font-size: 16px;
+      padding: 0 24px;
     }
   }
   &__order {
+    grid-column: 2;
+    grid-row: 3;
     margin: var(--section-gap);
-    align-self: center;
+    justify-self: center;
     @media screen and (max-width: 560px) {
       margin: var(--section-gap-mobile);
+    }
+  }
+  &-quantity {
+    background: var(--light-gray);
+    width: 122px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    &-symbol {
+      color: var(--border-gray);
+      cursor: pointer;
+    }
+  }
+  &-delete {
+    display: block;
+    &::after {
+      content: "";
+      background: var(--dark-primary);
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      height: 1.5px;
+      width: 0;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    @media (any-pointer: fine) {
+      &:hover {
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
+      }
     }
   }
 }
@@ -173,9 +219,9 @@ const toCheckout = () => {
 .table {
   color: var(--dark-primary);
   span {
-    font-family: var(--second-family);
+    font-family: var(--font-family);
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 150%;
     color: var(--dark-primary);
     @media screen and (max-width: 768px) {
@@ -184,10 +230,15 @@ const toCheckout = () => {
   }
   tr {
     display: grid;
-    grid-template: 1fr / repeat(6, 1fr);
+    grid-template: 1fr / repeat(5, 1fr);
     column-gap: 20px;
     padding: 20px 0;
     align-items: center;
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      grid-template-columns: 1fr 2fr;
+      row-gap: 20px;
+    }
   }
   thead {
     tr {
@@ -210,10 +261,13 @@ const toCheckout = () => {
         justify-self: end;
       }
     }
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
   tbody {
     tr {
-      font-family: var(--second-family);
+      font-family: var(--font-family);
       font-weight: 400;
       font-size: 16px;
       line-height: 150%;
@@ -235,10 +289,15 @@ const toCheckout = () => {
       }
       &:nth-of-type(2) {
         grid-column: span 2;
-        padding: 20px 0;
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+        font-size: 18px;
+        @media screen and (max-width: 768px) {
+          grid-column: span 1;
+        }
         a {
-          display: block;
           text-decoration: none;
           color: var(--dark-primary);
           span {
@@ -249,24 +308,24 @@ const toCheckout = () => {
             @media screen and (max-width: 768px) {
               font-size: 20px;
             }
-          }
-          &::after {
-            content: "";
-            background: var(--dark-primary);
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            height: 1.5px;
-            width: 0;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-          }
-          @media (any-pointer: fine) {
-            &:hover {
-              cursor: pointer;
-              &::after {
-                width: 100%;
-                transition: width 0.3s ease;
+            &::after {
+              content: "";
+              background: var(--dark-primary);
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              height: 1.5px;
+              width: 0;
+              transform: translateX(-50%);
+              transition: width 0.3s ease;
+            }
+            @media (any-pointer: fine) {
+              &:hover {
+                cursor: pointer;
+                &::after {
+                  width: 100%;
+                  transition: width 0.3s ease;
+                }
               }
             }
           }
@@ -276,39 +335,19 @@ const toCheckout = () => {
         }
       }
       &:nth-of-type(3) {
-        display: inline-flex;
-        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+        align-items: center;
+        @media screen and (max-width: 768px) {
+          align-items: flex-start;
+        }
       }
-      &:nth-of-type(4) {
+      &:last-of-type {
         display: inline-flex;
         justify-self: end;
         span {
           font-size: 18px;
-        }
-      }
-      &:last-of-type {
-        display: block;
-        text-decoration: none;
-        justify-self: center;
-        &::after {
-          content: "";
-          background: var(--dark-primary);
-          position: absolute;
-          bottom: 2px;
-          left: 50%;
-          height: 1.5px;
-          width: 0;
-          transform: translateX(-50%);
-          transition: width 0.3s ease;
-        }
-        @media (any-pointer: fine) {
-          &:hover {
-            cursor: pointer;
-            &::after {
-              width: 100%;
-              transition: width 0.3s ease;
-            }
-          }
         }
       }
     }
@@ -318,7 +357,7 @@ const toCheckout = () => {
       grid-column: span 5;
       justify-self: end;
       align-self: start;
-      font-family: var(--second-family);
+      font-family: var(--font-family);
       font-weight: 400;
       font-size: 24px;
       line-height: 140%;
@@ -341,26 +380,13 @@ const toCheckout = () => {
         font-weight: 400;
         font-size: 16px;
         line-height: 150%;
-        color: var(--dark-primary);
+        color: var(--color-text);
         @media screen and (max-width: 768px) {
           font-size: 14px;
         }
       }
     }
   }
-}
-
-.cart__item_name {
-}
-.product-quantity {
-}
-.product-quantity-symbol {
-}
-.product-quantity-value {
-}
-.table__total {
-}
-.table__sum {
 }
 
 /*

@@ -38,14 +38,16 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .collection {
   display: grid;
-  grid-template-rows: 210px 1fr;
+  grid-template-rows: minmax(210px, auto) 1fr;
+  @media screen and (max-width: 768px) {
+    grid-template-rows: minmax(146px, auto) 1fr;
+  }
   &__title {
     grid-row: 1;
     display: grid;
     background: url("/img/allproducts.jpg");
     background-size: cover;
     align-items: end;
-    min-height: 210px;
     padding: 40px 0;
     @media screen and (max-width: 768px) {
       background: url("/img/allproducts-mobile.jpg");
@@ -53,7 +55,6 @@ onMounted(async () => {
       padding: 36px 24px;
       align-items: center;
       justify-content: center;
-      min-height: 146px;
     }
     h1 {
       grid-column: 2;

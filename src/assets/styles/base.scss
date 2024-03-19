@@ -37,7 +37,7 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  min-width: 240px;
+  min-width: 320px;
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: normal;
@@ -193,7 +193,8 @@ p:not(:last-of-type) {
 .subscribe,
 .collection,
 .collection__title,
-.details {
+.details,
+.cart {
   display: grid;
   grid-template-columns: minmax(1rem, 1fr) minmax(auto, 1280px) minmax(
       1.5rem,
@@ -205,7 +206,8 @@ p:not(:last-of-type) {
 .subscribe,
 .collection,
 .collection__title,
-.details {
+.details,
+.cart {
   grid-column: 1/4;
 }
 
@@ -215,7 +217,6 @@ p:not(:last-of-type) {
 .idea,
 .details-content,
 .story,
-.cart,
 .subscribe-content,
 .footer-content {
   grid-column: 2;
