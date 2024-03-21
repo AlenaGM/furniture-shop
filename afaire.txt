@@ -13,7 +13,7 @@
 10. сейловые товары перечеркивать
 11. баннер о бесплатной доставке
 14. Посмотреть другие варианты футера - с адресом, но без категорий
-15. Вывести хиро из категории инфоблок и сделать там h1. Пересмотреть иерархию заголовков - h1 убрать из хедера
+
 
 
 Кнопки:
@@ -54,3 +54,30 @@ a {
   3/ header
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+
+
+<button @click="isModalOpen = true">Open</button>
+
+<teleport to="body">
+  <div class="modal" v-if="isModalOpen">
+    <modal-content
+      @close="isModalOpen = false"
+      title="Modal title"
+      msg="Modal message"
+    />
+  </div>
+</teleport>
+
+import ModalContent from "@/components/ui/ModalContent.vue";
+import { ref } from "vue";
+
+const isModalOpen = ref(false);
+
+Item has been added to the cart. Continue shopping. Go to cart
+
+Thank you for subscribing! Your registration is complete.
+
+Thank you for your interest. The personal account functionality is still in development.
+
+Thank you for your interest. This is a learning project, so I do not sell furniture, but I would be happy to send you a postcard from the French Alps to your address if you agree. To do this, click on the "send postcard" button. You can decline - then simply close the window. In any case, I do not store your data and, of course, do not share it with any third parties.
