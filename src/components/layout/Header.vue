@@ -93,10 +93,6 @@ const onClickAway = () => {
 
 const menu = [
   {
-    name: "All products",
-    path: "/products/",
-  },
-  {
     name: "New arrivals",
     path: "/products/",
   },
@@ -118,6 +114,10 @@ const menu = [
   },
   {
     name: "Textiles",
+    path: "/products/",
+  },
+  {
+    name: "All products",
     path: "/products/",
   },
 ];
@@ -162,8 +162,8 @@ const cartItems = computed(() => {
       display: grid;
       align-items: center;
       &__logo {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         display: block;
         img {
           position: absolute;

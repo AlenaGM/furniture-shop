@@ -23,11 +23,30 @@ const month = date.getMonth();
 
 let season;
 
-if (month === (11 || 0 || 1)) season = "Spring";
-else if (month === (2 || 3 || 4)) season = "Spring";
-else if (month === (5 || 6 || 7)) season = "Summer";
-else if (month === (8 || 9 || 10)) season = "Fall";
-else season = "";
+switch (month) {
+  case 0:
+  case 10:
+  case 11:
+    season = "Winter";
+    break;
+  case 1:
+  case 2:
+  case 3:
+    season = "Spring";
+    break;
+  case 4:
+  case 5:
+  case 6:
+    season = "Summer";
+    break;
+  case 7:
+  case 8:
+  case 9:
+    season = "Fall";
+    break;
+  default:
+    season = "";
+}
 </script>
 
 <style lang="scss" scoped>

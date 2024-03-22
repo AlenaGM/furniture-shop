@@ -172,10 +172,13 @@ const year = date.getFullYear() || "2024";
     &__title {
       display: block;
       font-family: var(--second-family);
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 400;
       line-height: 20px;
       margin-bottom: 12px;
+      @media screen and (max-width: 1024px) {
+        font-size: 18px;
+      }
     }
     &__link {
       color: var(--white);
