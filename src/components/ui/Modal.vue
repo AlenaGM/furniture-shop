@@ -1,21 +1,17 @@
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask">
-      <div class="modal-container">
+    <div v-if="show" class="modal-mask" @click="$emit('close')">
+      <div class="modal-container" @click="(e) => e.stopPropagation()">
         <div class="modal-header">
           {{ title }}
         </div>
-
         <div class="modal-body">
           {{ msg }}
         </div>
-
         <div class="modal-footer">
-          <slot name="footer">
-            <button class="modal-default-button" @click="$emit('close')">
-              OK
-            </button>
-          </slot>
+          <ui-button @click="$emit('close')" type="button">
+            {{ btn }}
+          </ui-button>
         </div>
       </div>
     </div>
@@ -23,6 +19,8 @@
 </template>
 
 <script setup>
+import uiButton from "@/components/ui/Button.vue";
+
 const props = defineProps({
   show: {
     type: Boolean,
@@ -33,6 +31,18 @@ const props = defineProps({
     required: false,
   },
   msg: {
+    type: String,
+    required: false,
+  },
+  btn: {
+    type: String,
+    default: "OK",
+  },
+  link: {
+    type: String,
+    required: false,
+  },
+  to: {
     type: String,
     required: false,
   },
@@ -91,9 +101,9 @@ const props = defineProps({
 
 .modal {
   background: rgba(34, 32, 46, 0.8);
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
+  //height: 100vh;
+  //width: 100vw;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;

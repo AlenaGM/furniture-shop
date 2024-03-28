@@ -11,7 +11,7 @@
       >
       <div class="header-top-right">
         <div class="header-top-right__user">
-          <router-link to="/" @click="onUserClick">
+          <router-link to="/" @click="onClickAway">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
@@ -56,34 +56,17 @@
     </div>
   </header>
   <div class="header-dropdown__overlay" v-if="isOpenedMobileMenu"></div>
-  <Teleport to="body">
-    <Modal
-      :show="showModal"
-      title="modal title"
-      msg="modal message"
-      @close="showModal = false"
-    />
-  </Teleport>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
-import Modal from "@/components/ui/Modal.vue";
-
-const showModal = ref(false);
 
 const isOpenedMobileMenu = ref(false);
 
 const onMenuToggle = () => {
   isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
   document.body.classList.toggle("_lock");
-};
-
-const onUserClick = () => {
-  showModal.value = true;
-  isOpenedMobileMenu.value = false;
-  document.body.classList.add("_lock");
 };
 
 const onClickAway = () => {

@@ -9,11 +9,15 @@ export const useCartStore = defineStore("cartStore", {
       const cartIndex = this.cart.findIndex((el) => el.id === product.id);
       if (cartIndex === -1) {
         this.cart.push({ ...product, count });
+      } else if (this.cart[cartIndex].count + count <= 10) {
+        this.cart[cartIndex].count += count;
+      } else {
+        this.cart[cartIndex].count = 10;
       }
     },
     addItem(index) {
-      this.cart[index].count === 5
-        ? (this.cart[index].count = 5)
+      this.cart[index].count >= 10
+        ? (this.cart[index].count = 10)
         : this.cart[index].count++;
     },
     deleteItem(index) {
