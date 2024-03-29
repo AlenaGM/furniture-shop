@@ -69,7 +69,7 @@ const props = defineProps({
     max-width: 640px;
     width: 80%;
     padding: 24px 32px;
-    background: var(--light-gray);
+    background: var(--white);
     display: grid;
     grid-template: auto 1fr minmax(56px, auto) / 1fr;
     align-content: space-between;

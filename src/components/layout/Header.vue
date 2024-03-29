@@ -52,7 +52,7 @@
               :to="element.path"
               v-for="(element, i) of menu"
               :key="i"
-              @click="onClickAway"
+              @click="onMenuClose"
             >
               {{ element.name }}
             </router-link>
@@ -346,12 +346,12 @@ const cartItems = computed(() => {
 
 .header-dropdown__container,
 .header-dropdown__overlay {
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
 }
 
 .dropdown-enter-active .header-dropdown__container,
 .dropdown-leave-active .header-dropdown__overlay {
-  transition-delay: 0.3s;
+  transition-delay: 0.2s;
 }
 
 .dropdown-enter-from .header-dropdown__overlay,
