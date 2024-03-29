@@ -49,12 +49,35 @@
       </div>
     </div>
   </div>
+  <teleport to="body">
+    <modal-content
+      :open="isModalOpen"
+      @close="closeModal"
+      title="Item has been added"
+      btn="Continue shopping"
+      link="To checkout"
+      to="/cart"
+    />
+  </teleport>
 </template>
 
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/store/cart.js";
+import ModalContent from "@/components/ui/Modal.vue";
+
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+  document.body.classList.add("_lock");
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  document.body.classList.remove("_lock");
+};
 
 const props = defineProps({
   product: {
@@ -87,6 +110,7 @@ const changeQuantity = (type, id) => {
 
 const onAddToCart = (product, quantityValue) => {
   cartStore.addToCart(product, quantityValue);
+  openModal();
   quantity.value = 1;
   msg.value = "";
 };
@@ -141,6 +165,9 @@ const onAddToCart = (product, quantityValue) => {
       display: block;
       font-family: var(--second-family);
       margin-bottom: 14px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-bottom: 24px;
     }
   }
   &-description {

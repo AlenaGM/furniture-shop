@@ -56,24 +56,6 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
 
-
-<button @click="isModalOpen = true">Open</button>
-
-<teleport to="body">
-  <div class="modal" v-if="isModalOpen">
-    <modal-content
-      @close="isModalOpen = false"
-      title="Modal title"
-      msg="Modal message"
-    />
-  </div>
-</teleport>
-
-import ModalContent from "@/components/ui/ModalContent.vue";
-import { ref } from "vue";
-
-const isModalOpen = ref(false);
-
 Item has been added to the cart. Continue shopping. Go to cart
 
 Thank you for subscribing! Your registration is complete.

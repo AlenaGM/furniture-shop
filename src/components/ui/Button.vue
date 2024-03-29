@@ -61,6 +61,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .btn {
+  position: relative;
   padding: 0 32px;
   display: inline-flex;
   justify-content: center;
@@ -73,7 +74,7 @@ const props = defineProps({
   min-width: 122px;
   white-space: nowrap;
   cursor: pointer;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
   @media screen and (max-width: 768px) {
     padding: 0 15px;
     font-size: 15px;
@@ -81,7 +82,7 @@ const props = defineProps({
   @media (any-pointer: fine) {
     &:hover {
       opacity: 0.8;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.3s ease;
     }
   }
   &--dark-primary {

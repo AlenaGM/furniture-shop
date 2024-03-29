@@ -49,14 +49,14 @@ const props = defineProps({
       left: 0;
       height: 1.5px;
       width: 0;
-      transition: width 0.25s ease;
+      transition: width 0.3s ease;
     }
     @media (any-pointer: fine) {
       &:hover {
         cursor: pointer;
         &::after {
           width: 100%;
-          transition: width 0.25s ease;
+          transition: width 0.3s ease;
           color: inherit;
         }
       }
