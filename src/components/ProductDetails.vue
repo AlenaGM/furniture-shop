@@ -57,7 +57,10 @@
       btn="Continue shopping"
       link="To checkout"
       to="/cart"
-    />
+    >
+      <p>some random text</p>
+      <p>some random text</p>
+    </modal-content>
   </teleport>
 </template>
 

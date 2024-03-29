@@ -1,22 +1,22 @@
 <template>
-  <header class="header" v-click-away="onClickAway">
+  <header class="header" v-click-away="onMenuClose">
     <div class="header-top">
       <div class="header-top-left">
         <router-link to="/" class="header-top-left__logo">
           <img src="/favicon/favicon.ico" alt="logo" />
         </router-link>
       </div>
-      <router-link to="/" class="header-top-name" @click="onClickAway"
+      <router-link to="/" class="header-top-name" @click="onMenuClose"
         ><div>Avion</div></router-link
       >
       <div class="header-top-right">
         <div class="header-top-right__user">
-          <router-link to="/" @click="onClickAway">
+          <router-link to="/" @click="onMenuClose">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
         <div class="header-top-right__cart">
-          <router-link to="/cart" @click="onClickAway">
+          <router-link to="/cart" @click="onMenuClose">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartItems }}
@@ -28,12 +28,12 @@
           title="dropdown menu open and close"
           @click="onMenuToggle"
         >
-          <img src="/svg/menu-open.svg" alt="menu" v-if="!isOpenedMobileMenu" />
+          <img src="/svg/menu-open.svg" alt="menu" v-if="!isMobileMenuOpen" />
           <img src="/svg/menu-close.svg" alt="menu" v-else />
         </div>
       </div>
     </div>
-    <div class="header-menu" v-if="!isOpenedMobileMenu">
+    <div class="header-menu" v-if="!isMobileMenuOpen">
       <router-link
         class="header-menu__link"
         :to="element.path"
@@ -43,34 +43,39 @@
         {{ element.name }}
       </router-link>
     </div>
-    <div class="header-dropdown" v-if="isOpenedMobileMenu">
-      <router-link
-        class="header-dropdown__link"
-        :to="element.path"
-        v-for="(element, i) of menu"
-        :key="i"
-        @click="onClickAway"
-      >
-        {{ element.name }}
-      </router-link>
-    </div>
+    <Transition name="dropdown" :duration="700">
+      <div class="header-dropdown__wrapper" v-if="isMobileMenuOpen">
+        <div class="header-dropdown__overlay" @click="onMenuClose">
+          <div class="header-dropdown__container" @click.stop>
+            <router-link
+              class="header-dropdown__link"
+              :to="element.path"
+              v-for="(element, i) of menu"
+              :key="i"
+              @click="onClickAway"
+            >
+              {{ element.name }}
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </header>
-  <div class="header-dropdown__overlay" v-if="isOpenedMobileMenu"></div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
 
-const isOpenedMobileMenu = ref(false);
+const isMobileMenuOpen = ref(false);
 
 const onMenuToggle = () => {
-  isOpenedMobileMenu.value = !isOpenedMobileMenu.value;
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
   document.body.classList.toggle("_lock");
 };
 
-const onClickAway = () => {
-  isOpenedMobileMenu.value = false;
+const onMenuClose = () => {
+  isMobileMenuOpen.value = false;
   document.body.classList.remove("_lock");
 };
 
@@ -121,13 +126,14 @@ const cartItems = computed(() => {
 .header {
   z-index: 90;
   background: var(--white);
-  padding: 0 24px;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1.5rem 1fr 1.5rem;
   @media screen and (max-width: 768px) {
     grid-template-rows: 1fr;
   }
   &-top {
+    grid-column: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 16px;
@@ -138,6 +144,8 @@ const cartItems = computed(() => {
     background: var(--white);
     z-index: 100;
     @media screen and (max-width: 768px) {
+      grid-column: 1/4;
+      padding: 0 24px;
       display: grid;
       grid-template-columns: auto 1fr;
     }
@@ -251,6 +259,7 @@ const cartItems = computed(() => {
     }
   }
   &-menu {
+    grid-column: 2;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -289,27 +298,38 @@ const cartItems = computed(() => {
     }
   }
   &-dropdown {
-    z-index: 80;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    height: 100vh;
-    width: 80%;
-    max-width: 340px;
-    padding: 100px 64px 36px;
-    background: var(--white);
-    overflow-y: auto;
-    transition: right 0.7s ease;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    @media screen and (min-width: 768px) {
-      min-height: auto;
+    &__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(34, 32, 46, 0.8);
+      transition: opacity 0.3s ease;
+      z-index: 70;
     }
-    @media screen and (max-width: 284px) {
-      width: 100%;
-      padding: 100px 24px 36px;
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      height: 100vh;
+      width: 80%;
+      max-width: 340px;
+      padding: 100px 64px 36px;
+      background: var(--white);
+      overflow-y: auto;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 80;
+      transition: all 0.3s ease;
+      @media screen and (min-width: 768px) {
+        min-height: auto;
+      }
+      @media screen and (max-width: 284px) {
+        width: 100%;
+        padding: 100px 24px 36px;
+      }
     }
     &__link {
       display: block;
@@ -321,18 +341,28 @@ const cartItems = computed(() => {
         margin-bottom: 0;
       }
     }
-    &__overlay {
-      background: rgba(34, 32, 46, 0.8);
-      height: 100vh;
-      width: 100vw;
-      position: fixed;
-      top: 0;
-      opacity: 1;
-      z-index: 70;
-      @media screen and (max-width: 284px) {
-        display: none;
-      }
-    }
   }
+}
+
+.header-dropdown__container,
+.header-dropdown__overlay {
+  transition: all 0.4s ease;
+}
+
+.dropdown-enter-active .header-dropdown__container,
+.dropdown-leave-active .header-dropdown__overlay {
+  transition-delay: 0.3s;
+}
+
+.dropdown-enter-from .header-dropdown__overlay,
+.dropdown-leave-to .header-dropdown__overlay {
+  opacity: 0;
+}
+
+.dropdown-enter-from .header-dropdown__container,
+.dropdown-leave-to .header-dropdown__container {
+  -webkit-transform: translateX(-100px);
+  transform: translateX(100px);
+  opacity: 0;
 }
 </style>

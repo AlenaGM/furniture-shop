@@ -3,10 +3,13 @@
     <div class="modal-overlay" v-if="open" @click="$emit('close')">
       <div class="modal-container" @click.stop>
         <div class="modal-header">
-          {{ title }}
+          <h4 class="modal-header__title">{{ title }}</h4>
+          <div class="modal-header__close" @click="$emit('close')">
+            <img src="/svg/menu-close.svg" alt="modal-close" />
+          </div>
         </div>
         <div class="modal-body">
-          <slot name="modal-body" />
+          <slot></slot>
         </div>
         <div class="modal-footer">
           <ui-button type="link" :to="to || '/'" v-if="link">
@@ -53,8 +56,8 @@ const props = defineProps({
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(34, 32, 46, 0.8);
     display: flex;
     justify-content: center;
@@ -63,7 +66,6 @@ const props = defineProps({
     z-index: 110;
   }
   &-container {
-    margin: 24px;
     max-width: 640px;
     width: 80%;
     padding: 24px 32px;
@@ -71,16 +73,45 @@ const props = defineProps({
     display: grid;
     grid-template: auto 1fr minmax(56px, auto) / 1fr;
     align-content: space-between;
+    margin: 24px;
     z-index: 120;
     transition: all 0.3s ease;
     @media screen and (max-width: 768px) {
       padding: 24px;
       width: 100%;
+      min-width: auto;
     }
   }
   &-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    &__title {
+      text-align: center;
+      padding-left: 24px;
+    }
+    &__close {
+      cursor: pointer;
+    }
   }
   &-body {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--dark-primary);
+    margin-bottom: 24px;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    p:not(:last-of-type),
+    div:not(:last-of-type) {
+      margin-bottom: 6px;
+    }
   }
   &-footer {
     display: grid;
@@ -99,8 +130,8 @@ const props = defineProps({
 
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
 

@@ -37,7 +37,6 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  min-width: 240px;
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: normal;
@@ -167,16 +166,13 @@ p:not(:last-of-type) {
   overflow: hidden;
   width: 100%;
   min-height: 100vh;
+  min-width: 100vw;
   justify-content: center;
   grid-template: auto 1fr auto / minmax(auto, 1440px);
   grid-template-areas:
     "header"
     "main"
     "footer";
-}
-
-.banner {
-  grid-area: banner;
 }
 
 .header {
