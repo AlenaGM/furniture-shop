@@ -52,7 +52,7 @@
   <teleport to="body">
     <modal-content
       :open="isModalOpen"
-      @close="closeModal"
+      @close="isModalOpen = false"
       title="Item has been added"
       btn="Continue shopping"
       link="To checkout"
@@ -71,16 +71,6 @@ import { useCartStore } from "@/store/cart.js";
 import ModalContent from "@/components/ui/Modal.vue";
 
 const isModalOpen = ref(false);
-
-const openModal = () => {
-  isModalOpen.value = true;
-  document.body.classList.add("_lock");
-};
-
-const closeModal = () => {
-  isModalOpen.value = false;
-  document.body.classList.remove("_lock");
-};
 
 const props = defineProps({
   product: {
@@ -109,11 +99,12 @@ const changeQuantity = (type, id) => {
   }
 
   quantity.value < 1 && (quantity.value = 1);
+  console.log(outOfStock);
 };
 
 const onAddToCart = (product, quantityValue) => {
   cartStore.addToCart(product, quantityValue);
-  openModal();
+  isModalOpen.value = true;
   quantity.value = 1;
   msg.value = "";
 };

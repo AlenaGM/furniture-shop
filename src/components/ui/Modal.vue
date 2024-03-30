@@ -2,7 +2,7 @@
   <Transition name="modal" :duration="1400">
     <div class="modal-wrapper" v-if="open">
       <div class="modal-overlay" @click="$emit('close')">
-        <div class="modal-container" @click.stop>
+        <div class="modal-container" @click.stop v-scroll-lock="open">
           <div class="modal-header">
             <h4 class="modal-header__title">{{ title }}</h4>
             <div class="modal-header__close" @click="$emit('close')">
@@ -63,18 +63,14 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
   &-overlay {
-    //bg
-    //width: 100vw;
-    //height: 100vh;
     background: rgba(34, 32, 46, 0.8);
-    z-index: 110;
+    z-index: 120;
   }
   &-container {
-    //modal
     position: relative;
     display: grid;
     grid-template: auto 1fr minmax(56px, auto) / 1fr;
@@ -84,7 +80,7 @@ const props = defineProps({
     padding: 24px 32px;
     margin: 24px;
     background: var(--white);
-    z-index: 120;
+    z-index: 130;
     @media screen and (max-width: 768px) {
       width: 100%;
       min-width: auto;
@@ -146,8 +142,8 @@ const props = defineProps({
 
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
-  -webkit-transform: translateY(-40px);
-  transform: translateY(-40px);
+  -webkit-transform: translateY(-30px);
+  transform: translateY(-30px);
   opacity: 0;
 }
 </style>
@@ -155,13 +151,17 @@ const props = defineProps({
 <!-- Add to child component
 
 <template>
-  <button @click="openModal">Open</button>
-
   <teleport to="body">
     <modal-content
       :open="isModalOpen"
-      @close="closeModal"
-    />
+      @close="isModalOpen = false"
+      title="XXX"
+      btn="XXX"
+      link="XXX"
+      to="/XXX"
+    >
+      some random content
+    </modal-content>
   </teleport>
 </template>
 
@@ -170,16 +170,6 @@ import ModalContent from "@/components/ui/Modal.vue";
 import { ref } from "vue";
 
 const isModalOpen = ref(false);
-
-const openModal = () => {
-  isModalOpen.value = true;
-  document.body.classList.add("_lock");
-};
-
-const closeModal = () => {
-  isModalOpen.value = false;
-  document.body.classList.remove("_lock");
-};
 </script>
 
 -->

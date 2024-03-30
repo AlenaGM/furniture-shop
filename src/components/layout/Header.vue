@@ -1,22 +1,25 @@
 <template>
-  <header class="header" v-click-away="onMenuClose">
+  <header class="header">
     <div class="header-top">
       <div class="header-top-left">
         <router-link to="/" class="header-top-left__logo">
           <img src="/favicon/favicon.ico" alt="logo" />
         </router-link>
       </div>
-      <router-link to="/" class="header-top-name" @click="onMenuClose"
+      <router-link
+        to="/"
+        class="header-top-name"
+        @click="isMobileMenuOpen = false"
         ><div>Avion</div></router-link
       >
       <div class="header-top-right">
         <div class="header-top-right__user">
-          <router-link to="/" @click="onMenuClose">
+          <router-link to="/" @click="isMobileMenuOpen = false">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>
         </div>
         <div class="header-top-right__cart">
-          <router-link to="/cart" @click="onMenuClose">
+          <router-link to="/cart" @click="isMobileMenuOpen = false">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartItems }}
@@ -26,7 +29,7 @@
         <div
           class="header-top-right__mobile-menu"
           title="dropdown menu open and close"
-          @click="onMenuToggle"
+          @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <img src="/svg/menu-open.svg" alt="menu" v-if="!isMobileMenuOpen" />
           <img src="/svg/menu-close.svg" alt="menu" v-else />
@@ -45,14 +48,18 @@
     </div>
     <Transition name="dropdown" :duration="1200">
       <div class="header-dropdown__wrapper" v-if="isMobileMenuOpen">
-        <div class="header-dropdown__overlay" @click="onMenuClose">
-          <div class="header-dropdown__container" @click.stop>
+        <div class="header-dropdown__overlay" @click="isMobileMenuOpen = false">
+          <div
+            class="header-dropdown__container"
+            @click.stop
+            v-scroll-lock="isMobileMenuOpen"
+          >
             <router-link
               class="header-dropdown__link"
               :to="element.path"
               v-for="(element, i) of menu"
               :key="i"
-              @click="onMenuClose"
+              @click="isMobileMenuOpen = false"
             >
               {{ element.name }}
             </router-link>
@@ -66,18 +73,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
-
 const isMobileMenuOpen = ref(false);
-
-const onMenuToggle = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  document.body.classList.toggle("_lock");
-};
-
-const onMenuClose = () => {
-  isMobileMenuOpen.value = false;
-  document.body.classList.remove("_lock");
-};
 
 const menu = [
   {
@@ -303,7 +299,7 @@ const cartItems = computed(() => {
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100%;
       display: flex;
       justify-content: flex-end;
       background: rgba(34, 32, 46, 0.8);

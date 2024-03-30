@@ -1,36 +1,58 @@
 <template>
-  <div class="banner" v-if="isOpenedBanner">
-    <div class="banner__message" @click="onBannerClose">
-      <img src="/svg/delivery.svg" />Free delivery on orders over 99€
+  <Transition name="banner">
+    <div class="banner-wrapper" v-if="shown">
+      <div class="banner-container">
+        <div class="banner-message">
+          <slot>
+            <img src="/svg/delivery.svg" />{{
+              "Free delivery on orders over 99€"
+            }}</slot
+          >
+        </div>
+        <div class="banner-close" @click="$emit('close')">
+          <img src="/svg/close-white.svg" />
+        </div>
+      </div>
     </div>
-    <div class="banner__close"><img src="/svg/close-white.svg" /></div>
-  </div>
+  </Transition>
 </template>
 
 <script setup>
 import { ref } from "vue";
-const isOpenedBanner = ref(true);
 
-const onBannerClose = () => {
-  isOpenedBanner.value = false;
-  document.querySelector(".banner").style.display = "none";
-};
+const props = defineProps({
+  shown: {
+    type: Boolean,
+  },
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .banner {
-  background: var(--dark-primary);
-  color: var(--white);
-  display: grid;
-  grid-template-columns: 24px 1fr 24px;
-  padding: 6px 24px 6px;
-  align-items: center;
-  justify-items: center;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 24px;
-    justify-items: stretch;
+  &-wrapper {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 110;
   }
-  &__message {
+  &-container {
+    background: var(--dark-primary);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    padding: 6px 24px 6px;
+    align-items: center;
+    justify-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr 24px;
+      justify-items: stretch;
+    }
+  }
+  &-message {
     grid-column: 2;
     font-family: var(--font-family);
     font-weight: 400;
@@ -45,7 +67,7 @@ const onBannerClose = () => {
       grid-column: 1;
     }
   }
-  &__close {
+  &-close {
     grid-column: 3;
     cursor: pointer;
     img {
@@ -57,3 +79,24 @@ const onBannerClose = () => {
   }
 }
 </style>
+
+<!-- Add to child component
+
+<template>
+  <teleport to="body">
+    <banner-content
+      :open="isBannerShown"
+      @close="isBannerShown = false"
+      msg="XXX"
+    >
+    </banner-content>
+  </teleport>
+</template>
+
+<script setup>
+import BannerContent from "@/components/ui/Banner.vue";
+import { ref } from "vue";
+
+const isBannerShown = ref(true);
+</script>
+-->
