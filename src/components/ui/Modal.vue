@@ -1,23 +1,25 @@
 <template>
-  <Transition name="modal">
-    <div class="modal-overlay" v-if="open" @click="$emit('close')">
-      <div class="modal-container" @click.stop>
-        <div class="modal-header">
-          <h4 class="modal-header__title">{{ title }}</h4>
-          <div class="modal-header__close" @click="$emit('close')">
-            <img src="/svg/menu-close.svg" alt="modal-close" />
+  <Transition name="modal" :duration="1400">
+    <div class="modal-wrapper" v-if="open">
+      <div class="modal-overlay" @click="$emit('close')">
+        <div class="modal-container" @click.stop>
+          <div class="modal-header">
+            <h4 class="modal-header__title">{{ title }}</h4>
+            <div class="modal-header__close" @click="$emit('close')">
+              <img src="/svg/menu-close.svg" alt="modal-close" />
+            </div>
           </div>
-        </div>
-        <div class="modal-body">
-          <slot></slot>
-        </div>
-        <div class="modal-footer">
-          <ui-button type="link" :to="to || '/'" v-if="link">
-            {{ link }}
-          </ui-button>
-          <ui-button @click="$emit('close')" type="button">
-            {{ btn }}
-          </ui-button>
+          <div class="modal-body">
+            <slot></slot>
+          </div>
+          <div class="modal-footer">
+            <ui-button type="link" :to="to || '/'" v-if="link">
+              {{ link }}
+            </ui-button>
+            <ui-button @click="$emit('close')" type="button">
+              {{ btn }}
+            </ui-button>
+          </div>
         </div>
       </div>
     </div>
@@ -56,30 +58,37 @@ const props = defineProps({
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(34, 32, 46, 0.8);
+    right: 0;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+  }
+  &-overlay {
+    //bg
+    //width: 100vw;
+    //height: 100vh;
+    background: rgba(34, 32, 46, 0.8);
     z-index: 110;
   }
   &-container {
-    max-width: 640px;
-    width: 80%;
-    padding: 24px 32px;
-    background: var(--white);
+    //modal
+    position: relative;
     display: grid;
     grid-template: auto 1fr minmax(56px, auto) / 1fr;
     align-content: space-between;
+    width: 80%;
+    max-width: 640px;
+    padding: 24px 32px;
     margin: 24px;
+    background: var(--white);
     z-index: 120;
-    transition: all 0.3s ease;
     @media screen and (max-width: 768px) {
-      padding: 24px;
       width: 100%;
       min-width: auto;
+      padding: 24px;
     }
   }
   &-header {
@@ -120,18 +129,26 @@ const props = defineProps({
   }
 }
 
-.modal-enter-from {
-  opacity: 0;
+.modal-container,
+.modal-overlay {
+  transition: all 1s ease;
 }
 
-.modal-leave-to {
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-overlay {
+  transition-delay: 0.4s;
+}
+
+.modal-enter-from .modal-overlay,
+.modal-leave-to .modal-overlay {
   opacity: 0;
 }
 
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: translateY(-40px);
+  transform: translateY(-40px);
+  opacity: 0;
 }
 </style>
 

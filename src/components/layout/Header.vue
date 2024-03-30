@@ -43,7 +43,7 @@
         {{ element.name }}
       </router-link>
     </div>
-    <Transition name="dropdown" :duration="700">
+    <Transition name="dropdown" :duration="1200">
       <div class="header-dropdown__wrapper" v-if="isMobileMenuOpen">
         <div class="header-dropdown__overlay" @click="onMenuClose">
           <div class="header-dropdown__container" @click.stop>
@@ -307,7 +307,6 @@ const cartItems = computed(() => {
       display: flex;
       justify-content: flex-end;
       background: rgba(34, 32, 46, 0.8);
-      transition: opacity 0.3s ease;
       z-index: 70;
     }
     &__container {
@@ -322,7 +321,6 @@ const cartItems = computed(() => {
       overflow-y: auto;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       z-index: 80;
-      transition: all 0.3s ease;
       @media screen and (min-width: 768px) {
         min-height: auto;
       }
@@ -346,12 +344,12 @@ const cartItems = computed(() => {
 
 .header-dropdown__container,
 .header-dropdown__overlay {
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
 }
 
 .dropdown-enter-active .header-dropdown__container,
 .dropdown-leave-active .header-dropdown__overlay {
-  transition-delay: 0.2s;
+  transition-delay: 0.4s;
 }
 
 .dropdown-enter-from .header-dropdown__overlay,
@@ -361,7 +359,7 @@ const cartItems = computed(() => {
 
 .dropdown-enter-from .header-dropdown__container,
 .dropdown-leave-to .header-dropdown__container {
-  -webkit-transform: translateX(-100px);
+  -webkit-transform: translateX(100px);
   transform: translateX(100px);
   opacity: 0;
 }
