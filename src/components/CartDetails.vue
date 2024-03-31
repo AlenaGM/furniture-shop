@@ -96,12 +96,40 @@
       Continue shopping
     </ui-button>
   </div>
+  <teleport to="body">
+    <modal-content
+      :open="isModalOpen"
+      @close="isModalOpen = false"
+      title="Hello!"
+      btn="Say 'No' and close"
+      link="Send Postcard"
+      to="/contact"
+    >
+      <p>Thank you for checking out my project!</p>
+      <p>
+        This is a learning project, so I don't actually sell furniture, but I
+        would love to send you a postcard from the French Alps if you'd like.
+      </p>
+      <p>
+        Just click on the "send postcard" button and enter your postal address.
+        If you'd rather not, just close the window.
+      </p>
+      <p style="color: #c61a09">
+        In any case, I won't keep your information or share it with any third
+        parties.
+      </p>
+    </modal-content>
+  </teleport>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
 import uiButton from "@/components/ui/Button.vue";
+import ModalContent from "@/components/ui/Modal.vue";
+import { ref } from "vue";
+
+const isModalOpen = ref(false);
 
 const cartStore = useCartStore();
 
@@ -115,7 +143,7 @@ const cartTotal = computed(() => {
 });
 
 const toCheckout = () => {
-  console.log("place order");
+  isModalOpen.value = true;
 };
 </script>
 

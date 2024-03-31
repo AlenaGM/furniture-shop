@@ -1,10 +1,10 @@
 <template>
-  <Transition name="modal" :duration="1400">
+  <Transition name="modal" :duration="1000">
     <div class="modal-wrapper" v-if="open">
       <div class="modal-overlay" @click="$emit('close')">
         <div class="modal-container" @click.stop v-scroll-lock="open">
           <div class="modal-header">
-            <h4 class="modal-header__title">{{ title }}</h4>
+            <h3 class="modal-header__title">{{ title }}</h3>
             <div class="modal-header__close" @click="$emit('close')">
               <img src="/svg/menu-close.svg" alt="modal-close" />
             </div>
@@ -94,6 +94,10 @@ const props = defineProps({
     &__title {
       text-align: center;
       padding-left: 24px;
+      @media screen and (max-width: 768px) {
+        text-align: left;
+        padding-left: 0;
+      }
     }
     &__close {
       cursor: pointer;
@@ -105,9 +109,11 @@ const props = defineProps({
     font-size: 16px;
     line-height: 150%;
     color: var(--dark-primary);
-    margin-bottom: 24px;
-    text-align: center;
-    display: grid;
+    margin-bottom: 40px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-items: center;
     @media screen and (max-width: 768px) {
       font-size: 14px;
@@ -127,12 +133,12 @@ const props = defineProps({
 
 .modal-container,
 .modal-overlay {
-  transition: all 1s ease;
+  transition: all 0.7s ease;
 }
 
 .modal-enter-active .modal-container,
 .modal-leave-active .modal-overlay {
-  transition-delay: 0.4s;
+  transition-delay: 0.3s;
 }
 
 .modal-enter-from .modal-overlay,
@@ -151,6 +157,8 @@ const props = defineProps({
 <!-- Add to child component
 
 <template>
+  @click="isModalOpen = true"
+
   <teleport to="body">
     <modal-content
       :open="isModalOpen"

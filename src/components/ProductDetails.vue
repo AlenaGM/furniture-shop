@@ -53,13 +53,20 @@
     <modal-content
       :open="isModalOpen"
       @close="isModalOpen = false"
-      title="Item has been added"
+      title="Item has been added to your cart"
       btn="Continue shopping"
-      link="To checkout"
+      link="Go to cart"
       to="/cart"
     >
-      <p>some random text</p>
-      <p>some random text</p>
+      <div>
+        <img :src="product.image" alt="added item" width="240px" />
+      </div>
+      <div>
+        <h4>{{ product.name }}</h4>
+        <div>Quantity: {{ quantity }}</div>
+        <div>Price: {{ product.price }}</div>
+        <div>Total: {{ quantity * product.price }}</div>
+      </div>
     </modal-content>
   </teleport>
 </template>

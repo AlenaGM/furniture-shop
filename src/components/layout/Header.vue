@@ -46,7 +46,7 @@
         {{ element.name }}
       </router-link>
     </div>
-    <Transition name="dropdown" :duration="1200">
+    <Transition name="dropdown" :duration="1000">
       <div class="header-dropdown__wrapper" v-if="isMobileMenuOpen">
         <div class="header-dropdown__overlay" @click="isMobileMenuOpen = false">
           <div
@@ -340,12 +340,12 @@ const cartItems = computed(() => {
 
 .header-dropdown__container,
 .header-dropdown__overlay {
-  transition: all 0.8s ease;
+  transition: all 0.7s ease;
 }
 
 .dropdown-enter-active .header-dropdown__container,
 .dropdown-leave-active .header-dropdown__overlay {
-  transition-delay: 0.4s;
+  transition-delay: 0.3s;
 }
 
 .dropdown-enter-from .header-dropdown__overlay,
