@@ -3,7 +3,8 @@ import { ref, computed, watch } from "vue";
 
 export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
-  let counter = ref(1);
+  const counter = ref(1);
+  const isModalOpen = ref(false);
 
   const cartInLocalStorage = localStorage.getItem("cart");
   if (cartInLocalStorage) {
@@ -30,8 +31,10 @@ export const useCartStore = defineStore("cartStore", () => {
     const cartIndex = cart.value.findIndex((el) => el.id === product.id);
     if (cartIndex === -1) {
       cart.value.push({ ...product, count });
+      isModalOpen.value = true;
     } else if (cart.value[cartIndex].count + count <= product.stock) {
       cart.value[cartIndex].count += count;
+      isModalOpen.value = true;
     }
   };
 
@@ -62,6 +65,7 @@ export const useCartStore = defineStore("cartStore", () => {
   return {
     cart,
     counter,
+    isModalOpen,
     cartTotalItems,
     cartTotalPrice,
     addToCart,

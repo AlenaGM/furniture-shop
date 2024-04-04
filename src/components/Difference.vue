@@ -74,9 +74,13 @@ const usp = [
     color: var(--dark-primary);
     background: var(--light-gray);
     padding: 24px 32px;
+    &__description {
+      margin-top: 12px;
+    }
     @media screen and (max-width: 768px) {
       padding: 24px;
     }
+
     &__img {
       display: block;
       margin-bottom: 12px;

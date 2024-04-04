@@ -1,5 +1,5 @@
 <template>
-  <div class="details">
+  <div class="details" v-if="product">
     <div class="details-content">
       <div class="details-image">
         <img :src="product.img" :alt="product.name" />
@@ -38,7 +38,7 @@
             >
               -
             </span>
-            <span class="details-quantity-value">{{ quantity }}</span>
+            <span class="details-quantity-value">{{ cartStore.counter }}</span>
             <span
               class="details-quantity-symbol"
               @click="changeQuantity('plus', product.id, product.stock)"
@@ -52,7 +52,7 @@
           color="dark-primary"
           @click="
             () => {
-              onAddToCart(product, quantity);
+              onAddToCart(product, cartStore.counter);
             }
           "
         >
@@ -63,8 +63,13 @@
   </div>
   <teleport to="body">
     <modal-content
-      :open="isModalOpen && product.stock != 0"
-      @close="isModalOpen = false"
+      :open="cartStore.isModalOpen && product.stock != 0"
+      @close="
+        {
+          cartStore.isModalOpen = false;
+          cartStore.counter = 1;
+        }
+      "
       title="Item has been added to your cart"
       btn="Continue shopping"
       link="Go to cart"
@@ -75,9 +80,9 @@
       </div>
       <div>
         <h4>{{ product.name }}</h4>
-        <div>Quantity: {{ quantity }}</div>
+        <div>Quantity: {{ cartStore.counter }}</div>
         <div>
-          Price:
+          Unit Price:
           {{
             new Intl.NumberFormat("fr-FR", {
               style: "currency",
@@ -87,13 +92,13 @@
           }}
         </div>
         <div>
-          Total:
+          Total Cart:
           {{
             new Intl.NumberFormat("fr-FR", {
               style: "currency",
               currency: "EUR",
               minimumFractionDigits: 0,
-            }).format(quantity * product.price)
+            }).format(cartStore.cartTotalPrice)
           }}
         </div>
       </div>
@@ -107,8 +112,6 @@ import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/store/cart.js";
 import ModalContent from "@/components/ui/Modal.vue";
 
-const isModalOpen = ref(false);
-
 const props = defineProps({
   product: {
     type: Object,
@@ -118,7 +121,7 @@ const props = defineProps({
 });
 
 const cartStore = useCartStore();
-const quantity = ref(1);
+
 let msg = ref("");
 
 const changeQuantity = (type, id, stock) => {
@@ -126,19 +129,18 @@ const changeQuantity = (type, id, stock) => {
   const cartQuantity = cartStore.cart[cartIndex]?.count || 0;
 
   if (type === "minus") {
-    quantity.value <= 1 ? (quantity.value = 1) : quantity.value--;
-  } else if (type === "plus" && quantity.value < stock - cartQuantity) {
-    quantity.value++;
-  } else {
-    quantity.value = stock - cartQuantity;
+    cartStore.counter <= 1 ? (cartStore.counter = 1) : cartStore.counter--;
+  } else if (type === "plus" && cartStore.counter < stock - cartQuantity) {
+    cartStore.counter++;
+  } else if (type === "plus" && cartStore.counter >= stock - cartQuantity) {
+    cartStore.counter = stock - cartQuantity;
     msg.value = `${stock - cartQuantity} item(s) left in stock`;
   }
+  if (cartStore.counter === 0) cartStore.counter = 1;
 };
 
-const onAddToCart = (product, quantityValue) => {
-  cartStore.addToCart(product, quantityValue);
-  isModalOpen.value = true;
-  quantity.value = 1;
+const onAddToCart = (product) => {
+  cartStore.addToCart(product, cartStore.counter);
   msg.value = "";
 };
 </script>

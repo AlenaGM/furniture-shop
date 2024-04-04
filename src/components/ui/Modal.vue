@@ -111,17 +111,19 @@ const props = defineProps({
     color: var(--dark-primary);
     margin-bottom: 40px;
     text-align: left;
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(194px, 1fr));
     gap: 20px;
-    justify-items: center;
+    h4 {
+      margin-bottom: 6px;
+    }
+    p:not(:last-of-type) {
+      margin-bottom: 6px;
+    }
     @media screen and (max-width: 768px) {
       font-size: 14px;
       margin-bottom: 24px;
-    }
-    p:not(:last-of-type),
-    div:not(:last-of-type) {
-      margin-bottom: 6px;
     }
   }
   &-footer {
