@@ -6,9 +6,10 @@ export const HTTP = axios.create({
 });
 
 export default {
-  async getPopularProducts() {
+  async getProducts() {
     try {
-      const response = await HTTP.get("/products/popular");
+      const response = await HTTP.get("/products");
+      console.log(response.data);
       return response.data;
     } catch (e) {
       console.log(e);
@@ -18,9 +19,10 @@ export default {
     try {
       const response = await HTTP.get(`/products/${id}`, {
         headers: {
-          Prefer: `code=200, example=Example ${id}`,
+          Prefer: `code=200, example=Get Product ${id}`,
         },
       });
+      console.log(response.data);
       return response.data;
     } catch (e) {
       console.log(e);

@@ -13,7 +13,7 @@
         <tr v-for="(item, index) in cartStore.cart" :key="item.id">
           <td>
             <router-link :to="`/products/${item.id}`">
-              <img :src="item.image" :alt="item.name" />
+              <img :src="item.img" :alt="item.name" />
             </router-link>
           </td>
           <td>

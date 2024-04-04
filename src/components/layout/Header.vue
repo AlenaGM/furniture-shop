@@ -13,10 +13,11 @@
         ><div>Avion</div></router-link
       >
       <div class="header-top-right">
-        <div class="header-top-right__user">
-          <router-link to="/" @click="isMobileMenuOpen = false">
+        <div class="header-top-right__user" @click="onUserClick">
+          <!--<router-link to="/" @click="onUserClick">
             <img src="/svg/header-user.svg" alt="user" />
-          </router-link>
+          </router-link>-->
+          <img src="/svg/header-user.svg" alt="user" />
         </div>
         <div class="header-top-right__cart">
           <router-link to="/cart" @click="isMobileMenuOpen = false">
@@ -68,12 +69,28 @@
       </div>
     </Transition>
   </header>
+  <teleport to="body">
+    <modal-content
+      :open="isModalOpen"
+      @close="isModalOpen = false"
+      title="Thank you for your interest. The personal account functionality is still in development."
+    >
+    </modal-content>
+  </teleport>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useCartStore } from "@/store/cart.js";
 const isMobileMenuOpen = ref(false);
+import ModalContent from "@/components/ui/Modal.vue";
+
+const isModalOpen = ref(false);
+
+const onUserClick = () => {
+  console.log("Click on user");
+  isModalOpen.value = true;
+};
 
 const menu = [
   {

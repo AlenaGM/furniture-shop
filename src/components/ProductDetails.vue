@@ -2,17 +2,25 @@
   <div class="details">
     <div class="details-content">
       <div class="details-image">
-        <img :src="product.image" :alt="product.name" />
+        <img :src="product.img" :alt="product.name" />
       </div>
       <div>
         <h1 class="details-name">{{ product.name }}</h1>
-        <span class="details-price">£{{ product.price }}</span>
+        <span class="details-price">
+          {{
+            new Intl.NumberFormat("fr-FR", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 0,
+            }).format(product.price)
+          }}</span
+        >
         <div class="details-block detailst-description">
-          <span class="detailst-block__title">Product description</span>
+          <span class="details-block__title">Product description</span>
           <div v-html="product.description"></div>
         </div>
         <div class="details-block">
-          <span class="details-block__title">Dimensions</span>
+          <span class="details-block__title">Product details</span>
           <span
             class="details-param"
             v-for="(param, i) of product.params"
@@ -59,13 +67,31 @@
       to="/cart"
     >
       <div>
-        <img :src="product.image" alt="added item" width="240px" />
+        <img :src="product.img" alt="added item" width="240px" />
       </div>
       <div>
         <h4>{{ product.name }}</h4>
         <div>Quantity: {{ quantity }}</div>
-        <div>Price: {{ product.price }}</div>
-        <div>Total: {{ quantity * product.price }}</div>
+        <div>
+          Price:
+          {{
+            new Intl.NumberFormat("fr-FR", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 0,
+            }).format(product.price)
+          }}
+        </div>
+        <div>
+          Total:
+          {{
+            new Intl.NumberFormat("fr-FR", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 0,
+            }).format(quantity * product.price)
+          }}
+        </div>
       </div>
     </modal-content>
   </teleport>

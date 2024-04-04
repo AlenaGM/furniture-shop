@@ -1,12 +1,20 @@
 <template>
   <div class="product">
     <router-link :to="`/products/${id}`">
-      <img :src="img" :alt="title" class="product-image" />
+      <img :src="img" :alt="name" class="product-image" />
     </router-link>
     <router-link :to="`/products/${id}`" class="product-name"
-      ><h4>{{ title }}</h4></router-link
+      ><h4>{{ name }}</h4></router-link
     >
-    <span class="product-price text">€{{ price }}</span>
+    <span class="product-price text">
+      {{
+        new Intl.NumberFormat("fr-FR", {
+          style: "currency",
+          currency: "EUR",
+          minimumFractionDigits: 0,
+        }).format(price)
+      }}</span
+    >
   </div>
 </template>
 
@@ -20,7 +28,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  title: {
+  name: {
     type: String,
     required: true,
   },

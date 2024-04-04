@@ -5,7 +5,7 @@
       :id="product.id"
       :key="product.id"
       :img="product.img"
-      :title="product.title"
+      :name="product.name"
       :price="product.price"
     />
   </div>
