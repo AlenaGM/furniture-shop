@@ -41,7 +41,7 @@
             <span class="details-quantity-value">{{ quantity }}</span>
             <span
               class="details-quantity-symbol"
-              @click="changeQuantity('plus', product.id)"
+              @click="changeQuantity('plus', product.id, product.stock)"
             >
               +
             </span>
@@ -50,7 +50,11 @@
         </div>
         <ui-button
           color="dark-primary"
-          @click="() => onAddToCart(product, quantity)"
+          @click="
+            () => {
+              onAddToCart(product, quantity);
+            }
+          "
         >
           Add to Cart
         </ui-button>
@@ -59,7 +63,7 @@
   </div>
   <teleport to="body">
     <modal-content
-      :open="isModalOpen"
+      :open="isModalOpen && product.stock != 0"
       @close="isModalOpen = false"
       title="Item has been added to your cart"
       btn="Continue shopping"
@@ -115,10 +119,9 @@ const props = defineProps({
 
 const cartStore = useCartStore();
 const quantity = ref(1);
-let stock = 10; //will come from API
 let msg = ref("");
 
-const changeQuantity = (type, id) => {
+const changeQuantity = (type, id, stock) => {
   const cartIndex = cartStore.cart.findIndex((el) => el.id === id);
   const cartQuantity = cartStore.cart[cartIndex]?.count || 0;
 
@@ -130,9 +133,6 @@ const changeQuantity = (type, id) => {
     quantity.value = stock - cartQuantity;
     msg.value = `${stock - cartQuantity} item(s) left in stock`;
   }
-
-  quantity.value < 1 && (quantity.value = 1);
-  console.log(outOfStock);
 };
 
 const onAddToCart = (product, quantityValue) => {
