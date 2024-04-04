@@ -9,7 +9,6 @@ export default {
   async getProducts() {
     try {
       const response = await HTTP.get("/products");
-      console.log(response.data);
       return response.data;
     } catch (e) {
       console.log(e);
@@ -22,7 +21,6 @@ export default {
           Prefer: `code=200, example=Get Product ${id}`,
         },
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       console.log(e);

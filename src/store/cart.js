@@ -15,10 +15,11 @@ export const useCartStore = defineStore("cartStore", {
         this.cart[cartIndex].count = 10;
       }
     },
-    addItem(index) {
-      this.cart[index].count >= 10
-        ? (this.cart[index].count = 10)
+    addItem(index, stock) {
+      this.cart[index].count >= stock
+        ? (this.cart[index].count = stock)
         : this.cart[index].count++;
+      console.log(stock);
     },
     deleteItem(index) {
       this.cart[index].count === 1

@@ -39,7 +39,7 @@
               <span class="cart-quantity-value">{{ item.count }}</span>
               <span
                 class="cart-quantity-symbol"
-                @click="cartStore.addItem(index)"
+                @click="cartStore.addItem(index, item.stock)"
               >
                 +
               </span>
