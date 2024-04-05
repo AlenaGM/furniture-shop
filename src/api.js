@@ -14,6 +14,14 @@ export default {
       console.log(e);
     }
   },
+  async getPopularProducts() {
+    try {
+      const response = await HTTP.get("/products/popular");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  },
   async getProduct(id) {
     try {
       const response = await HTTP.get(`/products/${id}`, {

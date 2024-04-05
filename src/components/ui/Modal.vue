@@ -65,8 +65,6 @@ const props = defineProps({
     align-items: center;
     width: 100vw;
     height: 100%;
-  }
-  &-overlay {
     background: rgba(34, 32, 46, 0.8);
     z-index: 120;
   }

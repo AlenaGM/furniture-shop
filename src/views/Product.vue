@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import api from "@/api.js";
 import ProductDetails from "@/components/ProductDetails.vue";
 import Difference from "@/components/Difference.vue";
@@ -18,7 +18,6 @@ import Subscribe from "@/components/Subscribe.vue";
 import PopularProducts from "@/components/PopularProducts.vue";
 
 const route = useRoute();
-const router = useRouter();
 const productId = ref("");
 const currentProduct = ref({});
 

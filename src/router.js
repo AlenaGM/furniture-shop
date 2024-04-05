@@ -20,6 +20,11 @@ const router = createRouter({
       component: AllProducts,
     },
     {
+      path: "/products/:category",
+      name: "ProductsByCategory",
+      component: AllProducts,
+    },
+    {
       path: "/products/:id",
       name: "Product",
       component: Product,

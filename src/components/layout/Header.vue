@@ -95,27 +95,27 @@ const onUserClick = () => {
 const menu = [
   {
     name: "New arrivals",
-    path: "/products/",
+    path: "/products/new",
   },
   {
     name: "Furniture",
-    path: "/products/",
+    path: "/products/furniture",
   },
   {
     name: "Lighting",
-    path: "/products/",
+    path: "/products/lighting",
   },
   {
     name: "Decoration",
-    path: "/products/",
+    path: "/products/decoration",
   },
   {
     name: "Tableware",
-    path: "/products/",
+    path: "/products/tableware",
   },
   {
     name: "Textiles",
-    path: "/products/",
+    path: "/products/textiles",
   },
   {
     name: "All products",

@@ -6,7 +6,7 @@
       </div>
       <div>
         <h1 class="details-name">{{ product.name }}</h1>
-        <span class="details-price">
+        <span class="details-price" v-if="product.price">
           {{
             new Intl.NumberFormat("fr-FR", {
               style: "currency",
@@ -15,11 +15,14 @@
             }).format(product.price)
           }}</span
         >
-        <div class="details-block detailst-description">
+        <div
+          class="details-block detailst-description"
+          v-if="product.description"
+        >
           <span class="details-block__title">Product description</span>
           <div v-html="product.description"></div>
         </div>
-        <div class="details-block">
+        <div class="details-block" v-if="product.params">
           <span class="details-block__title">Product details</span>
           <span
             class="details-param"
@@ -110,9 +113,7 @@
 import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/store/cart.js";
 import ModalContent from "@/components/ui/Modal.vue";
-import { ref, onMounted } from "vue";
-
-const loading = ref(true);
+import { onMounted, onUpdated } from "vue";
 
 const props = defineProps({
   product: {
@@ -212,5 +213,14 @@ onMounted(() => {
       width: 122px;
     }
   }
+}
+
+.details-content {
+  transition: opacity 0.3s ease;
+}
+
+.details-enter-from .details-content,
+.details-leave-to .details-content {
+  opacity: 0;
 }
 </style>

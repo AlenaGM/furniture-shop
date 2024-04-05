@@ -5,8 +5,8 @@
     </div>
     <div class="products-container">
       <Loader v-if="loading" />
-      <Products :products="popularProducts" v-else />
-      <div class="products-link" v-if="popularProducts.length > 24">
+      <Products :products="products" v-else />
+      <div class="products-link" v-if="products.length > 24">
         <ui-button
           class="products-link"
           type="button"
@@ -22,16 +22,20 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import Products from "@/components/Products.vue";
-
+import { useRoute } from "vue-router";
 import Loader from "@/components/ui/Loader.vue";
 import uiButton from "@/components/ui/Button.vue";
 import api from "@/api";
 
-const popularProducts = ref([]);
+const products = ref([]);
 const loading = ref(true);
 
+const route = useRoute();
+const productCategory = ref("");
+const currentCategory = ref({});
+
 onMounted(async () => {
-  popularProducts.value = await api.getProducts();
+  products.value = await api.getProducts();
   loading.value = false;
 });
 </script>

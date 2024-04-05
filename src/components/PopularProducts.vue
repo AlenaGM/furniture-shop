@@ -27,7 +27,7 @@ const popularProducts = ref([]);
 const loading = ref(true);
 
 onMounted(async () => {
-  popularProducts.value = await api.getProducts();
+  popularProducts.value = await api.getPopularProducts();
   loading.value = false;
 });
 
