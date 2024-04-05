@@ -1,5 +1,5 @@
 <template>
-  <div class="details" v-if="product">
+  <div class="details">
     <div class="details-content">
       <div class="details-image">
         <img :src="product.img" :alt="product.name" />
@@ -34,27 +34,27 @@
           <div class="details-quantity">
             <span
               class="details-quantity-symbol"
-              @click="changeQuantity('minus', product.id)"
+              @click="cartStore.decreaseCounter()"
             >
               -
             </span>
-            <span class="details-quantity-value">{{ cartStore.counter }}</span>
+            <span class="details-quantity-value">{{
+              cartStore.counter || 1
+            }}</span>
             <span
               class="details-quantity-symbol"
-              @click="changeQuantity('plus', product.id, product.stock)"
+              @click="cartStore.increaseCounter(product)"
             >
               +
             </span>
           </div>
-          <div v-if="msg" class="details-quantity-msg text-sm">{{ msg }}</div>
+          <div v-if="cartStore.counterMsg" class="details-quantity-msg text-sm">
+            {{ cartStore.counterMsg }}
+          </div>
         </div>
         <ui-button
           color="dark-primary"
-          @click="
-            () => {
-              onAddToCart(product, cartStore.counter);
-            }
-          "
+          @click="cartStore.addToCart(product, cartStore.counter)"
         >
           Add to Cart
         </ui-button>
@@ -107,10 +107,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/store/cart.js";
 import ModalContent from "@/components/ui/Modal.vue";
+import { ref, onMounted } from "vue";
+
+const loading = ref(true);
 
 const props = defineProps({
   product: {
@@ -122,27 +124,10 @@ const props = defineProps({
 
 const cartStore = useCartStore();
 
-let msg = ref("");
-
-const changeQuantity = (type, id, stock) => {
-  const cartIndex = cartStore.cart.findIndex((el) => el.id === id);
-  const cartQuantity = cartStore.cart[cartIndex]?.count || 0;
-
-  if (type === "minus") {
-    cartStore.counter <= 1 ? (cartStore.counter = 1) : cartStore.counter--;
-  } else if (type === "plus" && cartStore.counter < stock - cartQuantity) {
-    cartStore.counter++;
-  } else if (type === "plus" && cartStore.counter >= stock - cartQuantity) {
-    cartStore.counter = stock - cartQuantity;
-    msg.value = `${stock - cartQuantity} item(s) left in stock`;
-  }
-  if (cartStore.counter === 0) cartStore.counter = 1;
-};
-
-const onAddToCart = (product) => {
-  cartStore.addToCart(product, cartStore.counter);
-  msg.value = "";
-};
+onMounted(() => {
+  cartStore.counterMsg = "";
+  cartStore.isModalOpen = false;
+});
 </script>
 
 <style lang="scss" scoped>

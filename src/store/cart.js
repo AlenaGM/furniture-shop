@@ -4,6 +4,7 @@ import { ref, computed, watch } from "vue";
 export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
   const counter = ref(1);
+  let counterMsg = ref("");
   const isModalOpen = ref(false);
 
   const cartInLocalStorage = localStorage.getItem("cart");
@@ -29,12 +30,20 @@ export const useCartStore = defineStore("cartStore", () => {
 
   const addToCart = (product, count) => {
     const cartIndex = cart.value.findIndex((el) => el.id === product.id);
-    if (cartIndex === -1) {
+    let itemsInCart = cart.value[cartIndex]?.count || 0;
+    const itemsRest = product.stock - itemsInCart;
+
+    if (!itemsRest) {
+      isModalOpen.value = false;
+      counterMsg.value = "This item is out of stock";
+    } else if (cartIndex === -1) {
       cart.value.push({ ...product, count });
       isModalOpen.value = true;
-    } else if (cart.value[cartIndex].count + count <= product.stock) {
+      counterMsg.value = "";
+    } else {
       cart.value[cartIndex].count += count;
       isModalOpen.value = true;
+      counterMsg.value = "";
     }
   };
 
@@ -54,6 +63,21 @@ export const useCartStore = defineStore("cartStore", () => {
     cart.value.splice(index, 1);
   };
 
+  const decreaseCounter = () => {
+    counter.value <= 1 ? (counter.value = 1) : counter.value--;
+  };
+
+  const increaseCounter = (product) => {
+    const cartIndex = cart.value.findIndex((el) => el.id === product.id);
+    const itemsInCart = cart.value[cartIndex]?.count || 0;
+    const itemsRest = product.stock - itemsInCart;
+
+    if (counter.value >= itemsRest) {
+      counter.value = itemsRest;
+      counterMsg.value = `${itemsRest} item(s) left in stock`;
+    } else counter.value++;
+  };
+
   watch(
     () => cart,
     (state) => {
@@ -65,6 +89,7 @@ export const useCartStore = defineStore("cartStore", () => {
   return {
     cart,
     counter,
+    counterMsg,
     isModalOpen,
     cartTotalItems,
     cartTotalPrice,
@@ -72,6 +97,8 @@ export const useCartStore = defineStore("cartStore", () => {
     addItem,
     deleteItem,
     deleteFromCart,
+    decreaseCounter,
+    increaseCounter,
   };
 });
 
