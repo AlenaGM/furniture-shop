@@ -4,7 +4,7 @@ import { ref, computed, watch } from "vue";
 export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
   const counter = ref(1);
-  //const counterMsg = ref("");
+  const counterMsg = ref("");
   const isModalOpen = ref(false);
 
   const cartInLocalStorage = localStorage.getItem("cart");
@@ -35,15 +35,15 @@ export const useCartStore = defineStore("cartStore", () => {
 
     if (!itemsRest) {
       isModalOpen.value = false;
-      //counterMsg.value = "This item is out of stock";
+      counterMsg.value = "This item is out of stock";
     } else if (cartIndex === -1) {
       cart.value.push({ ...product, count });
       isModalOpen.value = true;
-      //counterMsg.value = "";
+      counterMsg.value = "";
     } else {
       cart.value[cartIndex].count += count;
       isModalOpen.value = true;
-      //counterMsg.value = "";
+      counterMsg.value = "";
     }
   };
 
@@ -74,7 +74,7 @@ export const useCartStore = defineStore("cartStore", () => {
 
     if (counter.value >= itemsRest) {
       counter.value = itemsRest;
-      //counterMsg.value = `${itemsRest} item(s) left in stock`;
+      counterMsg.value = `${itemsRest} item(s) left in stock`;
     } else counter.value++;
   };
 
@@ -89,7 +89,7 @@ export const useCartStore = defineStore("cartStore", () => {
   return {
     cart,
     counter,
-    //counterMsg,
+    counterMsg,
     isModalOpen,
     cartTotalItems,
     cartTotalPrice,

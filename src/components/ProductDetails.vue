@@ -112,8 +112,9 @@
 <script setup>
 import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/store/cart.js";
+import { useRoute } from "vue-router";
 import ModalContent from "@/components/ui/Modal.vue";
-import { onMounted, onUpdated } from "vue";
+import { onMounted, watch } from "vue";
 
 const props = defineProps({
   product: {
@@ -124,11 +125,22 @@ const props = defineProps({
 });
 
 const cartStore = useCartStore();
+const route = useRoute();
 
 onMounted(() => {
-  cartStore.counterMsg = "";
-  cartStore.isModalOpen = false;
+  updateCounter();
 });
+
+watch(
+  () => route.params.id,
+  () => updateCounter()
+);
+
+const updateCounter = () => {
+  cartStore.counterMsg = "";
+  cartStore.counter = 1;
+  cartStore.isModalOpen = false;
+};
 </script>
 
 <style lang="scss" scoped>

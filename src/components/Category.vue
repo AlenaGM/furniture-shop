@@ -1,7 +1,7 @@
 <template>
-  <div class="collection">
-    <div class="collection__title">
-      <h1>All Products</h1>
+  <div class="category">
+    <div class="category__title">
+      <h1>category</h1>
     </div>
     <div class="products-container">
       <Loader v-if="loading" />
@@ -20,7 +20,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import Products from "@/components/Products.vue";
 import Loader from "@/components/ui/Loader.vue";
 import uiButton from "@/components/ui/Button.vue";
@@ -28,15 +29,10 @@ import api from "@/api";
 
 const products = ref([]);
 const loading = ref(true);
-
-onMounted(async () => {
-  products.value = await api.getProducts();
-  loading.value = false;
-});
 </script>
 
 <style lang="scss" scoped>
-.collection {
+.category {
   display: grid;
   grid-template-rows: minmax(210px, auto) 1fr;
   @media screen and (max-width: 768px) {

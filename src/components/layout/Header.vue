@@ -40,7 +40,7 @@
     <div class="header-menu" v-if="!isMobileMenuOpen">
       <router-link
         class="header-menu__link"
-        :to="element.path"
+        :to="`/products/${element.name.replace(/ .*/, '').toLowerCase()}`"
         v-for="(element, i) of menu"
         :key="i"
       >
@@ -80,8 +80,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useCartStore } from "@/store/cart.js";
+import { useRoute } from "vue-router";
+import api from "@/api.js";
 const isMobileMenuOpen = ref(false);
 import ModalContent from "@/components/ui/Modal.vue";
 
@@ -95,31 +97,24 @@ const onUserClick = () => {
 const menu = [
   {
     name: "New arrivals",
-    path: "/products/new",
   },
   {
     name: "Furniture",
-    path: "/products/furniture",
   },
   {
     name: "Lighting",
-    path: "/products/lighting",
   },
   {
     name: "Decoration",
-    path: "/products/decoration",
   },
   {
     name: "Tableware",
-    path: "/products/tableware",
   },
   {
     name: "Textiles",
-    path: "/products/textiles",
   },
   {
     name: "All products",
-    path: "/products/",
   },
 ];
 
