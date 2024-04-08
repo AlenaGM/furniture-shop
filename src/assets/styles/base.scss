@@ -188,6 +188,8 @@ p:not(:last-of-type) {
 .subscribe,
 .collection,
 .collection__title,
+.category,
+.category__title,
 .details,
 .cart {
   display: grid;
@@ -201,6 +203,8 @@ p:not(:last-of-type) {
 .subscribe,
 .collection,
 .collection__title,
+.category,
+.category__title,
 .details,
 .cart {
   grid-column: 1/4;

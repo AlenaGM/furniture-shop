@@ -40,11 +40,11 @@
     <div class="header-menu" v-if="!isMobileMenuOpen">
       <router-link
         class="header-menu__link"
-        :to="`/products/${element.name.replace(/ .*/, '').toLowerCase()}`"
+        :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
         v-for="(element, i) of menu"
         :key="i"
       >
-        {{ element.name }}
+        {{ element }}
       </router-link>
     </div>
     <Transition name="dropdown" :duration="1000">
@@ -57,12 +57,12 @@
           >
             <router-link
               class="header-dropdown__link"
-              :to="element.path"
+              :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
               v-for="(element, i) of menu"
               :key="i"
               @click="isMobileMenuOpen = false"
             >
-              {{ element.name }}
+              {{ element }}
             </router-link>
           </div>
         </div>
@@ -95,27 +95,13 @@ const onUserClick = () => {
 };
 
 const menu = [
-  {
-    name: "New arrivals",
-  },
-  {
-    name: "Furniture",
-  },
-  {
-    name: "Lighting",
-  },
-  {
-    name: "Decoration",
-  },
-  {
-    name: "Tableware",
-  },
-  {
-    name: "Textiles",
-  },
-  {
-    name: "All products",
-  },
+  "New arrivals",
+  "Furniture",
+  "Lighting",
+  "Decoration",
+  "Tableware",
+  "Textiles",
+  "All products",
 ];
 
 const cartStore = useCartStore();

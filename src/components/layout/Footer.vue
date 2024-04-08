@@ -12,7 +12,7 @@
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/products/new" class="footer-menu__link"
                   >New arrivals</router-link
                 >
               </li>
@@ -37,17 +37,17 @@
             <span class="footer-menu__title">Categories</span>
             <ul>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products/furniture" class="footer-menu__link"
                   >Furniture</router-link
                 >
               </li>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products/lighting" class="footer-menu__link"
                   >Lighting</router-link
                 >
               </li>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products/decoration" class="footer-menu__link"
                   >Decoration</router-link
                 >
               </li>
@@ -57,7 +57,7 @@
                 >
               </li>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products/textiles" class="footer-menu__link"
                   >Textiles</router-link
                 >
               </li>
@@ -72,7 +72,7 @@
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/contact" class="footer-menu__link"
                   >Get in touch</router-link
                 >
               </li>

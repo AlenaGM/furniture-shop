@@ -81,7 +81,7 @@ const props = defineProps({
   }
   @media (any-pointer: fine) {
     &:hover {
-      opacity: 0.8;
+      opacity: 0.6;
       transition: opacity 0.3s ease;
     }
   }

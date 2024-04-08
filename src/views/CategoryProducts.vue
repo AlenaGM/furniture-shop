@@ -1,8 +1,7 @@
 <template>
-  Category
   <Category />
 </template>
 
 <script setup>
-import Category from "@/components/Collection.vue";
+import Category from "@/components/Category.vue";
 </script>

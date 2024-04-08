@@ -54,9 +54,10 @@ const props = defineProps({
       background: var(--dark-primary);
       position: absolute;
       bottom: 2px;
-      left: 0;
-      height: 1.5px;
+      left: 50%;
+      height: 1.7px;
       width: 0;
+      transform: translateX(-50%);
       transition: width 0.3s ease;
     }
     @media (any-pointer: fine) {
@@ -65,7 +66,6 @@ const props = defineProps({
         &::after {
           width: 100%;
           transition: width 0.3s ease;
-          color: inherit;
         }
       }
     }
