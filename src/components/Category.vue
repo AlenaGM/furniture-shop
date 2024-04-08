@@ -4,7 +4,7 @@
       <h1>
         {{
           productCategory === "new"
-            ? (productCategory = "new arrivals")
+            ? productCategory + " arrivals"
             : productCategory
         }}
       </h1>
@@ -52,10 +52,14 @@ watch(
 
 const fetchProductsByCategory = async () => {
   productCategory.value = route.params.category;
+  console.log(productCategory.value);
   const products = await api.getProducts();
   currentCategory.value = products.filter(
-    (product) => product.category === productCategory.value
+    (product) =>
+      product.category === productCategory.value ||
+      product.tags.includes(productCategory.value)
   );
+
   loading.value = false;
   console.log(currentCategory.value);
 };

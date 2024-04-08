@@ -20,13 +20,26 @@
             <router-link :to="`/products/${item.id}`">
               <span class="cart__item_name">{{ item.name }}</span>
             </router-link>
-            {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(item.price || 0)
-            }}
+            <div>
+              <span class="price__sale" v-if="item.tags.includes('sale')">
+                {{
+                  new Intl.NumberFormat("fr-FR", {
+                    style: "currency",
+                    currency: "EUR",
+                    minimumFractionDigits: 0,
+                  }).format(Math.round(item.price * cartStore.discount) || 0)
+                }}</span
+              >
+              <span :class="{ price__strikeout: item.tags.includes('sale') }">
+                {{
+                  new Intl.NumberFormat("fr-FR", {
+                    style: "currency",
+                    currency: "EUR",
+                    minimumFractionDigits: 0,
+                  }).format(item.price || 0)
+                }}</span
+              >
+            </div>
           </td>
           <td>
             <div class="cart-quantity">
@@ -55,7 +68,14 @@
                   style: "currency",
                   currency: "EUR",
                   minimumFractionDigits: 0,
-                }).format(item.count * item.price || 0)
+                }).format(
+                  item.count *
+                    Math.round(
+                      item.tags.includes("sale")
+                        ? item.price * cartStore.discount
+                        : item.price
+                    )
+                )
               }}
             </span>
           </td>
@@ -70,7 +90,7 @@
                 style: "currency",
                 currency: "EUR",
                 minimumFractionDigits: 0,
-              }).format(cartTotal || 0)
+              }).format(cartStore.cartTotalPrice)
             }}
             <div>Taxes and shipping are calculated at checkout</div>
           </th>
@@ -114,7 +134,7 @@
         Just click on the "send postcard" button and enter your postal address.
         If you'd rather not, just close the window.
       </p>
-      <p style="color: #c61a09">
+      <p style="color: #cc0000">
         In any case, I won't keep your information or share it with any third
         parties.
       </p>
@@ -132,15 +152,6 @@ import { ref } from "vue";
 const isModalOpen = ref(false);
 
 const cartStore = useCartStore();
-
-const cartTotal = computed(() => {
-  let totalPrice = 0;
-
-  for (let item of cartStore.cart) {
-    totalPrice += item.price * item.count;
-  }
-  return totalPrice;
-});
 
 const toCheckout = () => {
   isModalOpen.value = true;
@@ -250,7 +261,6 @@ const toCheckout = () => {
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
-    color: var(--dark-primary);
     @media screen and (max-width: 768px) {
       font-size: 14px;
     }

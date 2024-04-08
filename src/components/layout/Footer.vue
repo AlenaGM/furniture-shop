@@ -17,12 +17,12 @@
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/products/popular" class="footer-menu__link"
                   >Best sellers</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/products/sale" class="footer-menu__link"
                   >Last chance</router-link
                 >
               </li>
@@ -52,7 +52,7 @@
                 >
               </li>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products/tableware" class="footer-menu__link"
                   >Tableware</router-link
                 >
               </li>

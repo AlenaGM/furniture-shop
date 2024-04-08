@@ -6,15 +6,26 @@
     <router-link :to="`/products/${id}`" class="product-name"
       ><h4>{{ name }}</h4></router-link
     >
-    <span class="product-price text">
-      {{
-        new Intl.NumberFormat("fr-FR", {
-          style: "currency",
-          currency: "EUR",
-          minimumFractionDigits: 0,
-        }).format(price)
-      }}</span
-    >
+    <div class="product-price">
+      <span class="text price__sale" v-if="tags.includes('sale')">
+        {{
+          new Intl.NumberFormat("fr-FR", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 0,
+          }).format(Math.round(price * cartStore.discount))
+        }}</span
+      >
+      <span class="text" :class="{ price__strikeout: tags.includes('sale') }">
+        {{
+          new Intl.NumberFormat("fr-FR", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 0,
+          }).format(price)
+        }}</span
+      >
+    </div>
   </div>
 </template>
 
@@ -35,6 +46,10 @@ const props = defineProps({
   price: {
     type: Number,
     required: true,
+  },
+  tags: {
+    type: Array,
+    required: false,
   },
 });
 </script>

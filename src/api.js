@@ -16,8 +16,10 @@ export default {
   },
   async getPopularProducts() {
     try {
-      const response = await HTTP.get("/products/popular");
-      return response.data;
+      const response = await HTTP.get("/products");
+      return response.data
+        .filter((el) => el.tags.includes("popular"))
+        .slice(0, 4);
     } catch (e) {
       console.log(e);
     }

@@ -6,15 +6,26 @@
       </div>
       <div>
         <h1 class="details-name">{{ product.name }}</h1>
-        <span class="details-price" v-if="product.price">
-          {{
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 0,
-            }).format(product.price)
-          }}</span
-        >
+        <div class="details-price" v-if="product.price">
+          <span class="price__sale" v-if="product.tags.includes('sale')">
+            {{
+              new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+              }).format(Math.round(product.price * cartStore.discount))
+            }}</span
+          >
+          <span :class="{ price__strikeout: product.tags.includes('sale') }">
+            {{
+              new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+              }).format(product.price)
+            }}</span
+          >
+        </div>
         <div
           class="details-block detailst-description"
           v-if="product.description"
@@ -86,13 +97,24 @@
         <div>Quantity: {{ cartStore.counter }}</div>
         <div>
           Unit Price:
-          {{
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 0,
-            }).format(product.price)
-          }}
+          <span v-if="product.tags.includes('sale')">
+            {{
+              new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+              }).format(Math.round(product.price * cartStore.discount))
+            }}</span
+          >
+          <span v-else>
+            {{
+              new Intl.NumberFormat("fr-FR", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+              }).format(product.price)
+            }}</span
+          >
         </div>
         <div>
           Total Cart:

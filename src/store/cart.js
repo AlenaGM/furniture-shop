@@ -5,6 +5,7 @@ export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
   const counter = ref(1);
   const counterMsg = ref("");
+  const discount = ref(0.7);
   const isModalOpen = ref(false);
 
   const cartInLocalStorage = localStorage.getItem("cart");
@@ -23,8 +24,13 @@ export const useCartStore = defineStore("cartStore", () => {
   const cartTotalPrice = computed(() => {
     let totalPrice = 0;
     for (let item of cart.value) {
-      totalPrice += item.price * item.count;
+      totalPrice +=
+        item.count *
+        Math.round(
+          item.tags.includes("sale") ? item.price * discount.value : item.price
+        );
     }
+    console.log(totalPrice);
     return totalPrice;
   });
 
@@ -90,6 +96,7 @@ export const useCartStore = defineStore("cartStore", () => {
     cart,
     counter,
     counterMsg,
+    discount,
     isModalOpen,
     cartTotalItems,
     cartTotalPrice,
