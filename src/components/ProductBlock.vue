@@ -30,6 +30,9 @@
 </template>
 
 <script setup>
+import { useCartStore } from "@/store/cart.js";
+const cartStore = useCartStore();
+
 const props = defineProps({
   id: {
     type: String,
