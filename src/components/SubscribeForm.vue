@@ -28,7 +28,6 @@
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 import { ref } from "vue";
-import api from "@/api";
 
 const isModalOpen = ref(false);
 

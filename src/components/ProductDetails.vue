@@ -16,7 +16,11 @@
               }).format(Math.round(product.price * cartStore.discount))
             }}</span
           >
-          <span :class="{ price__strikeout: product.tags.includes('sale') }">
+          <span
+            :class="{
+              price__strikeout: product.tags.includes('sale'),
+            }"
+          >
             {{
               new Intl.NumberFormat("fr-FR", {
                 style: "currency",
@@ -134,35 +138,39 @@
 <script setup>
 import uiButton from "@/components/ui/Button.vue";
 import { useCartStore } from "@/stores/cart.js";
+import { useProductStore } from "@/stores/products.js";
 import { useRoute } from "vue-router";
 import ModalContent from "@/components/ui/Modal.vue";
-import { onMounted, watch } from "vue";
+import { onMounted, watch, ref } from "vue";
+import { storeToRefs } from "pinia";
 
-const props = defineProps({
-  product: {
-    type: Object,
-    default: () => {},
-    required: true,
-  },
-});
-
+const productStore = useProductStore();
 const cartStore = useCartStore();
+
+const { product } = storeToRefs(productStore);
+const { getProduct } = productStore;
+
 const route = useRoute();
 
 onMounted(() => {
   updateCounter();
+  getProduct(route.params.id);
 });
 
 watch(
   () => route.params.id,
-  () => updateCounter()
+  () => {
+    getProduct(route.params.id);
+    updateCounter();
+  },
+  { immediate: true, deep: true }
 );
 
-const updateCounter = () => {
+function updateCounter() {
   cartStore.counterMsg = "";
   cartStore.counter = 1;
   cartStore.isModalOpen = false;
-};
+}
 </script>
 
 <style lang="scss" scoped>

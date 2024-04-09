@@ -83,7 +83,6 @@
 import { ref, computed, onMounted } from "vue";
 import { useCartStore } from "@/stores/cart.js";
 import { useRoute } from "vue-router";
-import api from "@/api.js";
 const isMobileMenuOpen = ref(false);
 import ModalContent from "@/components/ui/Modal.vue";
 
