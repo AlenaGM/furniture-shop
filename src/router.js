@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Index from "@/views/Index.vue";
 import About from "@/views/About.vue";
 import AllProducts from "@/views/AllProducts.vue";
-import CategoryProducts from "@/views/CategoryProducts.vue";
+import Category from "@/views/Category.vue";
 import Product from "@/views/Product.vue";
 import Cart from "@/views/Cart.vue";
 import Contact from "@/views/Contact.vue";
@@ -32,8 +32,8 @@ const router = createRouter({
     },
     {
       path: "/products/:category",
-      name: "CategoryProducts",
-      component: CategoryProducts,
+      name: "Category",
+      component: Category,
     },
     {
       path: "/about",

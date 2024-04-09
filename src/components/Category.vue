@@ -75,8 +75,5 @@ onMounted(() => {
       margin: var(--section-gap-mobile);
     }
   }
-  &-link {
-    text-align: center;
-  }
 }
 </style>

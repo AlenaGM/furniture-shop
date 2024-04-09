@@ -5,26 +5,14 @@
     </div>
     <div class="products-container">
       <Products :products="productStore.products" />
-      <div class="products-link" v-if="products.length > 24">
-        <ui-button
-          class="products-link"
-          type="button"
-          color="light-gray"
-          :mobileFullWidth="true"
-          >Load more
-        </ui-button>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import Products from "@/components/Products.vue";
-import uiButton from "@/components/ui/Button.vue";
 import { useProductStore } from "../stores/products";
-
-const products = ref([]);
 
 const productStore = useProductStore();
 
@@ -79,9 +67,6 @@ onMounted(() => {
     @media screen and (max-width: 768px) {
       margin: var(--section-gap-mobile);
     }
-  }
-  &-link {
-    text-align: center;
   }
 }
 </style>
