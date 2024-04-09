@@ -21,13 +21,10 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import Products from "@/components/Products.vue";
-import Loader from "@/components/ui/Loader.vue";
 import uiButton from "@/components/ui/Button.vue";
-import api from "@/api";
 import { useProductStore } from "../stores/products";
 
 const products = ref([]);
-const loading = ref(true);
 
 const productStore = useProductStore();
 

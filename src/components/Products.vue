@@ -1,19 +1,42 @@
 <template>
   <div class="products">
-    <ProductBlock
-      v-for="product of products"
-      :id="product.id"
-      :key="product.id"
-      :img="product.img"
-      :name="product.name"
-      :price="product.price"
-      :tags="product.tags"
-    />
+    <div class="product" v-for="product of products">
+      <router-link :to="`/products/${product.id}`">
+        <img :src="product.img" :alt="product.name" class="product-image" />
+      </router-link>
+      <router-link :to="`/products/${product.id}`" class="product-name"
+        ><h4>{{ product.name }}</h4></router-link
+      >
+      <div class="product-price">
+        <span class="text price__sale" v-if="product.tags.includes('sale')">
+          {{
+            new Intl.NumberFormat("fr-FR", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 0,
+            }).format(Math.round(product.price * cartStore.discount))
+          }}</span
+        >
+        <span
+          class="text"
+          :class="{ price__strikeout: product.tags.includes('sale') }"
+        >
+          {{
+            new Intl.NumberFormat("fr-FR", {
+              style: "currency",
+              currency: "EUR",
+              minimumFractionDigits: 0,
+            }).format(product.price)
+          }}</span
+        >
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import ProductBlock from "@/components/ProductBlock.vue";
+import { useCartStore } from "@/stores/cart.js";
+const cartStore = useCartStore();
 
 const props = defineProps({
   products: {
@@ -34,6 +57,41 @@ const props = defineProps({
   }
   @media screen and (max-width: 768px) {
     margin-bottom: 40px;
+  }
+}
+
+.product {
+  &-image {
+    display: block;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  &-name {
+    display: inline-block;
+    text-decoration: none;
+    &::after {
+      content: "";
+      background: var(--dark-primary);
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      height: 1.7px;
+      width: 0;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    @media (any-pointer: fine) {
+      &:hover {
+        cursor: pointer;
+        &::after {
+          width: 100%;
+          transition: width 0.3s ease;
+        }
+      }
+    }
+  }
+  &-price {
+    display: block;
   }
 }
 </style>
