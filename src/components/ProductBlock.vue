@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { useCartStore } from "@/store/cart.js";
+import { useCartStore } from "@/stores/cart.js";
 const cartStore = useCartStore();
 
 const props = defineProps({

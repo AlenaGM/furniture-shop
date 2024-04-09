@@ -3,80 +3,28 @@
     <div class="category__title">
       <h1>
         {{
-          productCategory === "new"
-            ? productCategory + " arrivals"
-            : productCategory
+          productStore.category === "new"
+            ? productStore.category + " arrivals"
+            : productStore.category
         }}
       </h1>
     </div>
     <div class="products-container">
-      <Loader v-if="loading" />
-      <Products :products="currentCategory" v-else />
-      <!--
-      <div class="products-link" v-if="products.length > 24">
-        <ui-button
-          class="products-link"
-          type="button"
-          color="light-gray"
-          :mobileFullWidth="true"
-          >Load more
-        </ui-button>
-      </div>-->
+      <Products :products="productStore.categoryProducts" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { onMounted } from "vue";
 import Products from "@/components/Products.vue";
-import Loader from "@/components/ui/Loader.vue";
-import uiButton from "@/components/ui/Button.vue";
-import api from "@/api";
+import { useProductStore } from "../stores/products";
 
-const products = ref([]);
-const loading = ref(true);
+const productStore = useProductStore();
 
-const route = useRoute();
-const productCategory = ref("");
-const currentCategory = ref({});
-
-onMounted(async () => {
-  fetchProductsByCategory();
+onMounted(() => {
+  productStore.getCategoryProducts();
 });
-
-watch(
-  () => route.params.category,
-  () => fetchProductsByCategory()
-);
-
-const fetchProductsByCategory = async () => {
-  productCategory.value = route.params.category;
-  console.log(productCategory.value);
-  const products = await api.getProducts();
-  currentCategory.value = products.filter(
-    (product) =>
-      product.category === productCategory.value ||
-      product.tags.includes(productCategory.value)
-  );
-
-  loading.value = false;
-  console.log(currentCategory.value);
-};
-
-//onMounted(async () => {
-//  fetchProducsByCategory();
-//});
-//
-//const fetchProducsByCategory = async () => {
-//  productCategory.value = route.params.category;
-//  products.value = await api.getProducts();
-//  currentCategory.value = products.filter(
-//    (products) => products.category == productCategory.value
-//  );
-//  console.log(currentCategory.value);
-//  loading.value = false;
-//};
 </script>
 
 <style lang="scss" scoped>

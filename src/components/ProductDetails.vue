@@ -133,7 +133,7 @@
 
 <script setup>
 import uiButton from "@/components/ui/Button.vue";
-import { useCartStore } from "@/store/cart.js";
+import { useCartStore } from "@/stores/cart.js";
 import { useRoute } from "vue-router";
 import ModalContent from "@/components/ui/Modal.vue";
 import { onMounted, watch } from "vue";

@@ -37,6 +37,10 @@
 
 <script setup>
 import InfoBlock from "@/components/InfoBlock.vue";
+import { useProductStore } from "../stores/products";
+
+const productStore = useProductStore();
+productStore.getProducts();
 </script>
 
 <style lang="scss" scoped>
