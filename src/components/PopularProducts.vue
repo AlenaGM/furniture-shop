@@ -1,8 +1,7 @@
 <template>
   <div class="products-container">
     <h2>{{ sectionTitle }}</h2>
-    <Loader v-if="loading" />
-    <Products :products="popularProducts" v-else />
+    <Products :products="productStore.popularProducts" />
     <div class="products-link">
       <ui-button
         class="products-link"
@@ -17,18 +16,15 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import Products from "@/components/Products.vue";
 import uiButton from "@/components/ui/Button.vue";
-import Loader from "@/components/ui/Loader.vue";
-import api from "@/api";
+import { useProductStore } from "../stores/products";
 
-const popularProducts = ref([]);
-const loading = ref(true);
+const productStore = useProductStore();
 
 onMounted(async () => {
-  popularProducts.value = await api.getPopularProducts();
-  loading.value = false;
+  productStore.getProducts();
 });
 
 const props = defineProps({

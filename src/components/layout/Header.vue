@@ -81,7 +81,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useCartStore } from "@/store/cart.js";
+import { useCartStore } from "@/stores/cart.js";
 import { useRoute } from "vue-router";
 import api from "@/api.js";
 const isMobileMenuOpen = ref(false);

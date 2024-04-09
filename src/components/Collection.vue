@@ -4,8 +4,7 @@
       <h1>All Products</h1>
     </div>
     <div class="products-container">
-      <Loader v-if="loading" />
-      <Products :products="products" v-else />
+      <Products :products="productStore.products" />
       <div class="products-link" v-if="products.length > 24">
         <ui-button
           class="products-link"
@@ -25,13 +24,15 @@ import Products from "@/components/Products.vue";
 import Loader from "@/components/ui/Loader.vue";
 import uiButton from "@/components/ui/Button.vue";
 import api from "@/api";
+import { useProductStore } from "../stores/products";
 
 const products = ref([]);
 const loading = ref(true);
 
-onMounted(async () => {
-  products.value = await api.getProducts();
-  loading.value = false;
+const productStore = useProductStore();
+
+onMounted(() => {
+  productStore.getProducts();
 });
 </script>
 

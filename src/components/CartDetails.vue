@@ -144,7 +144,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useCartStore } from "@/store/cart.js";
+import { useCartStore } from "@/stores/cart.js";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 import { ref } from "vue";
