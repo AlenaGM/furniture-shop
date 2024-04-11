@@ -3,10 +3,11 @@ import { ref, computed, watch } from "vue";
 
 export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
-  const counter = ref(1);
-  const counterMsg = ref("");
   const discount = ref(0.7);
   const isModalOpen = ref(false);
+
+  const counter = ref(1);
+  const counterMsg = ref("");
 
   const cartInLocalStorage = localStorage.getItem("cart");
   if (cartInLocalStorage) {
@@ -23,12 +24,12 @@ export const useCartStore = defineStore("cartStore", () => {
 
   const cartTotalPrice = computed(() => {
     let totalPrice = 0;
+
     for (let item of cart.value) {
-      totalPrice +=
-        item.count *
-        Math.round(
-          item.tags.includes("sale") ? item.price * discount.value : item.price
-        );
+      totalPrice += item.count * item.price;
+      Math.round(
+        item.tags.includes("sale") ? item.price * discount.value : item.price
+      );
     }
     return totalPrice;
   });
@@ -53,9 +54,9 @@ export const useCartStore = defineStore("cartStore", () => {
   };
 
   const addItem = (index, stock) => {
-    cart.value[index].count >= stock
-      ? (cart.value[index].count = stock)
-      : cart.value[index].count++;
+    if (cart.value[index].count >= stock) {
+      cart.value[index].count = stock;
+    } else cart.value[index].count++;
   };
 
   const deleteItem = (index) => {
@@ -83,6 +84,12 @@ export const useCartStore = defineStore("cartStore", () => {
     } else counter.value++;
   };
 
+  const updateCounter = () => {
+    counterMsg.value = "";
+    counter.value = 1;
+    isModalOpen.value = false;
+  };
+
   watch(
     () => cart,
     (state) => {
@@ -105,5 +112,6 @@ export const useCartStore = defineStore("cartStore", () => {
     deleteFromCart,
     decreaseCounter,
     increaseCounter,
+    updateCounter,
   };
 });

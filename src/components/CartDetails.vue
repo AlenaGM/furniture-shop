@@ -23,21 +23,13 @@
             <div>
               <span class="price__sale" v-if="item.tags.includes('sale')">
                 {{
-                  new Intl.NumberFormat("fr-FR", {
-                    style: "currency",
-                    currency: "EUR",
-                    minimumFractionDigits: 0,
-                  }).format(Math.round(item.price * cartStore.discount) || 0)
+                  FormatToCurrency(
+                    Math.round(item.price * cartStore.discount) || 0
+                  )
                 }}</span
               >
               <span :class="{ price__strikeout: item.tags.includes('sale') }">
-                {{
-                  new Intl.NumberFormat("fr-FR", {
-                    style: "currency",
-                    currency: "EUR",
-                    minimumFractionDigits: 0,
-                  }).format(item.price || 0)
-                }}</span
+                {{ FormatToCurrency(item.price || 0) }}</span
               >
             </div>
           </td>
@@ -64,11 +56,7 @@
           <td>
             <span>
               {{
-                new Intl.NumberFormat("fr-FR", {
-                  style: "currency",
-                  currency: "EUR",
-                  minimumFractionDigits: 0,
-                }).format(
+                FormatToCurrency(
                   item.count *
                     Math.round(
                       item.tags.includes("sale")
@@ -80,17 +68,41 @@
             </span>
           </td>
         </tr>
+
+        <tr v-if="!isValidPromo">
+          <td></td>
+          <td>
+            <div>
+              <span class="cart__item_name">{{ promo.birthday.name }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="cart-delete" @click="isValidPromo = false">delete</div>
+          </td>
+          <td>
+            <span>
+              {{
+                FormatToCurrency(
+                  Math.round(
+                    cartStore.cartTotalPrice * promo.birthday.discount * -1
+                  )
+                )
+              }}
+            </span>
+          </td>
+        </tr>
       </tbody>
       <tfoot>
         <tr>
           <th class="table__total">
             <span>Subtotal</span>
             {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(cartStore.cartTotalPrice)
+              FormatToCurrency(
+                cartStore.cartTotalPrice +
+                  Math.round(
+                    cartStore.cartTotalPrice * promo.birthday.discount * -1
+                  )
+              )
             }}
             <div>Taxes and shipping are calculated at checkout</div>
           </th>
@@ -125,37 +137,50 @@
       link="Send Postcard"
       to="/contact"
     >
-      <p>Thank you for checking out my project!</p>
-      <p>
-        This is a learning project, so I don't actually sell furniture, but I
-        would love to send you a postcard from the French Alps if you'd like.
-      </p>
-      <p>
-        Just click on the "send postcard" button and enter your postal address.
-        If you'd rather not, just close the window.
-      </p>
-      <p style="color: #cc0000">
-        In any case, I won't keep your information or share it with any third
-        parties.
-      </p>
+      <div>
+        <p>Thank you for checking out my project!</p>
+        <p>
+          This is a learning project, so I don't actually sell furniture, but I
+          would love to send you a postcard from the French Alps if you'd like.
+        </p>
+        <p>
+          Just click on the "send postcard" button and enter your postal
+          address. If you'd rather not, just close the window.
+        </p>
+        <p style="color: #cc0000">
+          In any case, I won't keep your information or share it with any third
+          parties.
+        </p>
+      </div>
     </modal-content>
   </teleport>
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useCartStore } from "@/stores/cart.js";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
-import { ref } from "vue";
-
-const isModalOpen = ref(false);
+import { FormatToCurrency } from "@/utils/formatter";
+import { ref, onMounted } from "vue";
 
 const cartStore = useCartStore();
+const isModalOpen = ref(false);
 
 const toCheckout = () => {
   isModalOpen.value = true;
 };
+
+const isValidPromo = ref(true);
+const promo = ref({
+  welcome: {
+    name: "10% welcome offer",
+    discount: 0.1,
+  },
+  birthday: {
+    name: "15% birthday present",
+    discount: 0.15,
+  },
+});
 </script>
 
 <style lang="scss" scoped>

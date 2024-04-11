@@ -11,6 +11,8 @@ export const HTTP = axios.create({
 export const useProductStore = defineStore("productStore", () => {
   const products = ref([]);
   const product = ref({});
+  const productId = ref("");
+  const productStock = ref("");
   const categoryProducts = ref([]);
 
   const category = ref("");
@@ -38,6 +40,8 @@ export const useProductStore = defineStore("productStore", () => {
         },
       });
       product.value = response.data;
+      productId.value = response.data.id;
+      productStock.value = response.data.stock;
     } catch (error) {
       console.error("Error fetching product:", error);
     }
@@ -53,7 +57,7 @@ export const useProductStore = defineStore("productStore", () => {
   };
 
   const filterByCategory = () => {
-    category.value = route.params.category;
+    category.value = route.params.category || "not set";
     categoryProducts.value = products.value.filter(
       (product) =>
         product.category === category.value ||
@@ -76,6 +80,8 @@ export const useProductStore = defineStore("productStore", () => {
   return {
     products,
     product,
+    productId,
+    productStock,
     popularProducts,
     category,
     categoryProducts,

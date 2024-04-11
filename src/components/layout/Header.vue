@@ -23,7 +23,7 @@
           <router-link to="/cart" @click="isMobileMenuOpen = false">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
-              {{ cartItems }}
+              {{ cartStore.cartTotalItems }}
             </span>
           </router-link>
         </div>
@@ -104,15 +104,6 @@ const menu = [
 ];
 
 const cartStore = useCartStore();
-
-const cartItems = computed(() => {
-  let totalItems = 0;
-
-  for (let item of cartStore.cart) {
-    totalItems += item.count;
-  }
-  return totalItems;
-});
 </script>
 
 <style lang="scss" scoped>

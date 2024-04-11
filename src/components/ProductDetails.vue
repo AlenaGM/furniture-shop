@@ -9,11 +9,7 @@
         <div class="details-price" v-if="product.price">
           <span class="price__sale" v-if="product.tags.includes('sale')">
             {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(Math.round(product.price * cartStore.discount))
+              FormatToCurrency(Math.round(product.price * cartStore.discount))
             }}</span
           >
           <span
@@ -21,13 +17,7 @@
               price__strikeout: product.tags.includes('sale'),
             }"
           >
-            {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(product.price)
-            }}</span
+            {{ FormatToCurrency(product.price) }}</span
           >
         </div>
         <div
@@ -98,37 +88,19 @@
       </div>
       <div>
         <h4>{{ product.name }}</h4>
-        <div>Quantity: {{ cartStore.counter }}</div>
+        <div>Added Quantity: {{ cartStore.counter }}</div>
         <div>
           Unit Price:
           <span v-if="product.tags.includes('sale')">
             {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(Math.round(product.price * cartStore.discount))
+              FormatToCurrency(Math.round(product.price * cartStore.discount))
             }}</span
           >
-          <span v-else>
-            {{
-              new Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: "EUR",
-                minimumFractionDigits: 0,
-              }).format(product.price)
-            }}</span
-          >
+          <span v-else> {{ FormatToCurrency(product.price) }}</span>
         </div>
         <div>
           Total Cart:
-          {{
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 0,
-            }).format(cartStore.cartTotalPrice)
-          }}
+          {{ FormatToCurrency(cartStore.cartTotalPrice) }}
         </div>
       </div>
     </modal-content>
@@ -137,12 +109,15 @@
 
 <script setup>
 import uiButton from "@/components/ui/Button.vue";
-import { useCartStore } from "@/stores/cart.js";
+
 import { useProductStore } from "@/stores/products.js";
+import { useCartStore } from "@/stores/cart.js";
+
 import { useRoute } from "vue-router";
 import ModalContent from "@/components/ui/Modal.vue";
-import { onMounted, watch, ref } from "vue";
+import { watch } from "vue";
 import { storeToRefs } from "pinia";
+import { FormatToCurrency } from "@/utils/formatter";
 
 const productStore = useProductStore();
 const cartStore = useCartStore();
@@ -152,25 +127,22 @@ const { getProduct } = productStore;
 
 const route = useRoute();
 
-onMounted(() => {
-  updateCounter();
-  getProduct(route.params.id);
-});
-
 watch(
   () => route.params.id,
   () => {
+    console.log("watch");
     getProduct(route.params.id);
-    updateCounter();
+    cartStore.updateCounter();
+    cartStore.isModalOpen = false;
   },
   { immediate: true, deep: true }
 );
 
-function updateCounter() {
-  cartStore.counterMsg = "";
-  cartStore.counter = 1;
-  cartStore.isModalOpen = false;
-}
+//function updateCounter() {
+//  cartStore.counterMsg = "";
+//  cartStore.counter = 1;
+//  cartStore.isModalOpen = false;
+//}
 </script>
 
 <style lang="scss" scoped>

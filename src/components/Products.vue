@@ -10,24 +10,14 @@
       <div class="product-price">
         <span class="text price__sale" v-if="product.tags.includes('sale')">
           {{
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 0,
-            }).format(Math.round(product.price * cartStore.discount))
+            FormatToCurrency(Math.round(product.price * cartStore.discount))
           }}</span
         >
         <span
           class="text"
           :class="{ price__strikeout: product.tags.includes('sale') }"
         >
-          {{
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-              minimumFractionDigits: 0,
-            }).format(product.price)
-          }}</span
+          {{ FormatToCurrency(product.price) }}</span
         >
       </div>
     </div>
@@ -36,6 +26,7 @@
 
 <script setup>
 import { useCartStore } from "@/stores/cart.js";
+import { FormatToCurrency } from "@/utils/formatter";
 const cartStore = useCartStore();
 
 const props = defineProps({
