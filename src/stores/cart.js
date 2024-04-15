@@ -26,11 +26,13 @@ export const useCartStore = defineStore("cartStore", () => {
     let totalPrice = 0;
 
     for (let item of cart.value) {
-      totalPrice += item.count * item.price;
-      Math.round(
-        item.tags.includes("sale") ? item.price * discount.value : item.price
-      );
+      totalPrice +=
+        item.count *
+        Math.round(
+          item.tags.includes("sale") ? item.price * discount.value : item.price
+        );
     }
+
     return totalPrice;
   });
 

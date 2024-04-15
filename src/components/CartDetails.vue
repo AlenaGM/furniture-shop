@@ -96,14 +96,7 @@
         <tr>
           <th class="table__total">
             <span>Subtotal</span>
-            {{
-              FormatToCurrency(
-                cartStore.cartTotalPrice +
-                  Math.round(
-                    cartStore.cartTotalPrice * promo.birthday.discount * -1
-                  )
-              )
-            }}
+            {{ FormatToCurrency(cartStore.cartTotalPrice) }}
             <div>Taxes and shipping are calculated at checkout</div>
           </th>
         </tr>
@@ -186,8 +179,6 @@ const promo = ref({
 <style lang="scss" scoped>
 .cart {
   background: var(--light-gray);
-  @media screen and (max-width: 768px) {
-  }
   &__title {
     grid-column: 2;
     grid-row: 1;

@@ -8,7 +8,7 @@
   --white: #fff;
   --light-gray: #f9f9f9;
   --border-gray: #ebe8f4;
-  --border-dark: #cac6da;
+  --border-dark: rgb(202, 198, 218);
 
   --black: #22202e;
 
@@ -203,7 +203,8 @@ p:not(:last-of-type) {
 .category,
 .category__title,
 .details,
-.cart {
+.cart,
+.contact {
   display: grid;
   grid-template-columns: minmax(1.5rem, 1fr) minmax(auto, 1280px) minmax(
       1.5rem,
@@ -218,7 +219,8 @@ p:not(:last-of-type) {
 .category,
 .category__title,
 .details,
-.cart {
+.cart,
+.contact {
   grid-column: 1/4;
 }
 

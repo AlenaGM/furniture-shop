@@ -130,7 +130,6 @@ const route = useRoute();
 watch(
   () => route.params.id,
   () => {
-    console.log("watch");
     getProduct(route.params.id);
     cartStore.updateCounter();
     cartStore.isModalOpen = false;

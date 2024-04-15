@@ -89,7 +89,6 @@ import ModalContent from "@/components/ui/Modal.vue";
 const isModalOpen = ref(false);
 
 const onUserClick = () => {
-  console.log("Click on user");
   isModalOpen.value = true;
 };
 
