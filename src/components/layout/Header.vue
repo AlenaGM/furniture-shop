@@ -2,33 +2,36 @@
   <header class="header">
     <div class="header-top">
       <div class="header-top-left">
-        <router-link to="/" class="header-top-left__logo">
+        <router-link to="/" class="header-top-left--logo">
           <img src="/favicon/favicon.ico" alt="logo" />
         </router-link>
       </div>
       <router-link
         to="/"
-        class="header-top-name"
+        class="header-top-center"
         @click="isMobileMenuOpen = false"
         ><div>Avion</div></router-link
       >
       <div class="header-top-right">
-        <div class="header-top-right__user" @click="onUserClick">
+        <div class="header-top-right--user" @click="onUserClick">
           <!--<router-link to="/" @click="onUserClick">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>-->
           <img src="/svg/header-user.svg" alt="user" />
         </div>
-        <div class="header-top-right__cart">
+        <div class="header-top-right--cart">
           <router-link to="/cart" @click="isMobileMenuOpen = false">
             <img src="/svg/header-cart.svg" alt="cart" />
-            <span class="header-top-right__count" v-if="cartStore.cart.length">
+            <span
+              class="header-top-right--cart--count"
+              v-if="cartStore.cart.length"
+            >
               {{ cartStore.cartTotalItems }}
             </span>
           </router-link>
         </div>
         <div
-          class="header-top-right__mobile-menu"
+          class="header-top-right--mobile-menu"
           title="dropdown menu open and close"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
@@ -39,7 +42,7 @@
     </div>
     <div class="header-menu" v-if="!isMobileMenuOpen">
       <router-link
-        class="header-menu__link"
+        class="header-menu--link"
         :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
         v-for="(element, i) of menu"
         :key="i"
@@ -48,15 +51,15 @@
       </router-link>
     </div>
     <Transition name="dropdown" :duration="1000">
-      <div class="header-dropdown__wrapper" v-if="isMobileMenuOpen">
-        <div class="header-dropdown__overlay" @click="isMobileMenuOpen = false">
+      <div class="header-dropdown--wrapper" v-if="isMobileMenuOpen">
+        <div class="header-dropdown--overlay" @click="isMobileMenuOpen = false">
           <div
-            class="header-dropdown__container"
+            class="header-dropdown--container"
             @click.stop
             v-scroll-lock="isMobileMenuOpen"
           >
             <router-link
-              class="header-dropdown__link"
+              class="header-dropdown--link"
               :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
               v-for="(element, i) of menu"
               :key="i"
@@ -73,16 +76,15 @@
     <modal-content
       :open="isModalOpen"
       @close="isModalOpen = false"
-      title="Thank you for your interest. The personal account functionality is still in development."
-    >
+      title="Thank you for your interest! "
+      >The personal account functionality is still in development.
     </modal-content>
   </teleport>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref } from "vue";
 import { useCartStore } from "@/stores/cart.js";
-import { useRoute } from "vue-router";
 const isMobileMenuOpen = ref(false);
 import ModalContent from "@/components/ui/Modal.vue";
 
@@ -90,6 +92,7 @@ const isModalOpen = ref(false);
 
 const onUserClick = () => {
   isModalOpen.value = true;
+  isMobileMenuOpen.value = false;
 };
 
 const menu = [
@@ -99,6 +102,7 @@ const menu = [
   "Decoration",
   "Tableware",
   "Textiles",
+  "Sale",
   "All products",
 ];
 
@@ -135,7 +139,10 @@ const cartStore = useCartStore();
     &-left {
       display: grid;
       align-items: center;
-      &__logo {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      &--logo {
         width: 28px;
         height: 28px;
         display: block;
@@ -154,12 +161,12 @@ const cartStore = useCartStore();
           }
         }
       }
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
     }
-    &-name {
+    &-center {
       text-align: center;
+      @media screen and (max-width: 768px) {
+        margin-right: auto;
+      }
       div {
         text-decoration: none;
         display: inline-block;
@@ -189,37 +196,34 @@ const cartStore = useCartStore();
           }
         }
       }
-      @media screen and (max-width: 768px) {
-        margin-right: auto;
-      }
     }
     &-right {
       display: inline-flex;
       column-gap: 16px;
       align-items: center;
       justify-content: flex-end;
-      &__cart {
+      &--cart {
         position: relative;
+        &--count {
+          position: absolute;
+          left: -30%;
+          bottom: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 16px;
+          height: 16px;
+          background: var(--black);
+          border-radius: 50%;
+          font-family: var(--font-family);
+          font-size: 10px;
+          color: var(--white);
+          text-decoration: none;
+        }
       }
-      &__count {
-        position: absolute;
-        left: -30%;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 16px;
-        height: 16px;
-        background: var(--black);
-        border-radius: 50%;
-        font-family: var(--font-family);
-        font-size: 10px;
-        color: var(--white);
-        text-decoration: none;
-      }
-      &__cart a img,
-      &__user a img,
-      &__mobile-menu img {
+      &--cart a img,
+      &--user img,
+      &--mobile-menu img {
         width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -230,7 +234,7 @@ const cartStore = useCartStore();
           }
         }
       }
-      &__mobile-menu {
+      &--mobile-menu {
         display: none;
         img {
           width: 24px;
@@ -247,13 +251,13 @@ const cartStore = useCartStore();
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    column-gap: 36px;
+    column-gap: 28px;
     row-gap: 4px;
     min-height: 64px;
     @media screen and (max-width: 768px) {
       display: none;
     }
-    &__link {
+    &--link {
       color: var(--color-link);
       text-decoration: none;
       display: inline-block;
@@ -281,7 +285,7 @@ const cartStore = useCartStore();
     }
   }
   &-dropdown {
-    &__overlay {
+    &--overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -292,7 +296,7 @@ const cartStore = useCartStore();
       background: rgba(34, 32, 46, 0.8);
       z-index: 70;
     }
-    &__container {
+    &--container {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -312,7 +316,7 @@ const cartStore = useCartStore();
         padding: 100px 24px 36px;
       }
     }
-    &__link {
+    &--link {
       display: block;
       font-size: 18px;
       color: var(--color-link);
@@ -325,23 +329,23 @@ const cartStore = useCartStore();
   }
 }
 
-.header-dropdown__container,
-.header-dropdown__overlay {
+.header-dropdown--container,
+.header-dropdown--overlay {
   transition: all 0.7s ease;
 }
 
-.dropdown-enter-active .header-dropdown__container,
-.dropdown-leave-active .header-dropdown__overlay {
+.dropdown-enter-active .header-dropdown--container,
+.dropdown-leave-active .header-dropdown--overlay {
   transition-delay: 0.3s;
 }
 
-.dropdown-enter-from .header-dropdown__overlay,
-.dropdown-leave-to .header-dropdown__overlay {
+.dropdown-enter-from .header-dropdown--overlay,
+.dropdown-leave-to .header-dropdown--overlay {
   opacity: 0;
 }
 
-.dropdown-enter-from .header-dropdown__container,
-.dropdown-leave-to .header-dropdown__container {
+.dropdown-enter-from .header-dropdown--container,
+.dropdown-leave-to .header-dropdown--container {
   -webkit-transform: translateX(100px);
   transform: translateX(100px);
   opacity: 0;

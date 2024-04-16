@@ -7,14 +7,18 @@
       <div>
         <h1 class="details-name">{{ product.name }}</h1>
         <div class="details-price" v-if="product.price">
-          <span class="price__sale" v-if="product.tags.includes('sale')">
+          <span
+            class="price__sale"
+            v-if="product.tags.includes('sale') && cartStore.discount"
+          >
             {{
               FormatToCurrency(Math.round(product.price * cartStore.discount))
             }}</span
           >
           <span
             :class="{
-              price__strikeout: product.tags.includes('sale'),
+              price__strikeout:
+                product.tags.includes('sale') && cartStore.discount,
             }"
           >
             {{ FormatToCurrency(product.price) }}</span
@@ -91,12 +95,22 @@
         <div>Added Quantity: {{ cartStore.counter }}</div>
         <div>
           Unit Price:
-          <span v-if="product.tags.includes('sale')">
+          <span
+            class="price__sale"
+            v-if="product.tags.includes('sale') && cartStore.discount"
+          >
             {{
               FormatToCurrency(Math.round(product.price * cartStore.discount))
             }}</span
           >
-          <span v-else> {{ FormatToCurrency(product.price) }}</span>
+          <span
+            :class="{
+              price__strikeout:
+                product.tags.includes('sale') && cartStore.discount,
+            }"
+          >
+            {{ FormatToCurrency(product.price) }}</span
+          >
         </div>
         <div>
           Total Cart:

@@ -1,93 +1,93 @@
 <template>
   <footer class="footer">
-    <div class="footer-content">
+    <div class="footer-container">
       <div class="footer-top">
         <div class="footer-menu">
-          <div class="footer-menu-column">
-            <span class="footer-menu__title">Menu</span>
+          <div class="footer-menu--column">
+            <span class="footer-menu--title">Menu</span>
             <ul>
               <li>
-                <router-link to="/products" class="footer-menu__link"
+                <router-link to="/products" class="footer-menu--link"
                   >All products</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/new" class="footer-menu__link"
+                <router-link to="/products/new" class="footer-menu--link"
                   >New arrivals</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/popular" class="footer-menu__link"
+                <router-link to="/products/popular" class="footer-menu--link"
                   >Best sellers</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/sale" class="footer-menu__link"
+                <router-link to="/products/sale" class="footer-menu--link"
                   >Last chance</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu--link"
                   >Gift cards</router-link
                 >
               </li>
             </ul>
           </div>
-          <div class="footer-menu-column">
-            <span class="footer-menu__title">Categories</span>
+          <div class="footer-menu--column">
+            <span class="footer-menu--title">Categories</span>
             <ul>
               <li>
-                <router-link to="/products/furniture" class="footer-menu__link"
+                <router-link to="/products/furniture" class="footer-menu--link"
                   >Furniture</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/lighting" class="footer-menu__link"
+                <router-link to="/products/lighting" class="footer-menu--link"
                   >Lighting</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/decoration" class="footer-menu__link"
+                <router-link to="/products/decoration" class="footer-menu--link"
                   >Decoration</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/tableware" class="footer-menu__link"
+                <router-link to="/products/tableware" class="footer-menu--link"
                   >Tableware</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/textiles" class="footer-menu__link"
+                <router-link to="/products/textiles" class="footer-menu--link"
                   >Textiles</router-link
                 >
               </li>
             </ul>
           </div>
-          <div class="footer-menu-column">
-            <span class="footer-menu__title">About us</span>
+          <div class="footer-menu--column">
+            <span class="footer-menu--title">About us</span>
             <ul>
               <li>
-                <router-link to="/about" class="footer-menu__link"
+                <router-link to="/about" class="footer-menu--link"
                   >Our story</router-link
                 >
               </li>
               <li>
-                <router-link to="/contact" class="footer-menu__link"
+                <router-link to="/contact" class="footer-menu--link"
                   >Get in touch</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu--link"
                   >Shipping information</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu--link"
                   >Returns & exchanges</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu__link"
+                <router-link to="/" class="footer-menu--link"
                   >Privacy policy</router-link
                 >
               </li>
@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="footer-subscribe">
-          <span class="footer-menu__title">Join our mailing list</span>
+          <span class="footer-menu--title">Join our mailing list</span>
           <SubscribeForm
             colorButton="white"
             bgInput="rgba(255, 255, 255, 0.15)"
@@ -104,26 +104,26 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-bottom__copyright"
+        <span class="footer-bottom--copyright"
           >Copyright {{ year }} Avion LTD</span
         >
-        <span class="footer-bottom-socials">
-          <a href="#" class="footer-bottom-socials__link">
+        <span class="footer-bottom--socials">
+          <a href="#">
             <img src="/svg/linkedin.svg" alt="linkedin" />
           </a>
-          <a href="#" class="footer-bottom-socials__link">
+          <a href="#">
             <img src="/svg/facebook.svg" alt="facebook" />
           </a>
-          <a href="#" class="footer-bottom-socials__link">
+          <a href="#">
             <img src="/svg/instagram.svg" alt="instagram" />
           </a>
-          <a href="#" class="footer-bottom-socials__link">
+          <a href="#">
             <img src="/svg/skype.svg" alt="skype" />
           </a>
-          <a href="#" class="footer-bottom-socials__link">
+          <a href="#">
             <img src="/svg/twitter.svg" alt="twitter" />
           </a>
-          <a href="#" class="footer-bottom-socials__link">
+          <a href="#">
             <img src="/svg/pinterest.svg" alt="pinterest" />
           </a>
         </span>
@@ -143,7 +143,7 @@ const year = date.getFullYear() || "2024";
 .footer {
   background: var(--dark-primary);
   color: var(--white);
-  &-content {
+  &-container {
     padding: 40px 0 20px;
     @media screen and (max-width: 768px) {
       padding: 20px 0;
@@ -169,7 +169,7 @@ const year = date.getFullYear() || "2024";
     @media screen and (max-width: 1024px) {
       margin-bottom: 40px;
     }
-    &__title {
+    &--title {
       display: block;
       font-family: var(--second-family);
       font-size: 18px;
@@ -177,7 +177,7 @@ const year = date.getFullYear() || "2024";
       line-height: 20px;
       margin-bottom: 12px;
     }
-    &__link {
+    &--link {
       color: var(--white);
       font-family: var(--font-family);
       font-size: 14px;
@@ -206,7 +206,7 @@ const year = date.getFullYear() || "2024";
         }
       }
     }
-    &-column {
+    &--column {
       li {
         margin-bottom: 12px;
         &:last-child {
@@ -227,7 +227,7 @@ const year = date.getFullYear() || "2024";
       display: block;
       text-align: center;
     }
-    &__copyright {
+    &--copyright {
       font-size: 14px;
       font-weight: 400;
       line-height: 19px;
@@ -236,16 +236,19 @@ const year = date.getFullYear() || "2024";
         margin-bottom: 20px;
       }
     }
-    &-socials {
+    &--socials {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px 20px;
       flex-wrap: wrap;
-      &__link {
+      a {
+        transition: all 0.3s ease;
         @media (any-pointer: fine) {
           &:hover {
-            opacity: 0.8;
+            opacity: 0.6;
+            transform: scale(1.2);
+            transition: all 0.3s ease;
           }
         }
         img {

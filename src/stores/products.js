@@ -10,13 +10,14 @@ export const HTTP = axios.create({
 
 export const useProductStore = defineStore("productStore", () => {
   const products = ref([]);
+
   const product = ref({});
   const productId = ref("");
   const productStock = ref("");
-  const categoryProducts = ref([]);
 
-  const category = ref("");
   const route = useRoute();
+  const category = ref("");
+  const categoryProducts = ref([]);
 
   const getProducts = async () => {
     try {
@@ -82,9 +83,9 @@ export const useProductStore = defineStore("productStore", () => {
     product,
     productId,
     productStock,
-    popularProducts,
     category,
     categoryProducts,
+    popularProducts,
     getProducts,
     getProduct,
     getCategoryProducts,

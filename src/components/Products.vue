@@ -8,14 +8,19 @@
         ><h4>{{ product.name }}</h4></router-link
       >
       <div class="product-price">
-        <span class="text price__sale" v-if="product.tags.includes('sale')">
+        <span
+          class="price__sale"
+          v-if="product.tags.includes('sale') && cartStore.discount"
+        >
           {{
             FormatToCurrency(Math.round(product.price * cartStore.discount))
           }}</span
         >
         <span
-          class="text"
-          :class="{ price__strikeout: product.tags.includes('sale') }"
+          :class="{
+            price__strikeout:
+              product.tags.includes('sale') && cartStore.discount,
+          }"
         >
           {{ FormatToCurrency(product.price) }}</span
         >

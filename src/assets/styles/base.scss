@@ -8,13 +8,10 @@
   --white: #fff;
   --light-gray: #f9f9f9;
   --border-gray: #ebe8f4;
-  --border-dark: rgb(202, 198, 218);
-
   --black: #22202e;
 
   --primary: #4e4d93;
   --dark-primary: #2a254b;
-
   --red: #cc0000;
 
   --color-link: #726e8d;
@@ -24,7 +21,7 @@
   --section-gap-mobile: 20px 0 40px;
 }
 
-// styles reset & body styles
+// style reset & body styles
 *,
 *::before,
 *::after {
@@ -153,7 +150,7 @@ p:not(:last-of-type) {
   border: none;
   @media screen and (max-width: 768px) {
     font-size: 14px;
-    padding: 0 10px;
+    padding: 0 16px;
   }
 }
 
@@ -163,7 +160,7 @@ p:not(:last-of-type) {
   }
   &__sale {
     color: var(--red);
-    margin-right: 12px;
+    margin-right: 8px;
   }
 }
 
@@ -195,16 +192,7 @@ p:not(:last-of-type) {
 }
 
 .main,
-.footer,
-.hero,
-.subscribe,
-.collection,
-.collection__title,
-.category,
-.category__title,
-.details,
-.cart,
-.contact {
+.footer {
   display: grid;
   grid-template-columns: minmax(1.5rem, 1fr) minmax(auto, 1280px) minmax(
       1.5rem,
@@ -212,6 +200,7 @@ p:not(:last-of-type) {
     );
 }
 
+//"full-screen" sections
 .hero,
 .subscribe,
 .collection,
@@ -222,8 +211,14 @@ p:not(:last-of-type) {
 .cart,
 .contact {
   grid-column: 1/4;
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) minmax(auto, 1280px) minmax(
+      1.5rem,
+      1fr
+    );
 }
 
+//"normal-size" sections
 .hero-info,
 .difference,
 .products-container,
@@ -231,6 +226,6 @@ p:not(:last-of-type) {
 .details-content,
 .story,
 .subscribe-content,
-.footer-content {
+.footer-container {
   grid-column: 2;
 }

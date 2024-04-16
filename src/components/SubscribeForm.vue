@@ -29,10 +29,9 @@
     <modal-content
       :open="isModalOpen"
       @close="isModalOpen = false"
-      title="Thank you for subscribing!"
+      title="Thank you for subscribing! "
+      >Your registration for newsletter is now complete.</modal-content
     >
-      Your registration is complete.
-    </modal-content>
   </teleport>
 </template>
 

@@ -21,15 +21,21 @@
               <span class="cart__item_name">{{ item.name }}</span>
             </router-link>
             <div>
-              <span class="price__sale" v-if="item.tags.includes('sale')">
+              <span
+                class="price__sale"
+                v-if="item.tags.includes('sale') && cartStore.discount"
+              >
                 {{
-                  FormatToCurrency(
-                    Math.round(item.price * cartStore.discount) || 0
-                  )
+                  FormatToCurrency(Math.round(item.price * cartStore.discount))
                 }}</span
               >
-              <span :class="{ price__strikeout: item.tags.includes('sale') }">
-                {{ FormatToCurrency(item.price || 0) }}</span
+              <span
+                :class="{
+                  price__strikeout:
+                    item.tags.includes('sale') && cartStore.discount,
+                }"
+              >
+                {{ FormatToCurrency(item.price) }}</span
               >
             </div>
           </td>
@@ -59,33 +65,10 @@
                 FormatToCurrency(
                   item.count *
                     Math.round(
-                      item.tags.includes("sale")
+                      item.tags.includes("sale") && cartStore.discount
                         ? item.price * cartStore.discount
                         : item.price
                     )
-                )
-              }}
-            </span>
-          </td>
-        </tr>
-
-        <tr v-if="!isValidPromo">
-          <td></td>
-          <td>
-            <div>
-              <span class="cart__item_name">{{ promo.birthday.name }}</span>
-            </div>
-          </td>
-          <td>
-            <div class="cart-delete" @click="isValidPromo = false">delete</div>
-          </td>
-          <td>
-            <span>
-              {{
-                FormatToCurrency(
-                  Math.round(
-                    cartStore.cartTotalPrice * promo.birthday.discount * -1
-                  )
                 )
               }}
             </span>
@@ -154,26 +137,15 @@ import { useCartStore } from "@/stores/cart.js";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 import { FormatToCurrency } from "@/utils/formatter";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 const cartStore = useCartStore();
 const isModalOpen = ref(false);
 
 const toCheckout = () => {
   isModalOpen.value = true;
+  cartStore.emptyCart();
 };
-
-const isValidPromo = ref(true);
-const promo = ref({
-  welcome: {
-    name: "10% welcome offer",
-    discount: 0.1,
-  },
-  birthday: {
-    name: "15% birthday present",
-    discount: 0.15,
-  },
-});
 </script>
 
 <style lang="scss" scoped>

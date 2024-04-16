@@ -10,6 +10,7 @@
         'btn--light-gray': color === 'light-gray',
         'btn--white': color === 'white',
         'btn--fullwidth': mobileFullWidth,
+        'btn--disabled': disabled,
       },
     ]"
   >
@@ -56,22 +57,26 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .btn {
   position: relative;
-  padding: 0 32px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
+  height: 56px;
+  min-width: 122px;
+  padding: 0 32px;
   border: none;
   font-size: 16px;
   font-family: var(--font-family);
-  height: 56px;
-  min-width: 122px;
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition: opacity 0.3s ease;
@@ -105,6 +110,11 @@ const props = defineProps({
     @media screen and (max-width: 768px) {
       width: 100%;
     }
+  }
+  &--disabled {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 }
 </style>

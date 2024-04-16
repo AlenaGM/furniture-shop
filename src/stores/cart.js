@@ -3,38 +3,38 @@ import { ref, computed, watch } from "vue";
 
 export const useCartStore = defineStore("cartStore", () => {
   const cart = ref([]);
-  const discount = ref(0.7);
-  const isModalOpen = ref(false);
 
   const counter = ref(1);
   const counterMsg = ref("");
+  const isModalOpen = ref(false);
+
+  const discount = ref(0.85);
 
   const cartInLocalStorage = localStorage.getItem("cart");
   if (cartInLocalStorage) {
     cart.value = JSON.parse(cartInLocalStorage)._value;
   }
 
-  const cartTotalItems = computed(() => {
-    let totalItems = 0;
-    for (let item of cart.value) {
-      totalItems += item.count;
-    }
-    return totalItems;
-  });
+  const decreaseCounter = () => {
+    counter.value <= 1 ? (counter.value = 1) : counter.value--;
+  };
 
-  const cartTotalPrice = computed(() => {
-    let totalPrice = 0;
+  const increaseCounter = (product) => {
+    const cartIndex = cart.value.findIndex((el) => el.id === product.id);
+    const itemsInCart = cart.value[cartIndex]?.count || 0;
+    const itemsRest = product.stock - itemsInCart;
 
-    for (let item of cart.value) {
-      totalPrice +=
-        item.count *
-        Math.round(
-          item.tags.includes("sale") ? item.price * discount.value : item.price
-        );
-    }
+    if (counter.value >= itemsRest) {
+      counter.value = itemsRest;
+      counterMsg.value = `${itemsRest} item(s) left in stock`;
+    } else counter.value++;
+  };
 
-    return totalPrice;
-  });
+  const updateCounter = () => {
+    counterMsg.value = "";
+    counter.value = 1;
+    isModalOpen.value = false;
+  };
 
   const addToCart = (product, count) => {
     const cartIndex = cart.value.findIndex((el) => el.id === product.id);
@@ -71,26 +71,31 @@ export const useCartStore = defineStore("cartStore", () => {
     cart.value.splice(index, 1);
   };
 
-  const decreaseCounter = () => {
-    counter.value <= 1 ? (counter.value = 1) : counter.value--;
+  const emptyCart = () => {
+    cart.value = [];
   };
 
-  const increaseCounter = (product) => {
-    const cartIndex = cart.value.findIndex((el) => el.id === product.id);
-    const itemsInCart = cart.value[cartIndex]?.count || 0;
-    const itemsRest = product.stock - itemsInCart;
+  const cartTotalItems = computed(() => {
+    let totalItems = 0;
+    for (let item of cart.value) {
+      totalItems += item.count;
+    }
+    return totalItems;
+  });
 
-    if (counter.value >= itemsRest) {
-      counter.value = itemsRest;
-      counterMsg.value = `${itemsRest} item(s) left in stock`;
-    } else counter.value++;
-  };
-
-  const updateCounter = () => {
-    counterMsg.value = "";
-    counter.value = 1;
-    isModalOpen.value = false;
-  };
+  const cartTotalPrice = computed(() => {
+    let totalPrice = 0;
+    for (let item of cart.value) {
+      totalPrice +=
+        item.count *
+        Math.round(
+          item.tags.includes("sale") && discount.value
+            ? item.price * discount.value
+            : item.price
+        );
+    }
+    return totalPrice;
+  });
 
   watch(
     () => cart,
@@ -104,16 +109,17 @@ export const useCartStore = defineStore("cartStore", () => {
     cart,
     counter,
     counterMsg,
-    discount,
     isModalOpen,
+    discount,
     cartTotalItems,
     cartTotalPrice,
+    decreaseCounter,
+    increaseCounter,
+    updateCounter,
     addToCart,
     addItem,
     deleteItem,
     deleteFromCart,
-    decreaseCounter,
-    increaseCounter,
-    updateCounter,
+    emptyCart,
   };
 });

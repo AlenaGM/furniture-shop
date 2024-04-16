@@ -5,6 +5,7 @@
       <div>
         <div class="form__input">
           <input
+            class="input"
             type="text"
             name="user_name"
             placeholder="Name"
@@ -20,6 +21,7 @@
         </div>
         <div class="form__input">
           <input
+            class="input"
             type="email"
             name="user_email"
             maxlength="254"
@@ -37,6 +39,7 @@
 
       <div class="form__textarea">
         <textarea
+          class="input"
           name="message"
           maxlength="1001"
           placeholder="Your message"
@@ -241,18 +244,11 @@ const resetForm = () => {
   &__textarea {
     display: flex;
     flex-direction: column;
-    background-color: var(--white);
     input,
     textarea {
-      padding: 24px 32px;
-      font-family: inherit;
-      font-weight: inherit;
-      font-size: 18px;
-      line-height: 150%;
       text-decoration: none;
       color: var(--dark-primary);
       width: 100%;
-      border: none;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       &:focus {
         outline: none;
@@ -265,6 +261,10 @@ const resetForm = () => {
     textarea {
       min-height: 240px;
       resize: vertical;
+      padding: 20px 32px;
+      @media screen and (max-width: 768px) {
+        padding: 20px 16px;
+      }
     }
   }
   &__input {
@@ -276,7 +276,6 @@ const resetForm = () => {
     justify-content: center;
   }
   &__error {
-    margin-top: 4px;
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;

@@ -7,7 +7,7 @@
 
 <script setup>
 import ProductDetails from "@/components/ProductDetails.vue";
+import PopularProducts from "@/components/PopularProducts.vue";
 import Difference from "@/components/Difference.vue";
 import Subscribe from "@/components/Subscribe.vue";
-import PopularProducts from "@/components/PopularProducts.vue";
 </script>

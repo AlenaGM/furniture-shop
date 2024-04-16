@@ -4,8 +4,8 @@
       <div class="modal-overlay" @click="$emit('close')">
         <div class="modal-container" @click.stop v-scroll-lock="open">
           <div class="modal-header">
-            <h3 class="modal-header__title">{{ title }}</h3>
-            <div class="modal-header__close" @click="$emit('close')">
+            <h3 class="modal-header--title">{{ title }}</h3>
+            <div class="modal-header--close" @click="$emit('close')">
               <img src="/svg/menu-close.svg" alt="modal-close" />
             </div>
           </div>
@@ -13,10 +13,10 @@
             <slot></slot>
           </div>
           <div class="modal-footer">
-            <ui-button type="link" :to="to || '/'" v-if="link">
+            <ui-button type="link" :to="to || '/'" v-if="link" mobileFullWidth>
               {{ link }}
             </ui-button>
-            <ui-button @click="$emit('close')" type="button">
+            <ui-button @click="$emit('close')" type="button" mobileFullWidth>
               {{ btn }}
             </ui-button>
           </div>
@@ -89,7 +89,7 @@ const props = defineProps({
     display: grid;
     grid-template-columns: 1fr auto;
     width: 100%;
-    &__title {
+    &--title {
       text-align: center;
       padding-left: 24px;
       @media screen and (max-width: 768px) {
@@ -97,7 +97,7 @@ const props = defineProps({
         padding-left: 0;
       }
     }
-    &__close {
+    &--close {
       cursor: pointer;
     }
   }
@@ -110,6 +110,7 @@ const props = defineProps({
     margin-bottom: 40px;
     text-align: left;
     align-items: center;
+    justify-items: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(194px, 1fr));
     gap: 20px;
