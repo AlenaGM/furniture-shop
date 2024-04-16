@@ -42,7 +42,6 @@ body {
   line-height: 1.5;
   color: var(--dark-primary);
   background-color: var(--white);
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -168,9 +167,10 @@ p:not(:last-of-type) {
 #app {
   display: grid;
   overflow: hidden;
-  width: 100%;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
+  overflow-x: hidden;
+
   justify-content: center;
   grid-template: auto 1fr auto / minmax(auto, 1440px);
   grid-template-areas:
