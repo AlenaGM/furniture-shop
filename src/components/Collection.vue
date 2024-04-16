@@ -1,9 +1,9 @@
 <template>
   <div class="collection">
-    <div class="collection__title">
+    <div class="collection_title">
       <h1>All Products</h1>
     </div>
-    <div class="products-container">
+    <div class="products_container">
       <Products :products="productStore.products" />
     </div>
   </div>
@@ -28,7 +28,7 @@ onMounted(() => {
   @media screen and (max-width: 768px) {
     grid-template-rows: minmax(146px, auto) 1fr;
   }
-  &__title {
+  &_title {
     grid-row: 1;
     display: grid;
     background: url("/img/allproducts.jpg");
@@ -47,10 +47,6 @@ onMounted(() => {
       margin: 0;
       text-align: left;
       color: var(--white);
-      font-family: var(--second-family);
-      font-size: 36px;
-      font-weight: 400;
-      line-height: 140%;
       padding: 0;
       @media screen and (max-width: 768px) {
         font-size: 32px;
@@ -61,7 +57,7 @@ onMounted(() => {
 }
 
 .products {
-  &-container {
+  &_container {
     grid-row: 2;
     margin: var(--section-gap);
     @media screen and (max-width: 768px) {

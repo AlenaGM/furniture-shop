@@ -1,101 +1,101 @@
 <template>
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-menu">
-          <div class="footer-menu--column">
-            <span class="footer-menu--title">Menu</span>
+    <div class="footer_container">
+      <div class="footer_top">
+        <div class="footer_menu">
+          <div class="footer_menu__column">
+            <span class="footer_menu__title">Menu</span>
             <ul>
               <li>
-                <router-link to="/products" class="footer-menu--link"
+                <router-link to="/products" class="footer_menu__link"
                   >All products</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/new" class="footer-menu--link"
+                <router-link to="/products/new" class="footer_menu__link"
                   >New arrivals</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/popular" class="footer-menu--link"
+                <router-link to="/products/popular" class="footer_menu__link"
                   >Best sellers</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/sale" class="footer-menu--link"
+                <router-link to="/products/sale" class="footer_menu__link"
                   >Last chance</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu--link"
+                <router-link to="/" class="footer_menu__link"
                   >Gift cards</router-link
                 >
               </li>
             </ul>
           </div>
-          <div class="footer-menu--column">
-            <span class="footer-menu--title">Categories</span>
+          <div class="footer_menu__column">
+            <span class="footer_menu__title">Categories</span>
             <ul>
               <li>
-                <router-link to="/products/furniture" class="footer-menu--link"
+                <router-link to="/products/furniture" class="footer_menu__link"
                   >Furniture</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/lighting" class="footer-menu--link"
+                <router-link to="/products/lighting" class="footer_menu__link"
                   >Lighting</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/decoration" class="footer-menu--link"
+                <router-link to="/products/decoration" class="footer_menu__link"
                   >Decoration</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/tableware" class="footer-menu--link"
+                <router-link to="/products/tableware" class="footer_menu__link"
                   >Tableware</router-link
                 >
               </li>
               <li>
-                <router-link to="/products/textiles" class="footer-menu--link"
+                <router-link to="/products/textiles" class="footer_menu__link"
                   >Textiles</router-link
                 >
               </li>
             </ul>
           </div>
-          <div class="footer-menu--column">
-            <span class="footer-menu--title">About us</span>
+          <div class="footer_menu__column">
+            <span class="footer_menu__title">About us</span>
             <ul>
               <li>
-                <router-link to="/about" class="footer-menu--link"
+                <router-link to="/about" class="footer_menu__link"
                   >Our story</router-link
                 >
               </li>
               <li>
-                <router-link to="/contact" class="footer-menu--link"
+                <router-link to="/contact" class="footer_menu__link"
                   >Get in touch</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu--link"
+                <router-link to="/" class="footer_menu__link"
                   >Shipping information</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu--link"
+                <router-link to="/" class="footer_menu__link"
                   >Returns & exchanges</router-link
                 >
               </li>
               <li>
-                <router-link to="/" class="footer-menu--link"
+                <router-link to="/" class="footer_menu__link"
                   >Privacy policy</router-link
                 >
               </li>
             </ul>
           </div>
         </div>
-        <div class="footer-subscribe">
-          <span class="footer-menu--title">Join our mailing list</span>
+        <div class="footer_subscribe">
+          <span class="footer_menu__title">Join our mailing list</span>
           <SubscribeForm
             colorButton="white"
             bgInput="rgba(255, 255, 255, 0.15)"
@@ -103,11 +103,11 @@
           />
         </div>
       </div>
-      <div class="footer-bottom">
-        <span class="footer-bottom--copyright"
+      <div class="footer_bottom">
+        <span class="footer_bottom__copyright"
           >Copyright {{ year }} Avion LTD</span
         >
-        <span class="footer-bottom--socials">
+        <span class="footer_bottom__socials">
           <a href="#">
             <img src="/svg/linkedin.svg" alt="linkedin" />
           </a>
@@ -143,13 +143,13 @@ const year = date.getFullYear() || "2024";
 .footer {
   background: var(--dark-primary);
   color: var(--white);
-  &-container {
+  &_container {
     padding: 40px 0 20px;
     @media screen and (max-width: 768px) {
       padding: 20px 0;
     }
   }
-  &-top {
+  &_top {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 20px;
@@ -160,7 +160,7 @@ const year = date.getFullYear() || "2024";
       padding-bottom: 20px;
     }
   }
-  &-menu {
+  &_menu {
     display: grid;
     column-gap: 20px;
     row-gap: 40px;
@@ -169,7 +169,7 @@ const year = date.getFullYear() || "2024";
     @media screen and (max-width: 1024px) {
       margin-bottom: 40px;
     }
-    &--title {
+    &__title {
       display: block;
       font-family: var(--second-family);
       font-size: 18px;
@@ -177,7 +177,7 @@ const year = date.getFullYear() || "2024";
       line-height: 20px;
       margin-bottom: 12px;
     }
-    &--link {
+    &__link {
       color: var(--white);
       font-family: var(--font-family);
       font-size: 14px;
@@ -206,7 +206,7 @@ const year = date.getFullYear() || "2024";
         }
       }
     }
-    &--column {
+    &__column {
       li {
         margin-bottom: 12px;
         &:last-child {
@@ -215,11 +215,11 @@ const year = date.getFullYear() || "2024";
       }
     }
   }
-  &-subscribe {
+  &_subscribe {
     display: flex;
     flex-direction: column;
   }
-  &-bottom {
+  &_bottom {
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -227,7 +227,7 @@ const year = date.getFullYear() || "2024";
       display: block;
       text-align: center;
     }
-    &--copyright {
+    &__copyright {
       font-size: 14px;
       font-weight: 400;
       line-height: 19px;
@@ -236,7 +236,7 @@ const year = date.getFullYear() || "2024";
         margin-bottom: 20px;
       }
     }
-    &--socials {
+    &__socials {
       display: flex;
       align-items: center;
       justify-content: center;

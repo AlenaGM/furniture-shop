@@ -1,18 +1,18 @@
 <template>
   <Transition name="modal" :duration="1000">
-    <div class="modal-wrapper" v-if="open">
-      <div class="modal-overlay" @click="$emit('close')">
-        <div class="modal-container" @click.stop v-scroll-lock="open">
-          <div class="modal-header">
-            <h3 class="modal-header--title">{{ title }}</h3>
-            <div class="modal-header--close" @click="$emit('close')">
+    <div class="modal_wrapper" v-if="open">
+      <div class="modal_overlay" @click="$emit('close')">
+        <div class="modal_container" @click.stop v-scroll-lock="open">
+          <div class="modal_header">
+            <h3 class="modal_header__title">{{ title }}</h3>
+            <div class="modal_header__close" @click="$emit('close')">
               <img src="/svg/menu-close.svg" alt="modal-close" />
             </div>
           </div>
-          <div class="modal-body">
+          <div class="modal_body">
             <slot></slot>
           </div>
-          <div class="modal-footer">
+          <div class="modal_footer">
             <ui-button type="link" :to="to || '/'" v-if="link" mobileFullWidth>
               {{ link }}
             </ui-button>
@@ -54,7 +54,7 @@ const props = defineProps({
 
 <style lang="scss">
 .modal {
-  &-overlay {
+  &_overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,7 +68,7 @@ const props = defineProps({
     background: rgba(34, 32, 46, 0.8);
     z-index: 120;
   }
-  &-container {
+  &_container {
     position: relative;
     display: grid;
     grid-template: auto 1fr minmax(56px, auto) / 1fr;
@@ -85,11 +85,11 @@ const props = defineProps({
       padding: 24px;
     }
   }
-  &-header {
+  &_header {
     display: grid;
     grid-template-columns: 1fr auto;
     width: 100%;
-    &--title {
+    &__title {
       text-align: center;
       padding-left: 24px;
       @media screen and (max-width: 768px) {
@@ -97,11 +97,11 @@ const props = defineProps({
         padding-left: 0;
       }
     }
-    &--close {
+    &__close {
       cursor: pointer;
     }
   }
-  &-body {
+  &_body {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;
@@ -125,30 +125,30 @@ const props = defineProps({
       margin-bottom: 24px;
     }
   }
-  &-footer {
+  &_footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(194px, 1fr));
     gap: 20px;
   }
 }
 
-.modal-container,
-.modal-overlay {
+.modal_container,
+.modal_overlay {
   transition: all 0.7s ease;
 }
 
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-overlay {
+.modal-enter-active .modal_container,
+.modal-leave-active .modal_overlay {
   transition-delay: 0.3s;
 }
 
-.modal-enter-from .modal-overlay,
-.modal-leave-to .modal-overlay {
+.modal-enter-from .modal_overlay,
+.modal-leave-to .modal_overlay {
   opacity: 0;
 }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
+.modal-enter-from .modal_container,
+.modal-leave-to .modal_container {
   -webkit-transform: translateY(-30px);
   transform: translateY(-30px);
   opacity: 0;

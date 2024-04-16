@@ -67,7 +67,7 @@ export const useCartStore = defineStore("cartStore", () => {
       : cart.value[index].count--;
   };
 
-  const deleteFromCart = (index) => {
+  const removeFromCart = (index) => {
     cart.value.splice(index, 1);
   };
 
@@ -119,7 +119,7 @@ export const useCartStore = defineStore("cartStore", () => {
     addToCart,
     addItem,
     deleteItem,
-    deleteFromCart,
+    removeFromCart,
     emptyCart,
   };
 });

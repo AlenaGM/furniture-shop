@@ -7,7 +7,7 @@
 
   --white: #fff;
   --light-gray: #f9f9f9;
-  --border-gray: #ebe8f4;
+  --border-gray: #bcb9c3;
   --black: #22202e;
 
   --primary: #4e4d93;
@@ -204,9 +204,9 @@ p:not(:last-of-type) {
 .hero,
 .subscribe,
 .collection,
-.collection__title,
+.collection_title,
 .category,
-.category__title,
+.category_title,
 .details,
 .cart,
 .contact {
@@ -221,11 +221,11 @@ p:not(:last-of-type) {
 //"normal-size" sections
 .hero-info,
 .difference,
-.products-container,
+.products_container,
 .idea,
 .details-content,
 .story,
 .subscribe-content,
-.footer-container {
+.footer_container {
   grid-column: 2;
 }

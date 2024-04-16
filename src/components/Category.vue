@@ -1,15 +1,17 @@
 <template>
   <div class="category">
-    <div class="category__title">
+    <div class="category_title">
       <h1>
         {{
           productStore.category === "new"
             ? productStore.category + " arrivals"
+            : productStore.category === "popular"
+            ? productStore.category + " products"
             : productStore.category
         }}
       </h1>
     </div>
-    <div class="products-container">
+    <div class="products_container">
       <Products :products="productStore.categoryProducts" />
     </div>
   </div>
@@ -34,7 +36,7 @@ onMounted(() => {
   @media screen and (max-width: 768px) {
     grid-template-rows: minmax(146px, auto) 1fr;
   }
-  &__title {
+  &_title {
     grid-row: 1;
     display: grid;
     background: url("/img/allproducts.jpg");
@@ -53,10 +55,6 @@ onMounted(() => {
       margin: 0;
       text-align: left;
       color: var(--white);
-      font-family: var(--second-family);
-      font-size: 36px;
-      font-weight: 400;
-      line-height: 140%;
       padding: 0;
       text-transform: capitalize;
       @media screen and (max-width: 768px) {
@@ -68,7 +66,7 @@ onMounted(() => {
 }
 
 .products {
-  &-container {
+  &_container {
     grid-row: 2;
     margin: var(--section-gap);
     @media screen and (max-width: 768px) {

@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
-    <h1 class="cart__title">Shopping cart</h1>
-    <table class="cart__table table" v-if="cartStore.cart.length">
+    <h1 class="cart_title">Shopping cart</h1>
+    <table class="cart_table table" v-if="cartStore.cart.length">
       <thead>
         <tr>
           <th>Product</th>
@@ -10,17 +10,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in cartStore.cart" :key="item.id">
+        <tr
+          v-for="(item, index) in cartStore.cart"
+          :key="item.id"
+          class="cart_item item"
+        >
           <td>
-            <router-link :to="`/products/${item.id}`">
+            <router-link :to="`/products/${item.id}`" class="item_image">
               <img :src="item.img" :alt="item.name" />
             </router-link>
           </td>
           <td>
-            <router-link :to="`/products/${item.id}`">
-              <span class="cart__item_name">{{ item.name }}</span>
+            <router-link :to="`/products/${item.id}`" class="item_name">
+              <span>{{ item.name }}</span>
             </router-link>
-            <div>
+            <div class="item_price price">
               <span
                 class="price__sale"
                 v-if="item.tags.includes('sale') && cartStore.discount"
@@ -40,27 +44,27 @@
             </div>
           </td>
           <td>
-            <div class="cart-quantity">
+            <div class="item_quantity">
               <span
-                class="cart-quantity-symbol"
+                class="item_quantity__symbol"
                 @click="cartStore.deleteItem(index)"
               >
                 -
               </span>
-              <span class="cart-quantity-value">{{ item.count }}</span>
+              <span class="item_quantity__value">{{ item.count }}</span>
               <span
-                class="cart-quantity-symbol"
+                class="item_quantity__symbol"
                 @click="cartStore.addItem(index, item.stock)"
               >
                 +
               </span>
             </div>
-            <div class="cart-delete" @click="cartStore.deleteFromCart(index)">
+            <div class="item_remove" @click="cartStore.deleteFromCart(index)">
               delete
             </div>
           </td>
           <td>
-            <span>
+            <span class="item_total">
               {{
                 FormatToCurrency(
                   item.count *
@@ -77,7 +81,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <th class="table__total">
+          <th class="cart_total">
             <span>Subtotal</span>
             {{ FormatToCurrency(cartStore.cartTotalPrice) }}
             <div>Taxes and shipping are calculated at checkout</div>
@@ -85,9 +89,9 @@
         </tr>
       </tfoot>
     </table>
-    <div class="cart__emptyMessage" v-else>Your shopping cart is empty</div>
+    <div class="cart_emptyMessage" v-else>Your shopping cart is empty</div>
     <ui-button
-      class="cart__order"
+      class="cart_order"
       :mobileFullWidth="true"
       v-if="cartStore.cart.length"
       @click="toCheckout"
@@ -95,7 +99,7 @@
       Go to checkout
     </ui-button>
     <ui-button
-      class="cart__order"
+      class="cart_order"
       type="link"
       to="/products"
       :mobileFullWidth="true"
@@ -133,11 +137,11 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useCartStore } from "@/stores/cart.js";
+import { FormatToCurrency } from "@/utils/formatter";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
-import { FormatToCurrency } from "@/utils/formatter";
-import { ref } from "vue";
 
 const cartStore = useCartStore();
 const isModalOpen = ref(false);
@@ -151,7 +155,8 @@ const toCheckout = () => {
 <style lang="scss" scoped>
 .cart {
   background: var(--light-gray);
-  &__title {
+  line-height: 140%;
+  &_title {
     grid-column: 2;
     grid-row: 1;
     padding: 80px 0 32px;
@@ -160,7 +165,35 @@ const toCheckout = () => {
       padding: 40px 0 16px;
     }
   }
-  &__emptyMessage {
+  &_table {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    padding: 48px 64px;
+    background-color: var(--white);
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--dark-primary);
+    @media screen and (max-width: 768px) {
+      padding: 0 24px;
+    }
+    @media screen and (max-width: 540px) {
+      font-size: 16px;
+    }
+  }
+  &_total {
+    font-family: var(--font-family);
+    font-size: 24px;
+    span {
+      font-family: var(--second-family);
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  &_emptyMessage {
     grid-column: 2;
     grid-row: 2;
     display: flex;
@@ -178,24 +211,7 @@ const toCheckout = () => {
       margin: var(--section-gap-mobile);
     }
   }
-  &__table {
-    grid-column: 2;
-    padding: 48px 64px;
-    background-color: var(--white);
-    grid-row: 2;
-    width: 100%;
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 150%;
-    text-decoration: none;
-    color: var(--dark-primary);
-    @media screen and (max-width: 768px) {
-      font-size: 16px;
-      padding: 0 24px;
-    }
-  }
-  &__order {
+  &_order {
     grid-column: 2;
     grid-row: 3;
     margin: var(--section-gap);
@@ -204,7 +220,152 @@ const toCheckout = () => {
       margin: var(--section-gap-mobile);
     }
   }
-  &-quantity {
+}
+
+.table {
+  tr {
+    display: grid;
+    grid-template: 1fr / repeat(5, 1fr);
+    column-gap: 20px;
+    padding: 20px 0;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr 2fr;
+      row-gap: 20px;
+    }
+    @media screen and (max-width: 540px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  thead {
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      line-height: 140%;
+      font-size: 20px;
+    }
+    th {
+      &:first-of-type {
+        grid-column: span 3;
+        justify-self: start;
+      }
+      &:last-of-type {
+        justify-self: end;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    td {
+      &:first-of-type {
+        display: flex;
+      }
+      &:nth-of-type(2) {
+        grid-column: span 2;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+        @media screen and (max-width: 768px) {
+          grid-column: span 1;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: baseline;
+          justify-content: space-between;
+        }
+        @media screen and (max-width: 450px) {
+          flex-direction: column;
+        }
+      }
+      &:nth-of-type(3) {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+        align-items: center;
+        @media screen and (max-width: 540px) {
+          align-items: flex-start;
+        }
+      }
+      &:last-of-type {
+        display: inline-flex;
+        justify-self: end;
+      }
+    }
+  }
+  tfoot {
+    th {
+      grid-column: span 5;
+      justify-self: end;
+      align-self: start;
+      line-height: 140%;
+      text-decoration: none;
+      text-align: right;
+      div {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--color-text);
+        @media screen and (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.item {
+  align-items: center;
+  &_image {
+    img {
+      max-width: 180px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+  &_name {
+    text-decoration: none;
+    color: var(--dark-primary);
+    span {
+      font-size: 24px;
+      line-height: 140%;
+      margin-right: 6px;
+      @media screen and (max-width: 900px) {
+        font-size: 20px;
+      }
+      &::after {
+        content: "";
+        background: var(--dark-primary);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 1.5px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+  &_price {
+    span {
+      font-family: var(--font-family);
+    }
+  }
+  &_quantity {
     background: var(--light-gray);
     width: 122px;
     height: 46px;
@@ -212,13 +373,16 @@ const toCheckout = () => {
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
-    &-symbol {
+    font-family: var(--font-family);
+    &__symbol {
       color: var(--border-gray);
       cursor: pointer;
     }
   }
-  &-delete {
+  &_remove {
     display: block;
+    font-family: var(--font-family);
+    font-size: 16px;
     &::after {
       content: "";
       background: var(--dark-primary);
@@ -239,384 +403,12 @@ const toCheckout = () => {
         }
       }
     }
+    @media screen and (max-width: 540px) {
+      display: none;
+    }
   }
-}
-
-.table {
-  color: var(--dark-primary);
-  span {
+  &_total {
     font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 150%;
-    @media screen and (max-width: 768px) {
-      font-size: 14px;
-    }
-  }
-  tr {
-    display: grid;
-    grid-template: 1fr / repeat(5, 1fr);
-    column-gap: 20px;
-    padding: 20px 0;
-    align-items: center;
-    @media screen and (max-width: 768px) {
-      font-size: 16px;
-      grid-template-columns: 1fr 2fr;
-      row-gap: 20px;
-    }
-    @media screen and (max-width: 420px) {
-      grid-template-columns: 1fr;
-      row-gap: 20px;
-    }
-  }
-  thead {
-    tr {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      font-family: var(--second-family);
-      font-size: 18px;
-      line-height: 140%;
-      color: var(--dark-primary);
-      padding: 20px 0;
-      @media screen and (max-width: 768px) {
-        font-size: 16px;
-      }
-    }
-    th {
-      &:first-of-type {
-        grid-column: span 3;
-        justify-self: start;
-      }
-      &:last-of-type {
-        justify-self: end;
-      }
-    }
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-  }
-  tbody {
-    tr {
-      font-family: var(--font-family);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 150%;
-      color: var(--dark-primary);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
-    td {
-      &:first-of-type {
-        img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          cursor: pointer;
-        }
-      }
-      &:nth-of-type(2) {
-        grid-column: span 2;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        row-gap: 6px;
-        font-size: 18px;
-        @media screen and (max-width: 768px) {
-          grid-column: span 1;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-items: baseline;
-          justify-content: space-between;
-        }
-        a {
-          text-decoration: none;
-          color: var(--dark-primary);
-          span {
-            font-family: var(--second-family);
-            font-size: 24px;
-            line-height: 140%;
-            color: var(--dark-primary);
-            margin-right: 6px;
-            @media screen and (max-width: 768px) {
-              font-size: 20px;
-            }
-            &::after {
-              content: "";
-              background: var(--dark-primary);
-              position: absolute;
-              bottom: 0;
-              left: 50%;
-              height: 1.5px;
-              width: 0;
-              transform: translateX(-50%);
-              transition: width 0.3s ease;
-            }
-            @media (any-pointer: fine) {
-              &:hover {
-                cursor: pointer;
-                &::after {
-                  width: 100%;
-                  transition: width 0.3s ease;
-                }
-              }
-            }
-          }
-        }
-        div:nth-of-type(2) {
-          font-size: 14px;
-        }
-      }
-      &:nth-of-type(3) {
-        display: flex;
-        flex-direction: column;
-        row-gap: 12px;
-        align-items: center;
-        @media screen and (max-width: 420px) {
-          align-items: flex-start;
-          .cart-delete {
-            display: none;
-          }
-        }
-      }
-      &:last-of-type {
-        display: inline-flex;
-        justify-self: end;
-        span {
-          font-size: 18px;
-        }
-      }
-    }
-  }
-  tfoot {
-    th {
-      grid-column: span 5;
-      justify-self: end;
-      align-self: start;
-      font-family: var(--font-family);
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 140%;
-      color: var(--dark-primary);
-      text-decoration: none;
-      text-align: right;
-      @media screen and (max-width: 768px) {
-        font-size: 20px;
-      }
-      span {
-        padding-right: 10px;
-        font-size: 24px;
-        font-family: var(--second-family);
-        @media screen and (max-width: 768px) {
-          font-size: 20px;
-        }
-      }
-      div {
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 150%;
-        color: var(--color-text);
-        @media screen and (max-width: 768px) {
-          font-size: 14px;
-        }
-      }
-    }
   }
 }
-
-/*
-.table {
-
-  tr {
-    display: grid;
-    grid-template: 1fr/ 160px minmax(250px, 1fr) 120px 140px;
-    column-gap: 40px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--third-black);
-    align-items: center;
-    justify-items: start;
-  }
-  td {
-    &:first-of-type {
-      img {
-        width: 100%;
-        max-width: 160px;
-        cursor: pointer;
-      }
-    }
-    &:nth-of-type(2) {
-      a {
-        display: block;
-        text-decoration: none;
-        color: var(--dark-primary);
-        &::after {
-          content: "";
-          background: var(--dark-primary);
-          position: absolute;
-          bottom: 2px;
-          left: 50%;
-          height: 1.5px;
-          width: 0;
-          transform: translateX(-50%);
-          transition: width 0.3s ease;
-        }
-        @media (any-pointer: fine) {
-          &:hover {
-            cursor: pointer;
-            &::after {
-              width: 100%;
-              transition: width 0.3s ease;
-            }
-          }
-        }
-      }
-      div:nth-of-type(2) {
-        font-size: 14px;
-      }
-    }
-    &:nth-of-type(3) {
-      display: inline-flex;
-      justify-self: center;
-    }
-    &:last-of-type {
-      display: inline-flex;
-      justify-self: center;
-      display: block;
-      text-decoration: none;
-      color: var(--dark-primary);
-      &::after {
-        content: "";
-        background: var(--dark-primary);
-        position: absolute;
-        bottom: 2px;
-        left: 50%;
-        height: 1.5px;
-        width: 0;
-        transform: translateX(-50%);
-        transition: width 0.3s ease;
-      }
-      @media (any-pointer: fine) {
-        &:hover {
-          cursor: pointer;
-          &::after {
-            width: 100%;
-            transition: width 0.3s ease;
-          }
-        }
-      }
-    }
-  }
-  th {
-    &:nth-of-type(3) {
-      display: inline-flex;
-      justify-self: center;
-    }
-    &:last-of-type {
-      display: inline-flex;
-      justify-self: center;
-    }
-  }
-  thead,
-  tfoot {
-    border: 2px solid red;
-  }
-  thead {
-    tr {
-      padding: 8px 0;
-    }
-  }
-  tfoot {
-    span {
-      font-size: 18px;
-      font-weight: 600;
-    }
-    tr {
-      grid-template-columns: 160px minmax(250px, 1fr) 120px 140px;
-      grid-template-areas: ". total-label total-sum .";
-      th {
-        &:first-of-type {
-          grid-area: total-label;
-          display: inline-flex;
-          justify-self: flex-end;
-        }
-        &:last-of-type {
-          grid-area: total-sum;
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 850px) {
-    thead {
-      display: none;
-    }
-    tbody {
-      tr {
-        grid-template-columns: 160px minmax(120px, 1fr) minmax(140px, 1fr);
-        grid-template-areas:
-          "item-img item-info item-info"
-          "item-img item-price item-del";
-        gap: 20px;
-        &:first-of-type {
-          border-top: 1px solid var(--third-black);
-        }
-      }
-      td {
-        &:first-of-type {
-          grid-area: item-img;
-        }
-        &:nth-of-type(2) {
-          grid-area: item-info;
-        }
-        &:nth-of-type(3) {
-          grid-area: item-price;
-          display: inline-flex;
-          justify-self: flex-start;
-        }
-        &:last-of-type {
-          grid-area: item-del;
-          display: inline-flex;
-          justify-self: flex-end;
-        }
-      }
-    }
-    tfoot {
-      tr {
-        grid-template-columns: minmax(280px, 1fr) minmax(140px, 1fr);
-        grid-template-areas: "total-label total-sum";
-        gap: 20px;
-        th:last-of-type {
-          display: inline-flex;
-          justify-self: flex-start;
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 560px) {
-    tbody {
-      tr {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-          "item-img item-img"
-          "item-info item-info"
-          "item-price item-del";
-      }
-    }
-    tfoot {
-      tr {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "total-label"
-          "total-sum";
-        gap: 0px;
-        th:first-of-type {
-          justify-self: flex-start;
-        }
-      }
-    }
-  }
-}*/
 </style>

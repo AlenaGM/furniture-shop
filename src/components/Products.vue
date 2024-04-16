@@ -1,13 +1,13 @@
 <template>
   <div class="products">
     <div class="product" v-for="product of products">
-      <router-link :to="`/products/${product.id}`">
-        <img :src="product.img" :alt="product.name" class="product-image" />
+      <router-link :to="`/products/${product.id}`" class="product_image">
+        <img :src="product.img" :alt="product.name" />
       </router-link>
-      <router-link :to="`/products/${product.id}`" class="product-name"
+      <router-link :to="`/products/${product.id}`" class="product_name"
         ><h4>{{ product.name }}</h4></router-link
       >
-      <div class="product-price">
+      <div class="product_price price">
         <span
           class="price__sale"
           v-if="product.tags.includes('sale') && cartStore.discount"
@@ -44,11 +44,11 @@ const props = defineProps({
 <style lang="scss" scoped>
 .products {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 20px;
   margin-bottom: 80px;
   @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
   }
   @media screen and (max-width: 768px) {
@@ -57,12 +57,21 @@ const props = defineProps({
 }
 
 .product {
-  &-image {
-    display: block;
-    margin-bottom: 20px;
-    object-fit: cover;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template: auto 1fr minmax(24px, auto) / 1fr;
+  justify-items: center;
+  &_image {
+    position: relative;
+    margin: 0px 0px 12px 0px;
+    img {
+      max-width: 240px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-  &-name {
+  &_name {
     display: inline-block;
     text-decoration: none;
     &::after {
@@ -86,7 +95,7 @@ const props = defineProps({
       }
     }
   }
-  &-price {
+  &_price {
     display: block;
   }
 }

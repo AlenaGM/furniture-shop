@@ -1,29 +1,29 @@
 <template>
   <header class="header">
-    <div class="header-top">
-      <div class="header-top-left">
-        <router-link to="/" class="header-top-left--logo">
+    <div class="header_top">
+      <div class="header_top-left">
+        <router-link to="/" class="header_top-left__logo">
           <img src="/favicon/favicon.ico" alt="logo" />
         </router-link>
       </div>
       <router-link
         to="/"
-        class="header-top-center"
+        class="header_top-center"
         @click="isMobileMenuOpen = false"
         ><div>Avion</div></router-link
       >
-      <div class="header-top-right">
-        <div class="header-top-right--user" @click="onUserClick">
+      <div class="header_top-right">
+        <div class="header_top-right__user" @click="onUserClick">
           <!--<router-link to="/" @click="onUserClick">
             <img src="/svg/header-user.svg" alt="user" />
           </router-link>-->
           <img src="/svg/header-user.svg" alt="user" />
         </div>
-        <div class="header-top-right--cart">
+        <div class="header_top-right__cart">
           <router-link to="/cart" @click="isMobileMenuOpen = false">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span
-              class="header-top-right--cart--count"
+              class="header_top-right__cart-count"
               v-if="cartStore.cart.length"
             >
               {{ cartStore.cartTotalItems }}
@@ -31,7 +31,7 @@
           </router-link>
         </div>
         <div
-          class="header-top-right--mobile-menu"
+          class="header_top-right__mobile-menu"
           title="dropdown menu open and close"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
@@ -40,9 +40,9 @@
         </div>
       </div>
     </div>
-    <div class="header-menu" v-if="!isMobileMenuOpen">
+    <div class="header_menu" v-if="!isMobileMenuOpen">
       <router-link
-        class="header-menu--link"
+        class="header_menu__link"
         :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
         v-for="(element, i) of menu"
         :key="i"
@@ -51,15 +51,15 @@
       </router-link>
     </div>
     <Transition name="dropdown" :duration="1000">
-      <div class="header-dropdown--wrapper" v-if="isMobileMenuOpen">
-        <div class="header-dropdown--overlay" @click="isMobileMenuOpen = false">
+      <div class="header_dropdown__wrapper" v-if="isMobileMenuOpen">
+        <div class="header_dropdown__overlay" @click="isMobileMenuOpen = false">
           <div
-            class="header-dropdown--container"
+            class="header_dropdown__container"
             @click.stop
             v-scroll-lock="isMobileMenuOpen"
           >
             <router-link
-              class="header-dropdown--link"
+              class="header_dropdown__link"
               :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
               v-for="(element, i) of menu"
               :key="i"
@@ -102,8 +102,8 @@ const menu = [
   "Decoration",
   "Tableware",
   "Textiles",
-  "Sale",
   "All products",
+  "Sale",
 ];
 
 const cartStore = useCartStore();
@@ -119,7 +119,7 @@ const cartStore = useCartStore();
   @media screen and (max-width: 768px) {
     grid-template-rows: 1fr;
   }
-  &-top {
+  &_top {
     grid-column: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -142,7 +142,7 @@ const cartStore = useCartStore();
       @media screen and (max-width: 768px) {
         display: none;
       }
-      &--logo {
+      &__logo {
         width: 28px;
         height: 28px;
         display: block;
@@ -202,9 +202,9 @@ const cartStore = useCartStore();
       column-gap: 16px;
       align-items: center;
       justify-content: flex-end;
-      &--cart {
+      &__cart {
         position: relative;
-        &--count {
+        &-count {
           position: absolute;
           left: -30%;
           bottom: 0;
@@ -221,9 +221,9 @@ const cartStore = useCartStore();
           text-decoration: none;
         }
       }
-      &--cart a img,
-      &--user img,
-      &--mobile-menu img {
+      &__user img,
+      &__cart a img,
+      &__mobile-menu img {
         width: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -234,18 +234,18 @@ const cartStore = useCartStore();
           }
         }
       }
-      &--mobile-menu {
+      &__mobile-menu {
         display: none;
-        img {
-          width: 24px;
-        }
         @media screen and (max-width: 768px) {
           display: block;
+        }
+        img {
+          width: 24px;
         }
       }
     }
   }
-  &-menu {
+  &_menu {
     grid-column: 2;
     display: flex;
     flex-wrap: wrap;
@@ -257,7 +257,7 @@ const cartStore = useCartStore();
     @media screen and (max-width: 768px) {
       display: none;
     }
-    &--link {
+    &__link {
       color: var(--color-link);
       text-decoration: none;
       display: inline-block;
@@ -272,6 +272,12 @@ const cartStore = useCartStore();
         transform: translateX(-50%);
         transition: width 0.3s ease;
       }
+      &:last-of-type {
+        color: var(--red);
+        &::after {
+          background: var(--red);
+        }
+      }
       @media (any-pointer: fine) {
         &:hover {
           cursor: pointer;
@@ -284,8 +290,8 @@ const cartStore = useCartStore();
       }
     }
   }
-  &-dropdown {
-    &--overlay {
+  &_dropdown {
+    &__overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -296,7 +302,7 @@ const cartStore = useCartStore();
       background: rgba(34, 32, 46, 0.8);
       z-index: 70;
     }
-    &--container {
+    &__container {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -316,7 +322,7 @@ const cartStore = useCartStore();
         padding: 100px 24px 36px;
       }
     }
-    &--link {
+    &__link {
       display: block;
       font-size: 18px;
       color: var(--color-link);
@@ -329,23 +335,23 @@ const cartStore = useCartStore();
   }
 }
 
-.header-dropdown--container,
-.header-dropdown--overlay {
+.header_dropdown__container,
+.header_dropdown__overlay {
   transition: all 0.7s ease;
 }
 
-.dropdown-enter-active .header-dropdown--container,
-.dropdown-leave-active .header-dropdown--overlay {
+.dropdown-enter-active .header_dropdown__container,
+.dropdown-leave-active .header_dropdown__overlay {
   transition-delay: 0.3s;
 }
 
-.dropdown-enter-from .header-dropdown--overlay,
-.dropdown-leave-to .header-dropdown--overlay {
+.dropdown-enter-from .header_dropdown__overlay,
+.dropdown-leave-to .header_dropdown__overlay {
   opacity: 0;
 }
 
-.dropdown-enter-from .header-dropdown--container,
-.dropdown-leave-to .header-dropdown--container {
+.dropdown-enter-from .header_dropdown__container,
+.dropdown-leave-to .header_dropdown__container {
   -webkit-transform: translateX(100px);
   transform: translateX(100px);
   opacity: 0;

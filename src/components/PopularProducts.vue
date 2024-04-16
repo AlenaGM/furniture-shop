@@ -1,10 +1,9 @@
 <template>
-  <div class="products-container">
+  <div class="products_container">
     <h2>{{ sectionTitle }}</h2>
     <Products :products="productStore.popularProducts" />
-    <div class="products-link">
+    <div class="products_link">
       <ui-button
-        class="products-link"
         type="link"
         to="/products"
         color="light-gray"
@@ -37,14 +36,14 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .products {
-  &-container {
+  &_container {
     display: grid;
     margin: var(--section-gap);
     @media screen and (max-width: 768px) {
       margin: var(--section-gap-mobile);
     }
   }
-  &-link {
+  &_link {
     text-align: center;
   }
 }

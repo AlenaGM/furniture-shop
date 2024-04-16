@@ -5,12 +5,12 @@
     :class="[
       'btn',
       {
-        'btn--dark-primary': color === 'dark-primary',
-        'btn--secondary': color === 'secondary',
-        'btn--light-gray': color === 'light-gray',
-        'btn--white': color === 'white',
-        'btn--fullwidth': mobileFullWidth,
-        'btn--disabled': disabled,
+        'btn__dark-primary': color === 'dark-primary',
+        btn__secondary: color === 'secondary',
+        'btn__light-gray': color === 'light-gray',
+        btn__white: color === 'white',
+        btn__fullwidth: mobileFullWidth,
+        btn__disabled: disabled,
       },
     ]"
   >
@@ -23,11 +23,11 @@
     :class="[
       'btn',
       {
-        'btn--dark-primary': color === 'dark-primary',
-        'btn--secondary': color === 'secondary',
-        'btn--light-gray': color === 'light-gray',
-        'btn--white': color === 'white',
-        'btn--fullwidth': mobileFullWidth,
+        'btn__dark-primary': color === 'dark-primary',
+        btn__secondary: color === 'secondary',
+        'btn__light-gray': color === 'light-gray',
+        btn__white: color === 'white',
+        btn__fullwidth: mobileFullWidth,
       },
     ]"
   >
@@ -90,28 +90,28 @@ const props = defineProps({
       transition: opacity 0.3s ease;
     }
   }
-  &--dark-primary {
+  &__dark-primary {
     color: var(--white);
     background: var(--dark-primary);
   }
-  &--secondary {
+  &__secondary {
     color: var(--white);
     background: #f9f9f926;
   }
-  &--light-gray {
+  &__light-gray {
     color: var(--dark-primary);
     background: var(--light-gray);
   }
-  &--white {
+  &__white {
     color: var(--dark-primary);
     background: var(--white);
   }
-  &--fullwidth {
-    @media screen and (max-width: 768px) {
+  &__fullwidth {
+    @media screen and (max-width: 767px) {
       width: 100%;
     }
   }
-  &--disabled {
+  &__disabled {
     opacity: 0.6;
     transition: opacity 0.3s ease;
     pointer-events: none;
