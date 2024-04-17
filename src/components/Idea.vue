@@ -11,7 +11,7 @@
       colorDescription="var(--white)"
       :mobilePadding="true"
     />
-    <img src="/img/idea-room.jpg" alt="room" class="idea-image" />
+    <img src="/img/idea-room.jpg" alt="room" class="idea_image" />
   </div>
 </template>
 
@@ -21,16 +21,16 @@ import InfoBlock from "@/components/InfoBlock.vue";
 
 <style lang="scss" scoped>
 .idea {
-  margin: var(--section-gap);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 20px;
+  margin: var(--section-gap);
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     justify-items: center;
     margin: var(--section-gap-mobile);
   }
-  &-image {
+  &_image {
     object-fit: cover;
     height: 100%;
     @media screen and (max-width: 768px) {

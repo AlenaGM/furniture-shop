@@ -136,7 +136,7 @@ h4 {
 }
 
 p:not(:last-of-type) {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .input {
@@ -168,9 +168,9 @@ p:not(:last-of-type) {
   display: grid;
   overflow: hidden;
   min-height: 100vh;
+  min-width: 290px;
   width: 100vw;
   overflow-x: hidden;
-
   justify-content: center;
   grid-template: auto 1fr auto / minmax(auto, 1440px);
   grid-template-areas:
@@ -191,6 +191,7 @@ p:not(:last-of-type) {
   grid-area: footer;
 }
 
+.header,
 .main,
 .footer {
   display: grid;
@@ -221,11 +222,11 @@ p:not(:last-of-type) {
 //"normal-size" sections
 .hero-info,
 .difference,
-.products_container,
 .idea,
-.details-content,
 .story,
-.subscribe-content,
+.products_container,
+.details_container,
+.subscribe_container,
 .footer_container {
   grid-column: 2;
 }

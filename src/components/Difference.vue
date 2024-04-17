@@ -1,15 +1,15 @@
 <template>
   <div class="difference">
-    <h3 class="difference__title">What makes our brand different</h3>
-    <div class="difference-elements">
-      <div class="difference-element" v-for="(element, i) of usp" :key="i">
+    <h3 class="difference_title">What makes our brand different</h3>
+    <div class="difference_container">
+      <div class="difference_element" v-for="(element, i) of usp" :key="i">
         <img
           :src="element.img"
           :alt="element.title"
-          class="difference-element__img"
+          class="difference_element__img"
         />
-        <h4 class="difference-element__title">{{ element.title }}</h4>
-        <span class="difference-element__description text-sm">
+        <h4 class="difference_element__title">{{ element.title }}</h4>
+        <span class="difference_element__description text-sm">
           {{ element.description }}
         </span>
       </div>
@@ -51,39 +51,37 @@ const usp = [
   @media screen and (max-width: 768px) {
     margin: var(--section-gap-mobile);
   }
-  &__title {
+  &_title {
     text-align: center;
     @media screen and (max-width: 768px) {
       text-align: left;
     }
   }
-  &-elements {
+  &_container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
     gap: 20px;
-    @media screen and (max-width: 1150px) {
+    @media screen and (max-width: 1024px) {
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 560px) {
       grid-template-columns: 1fr;
     }
   }
-  &-element {
+  &_element {
     color: var(--dark-primary);
     background: var(--light-gray);
     padding: 24px 32px;
+    &__img {
+      display: block;
+      margin-bottom: 12px;
+    }
     &__description {
       margin-top: 12px;
     }
     @media screen and (max-width: 768px) {
       padding: 24px;
-    }
-
-    &__img {
-      display: block;
-      margin-bottom: 12px;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="story">
-    <h1 class="story__title">
+    <h1 class="story_title">
       A brand built on the love of craftmanship, quality and outstanding
       customer service
     </h1>
@@ -16,10 +16,10 @@
       :mobilePadding="true"
     />
     <div>
-      <img src="/img/story-studio.jpg" alt="room" class="story-image" />
+      <img src="/img/story-studio.jpg" alt="room" class="story_image" />
     </div>
     <div>
-      <img src="/img/story-service.jpg" alt="room" class="story-image" />
+      <img src="/img/story-service.jpg" alt="room" class="story_image" />
     </div>
     <InfoBlock
       title="Our service isn’t just personal, it’s actually hyper personally exquisite"
@@ -56,7 +56,7 @@ productStore.getProducts();
     grid-template-rows: auto;
     margin-bottom: 40px;
   }
-  &__title {
+  &_title {
     grid-column: span 2;
     padding: 80px 0;
     margin: 0;
@@ -75,7 +75,7 @@ productStore.getProducts();
       padding: 48px 0 36px;
     }
   }
-  &-image {
+  &_image {
     object-fit: cover;
     width: 100%;
     height: 100%;

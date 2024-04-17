@@ -5,7 +5,8 @@
         <img :src="product.img" :alt="product.name" />
       </router-link>
       <router-link :to="`/products/${product.id}`" class="product_name"
-        ><h4>{{ product.name }}</h4></router-link
+        ><span>{{ product.manufacturer }}</span>
+        <h4>{{ product.name }}</h4></router-link
       >
       <div class="product_price price">
         <span
@@ -44,9 +45,9 @@ const props = defineProps({
 <style lang="scss" scoped>
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(242px, 1fr));
   grid-auto-rows: 1fr;
-  gap: 20px;
+  gap: 60px 20px;
   margin-bottom: 80px;
   @media screen and (max-width: 1024px) {
     justify-items: center;
@@ -61,11 +62,11 @@ const props = defineProps({
   grid-auto-flow: row;
   grid-template: auto 1fr minmax(24px, auto) / 1fr;
   justify-items: center;
+  max-width: 305px;
   &_image {
     position: relative;
     margin: 0px 0px 12px 0px;
     img {
-      max-width: 240px;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -74,6 +75,11 @@ const props = defineProps({
   &_name {
     display: inline-block;
     text-decoration: none;
+    text-align: center;
+    span {
+      color: var(--color-link);
+      text-decoration: none;
+    }
     &::after {
       content: "";
       background: var(--dark-primary);

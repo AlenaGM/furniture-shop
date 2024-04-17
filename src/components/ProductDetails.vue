@@ -1,73 +1,61 @@
 <template>
   <div class="details">
-    <div class="details-content">
-      <div class="details-image">
+    <div class="details_container">
+      <div class="details_image">
         <img :src="product.img" :alt="product.name" />
       </div>
       <div>
-        <h1 class="details-name">{{ product.name }}</h1>
-        <div class="details-price" v-if="product.price">
+        <h1 class="details_name">{{ product.name }}</h1>
+        <div class="details_price price" v-if="product.price">
           <span
             class="price__sale"
-            v-if="product.tags.includes('sale') && cartStore.discount"
+            v-if="product.tags.includes('sale') && discount"
           >
-            {{
-              FormatToCurrency(Math.round(product.price * cartStore.discount))
-            }}</span
+            {{ FormatToCurrency(Math.round(product.price * discount)) }}</span
           >
           <span
             :class="{
-              price__strikeout:
-                product.tags.includes('sale') && cartStore.discount,
+              price__strikeout: product.tags.includes('sale') && discount,
             }"
           >
             {{ FormatToCurrency(product.price) }}</span
           >
         </div>
         <div
-          class="details-block detailst-description"
+          class="details_block detailst_description"
           v-if="product.description"
         >
-          <span class="details-block__title">Product description</span>
+          <span class="details_block__title">Product description</span>
           <div v-html="product.description"></div>
         </div>
-        <div class="details-block" v-if="product.params">
-          <span class="details-block__title">Product details</span>
+        <div class="details_block" v-if="product.params">
+          <span class="details_block__title">Product details</span>
           <span
-            class="details-param"
+            class="details_param"
             v-for="(param, i) of product.params"
             :key="i"
           >
             {{ param.title }}: {{ param.value }}
           </span>
         </div>
-        <div class="details-block">
-          <span class="details-block__title">Quantity</span>
-          <div class="details-quantity">
-            <span
-              class="details-quantity-symbol"
-              @click="cartStore.decreaseCounter()"
-            >
-              -
+        <div class="details_block">
+          <span class="details_block__title">Quantity</span>
+          <div class="details_quantity">
+            <span class="details_quantity__symbol" @click="decreaseCounter()">
+              −
             </span>
-            <span class="details-quantity-value">{{
-              cartStore.counter || 1
-            }}</span>
+            <span class="details_quantity__value">{{ counter || 1 }}</span>
             <span
-              class="details-quantity-symbol"
-              @click="cartStore.increaseCounter(product)"
-            >
-              +
+              class="details_quantity__symbol"
+              @click="increaseCounter(product)"
+              >+
             </span>
           </div>
-          <div v-if="cartStore.counterMsg" class="details-quantity-msg text-sm">
-            {{ cartStore.counterMsg }}
+          <div v-if="counterMsg" class="details_quantity__msg text-sm">
+            {{ counterMsg }}
           </div>
         </div>
-        <ui-button
-          color="dark-primary"
-          @click="cartStore.addToCart(product, cartStore.counter)"
-        >
+        <ui-button color="dark-primary" @click="addToCart(product, counter)">
           Add to Cart
         </ui-button>
       </div>
@@ -75,11 +63,11 @@
   </div>
   <teleport to="body">
     <modal-content
-      :open="cartStore.isModalOpen && product.stock != 0"
+      :open="isModalOpen && product.stock != 0"
       @close="
         {
-          cartStore.isModalOpen = false;
-          cartStore.counter = 1;
+          isModalOpen = false;
+          counter = 1;
         }
       "
       title="Item has been added to your cart"
@@ -92,21 +80,18 @@
       </div>
       <div>
         <h4>{{ product.name }}</h4>
-        <div>Added Quantity: {{ cartStore.counter }}</div>
+        <div>Added Quantity: {{ counter }}</div>
         <div>
           Unit Price:
           <span
             class="price__sale"
-            v-if="product.tags.includes('sale') && cartStore.discount"
+            v-if="product.tags.includes('sale') && discount"
           >
-            {{
-              FormatToCurrency(Math.round(product.price * cartStore.discount))
-            }}</span
+            {{ FormatToCurrency(Math.round(product.price * discount)) }}</span
           >
           <span
             :class="{
-              price__strikeout:
-                product.tags.includes('sale') && cartStore.discount,
+              price__strikeout: product.tags.includes('sale') && discount,
             }"
           >
             {{ FormatToCurrency(product.price) }}</span
@@ -114,7 +99,7 @@
         </div>
         <div>
           Total Cart:
-          {{ FormatToCurrency(cartStore.cartTotalPrice) }}
+          {{ FormatToCurrency(cartTotalPrice) }}
         </div>
       </div>
     </modal-content>
@@ -122,16 +107,14 @@
 </template>
 
 <script setup>
-import uiButton from "@/components/ui/Button.vue";
-
+import { watch } from "vue";
+import { useRoute } from "vue-router";
+import { storeToRefs } from "pinia";
 import { useProductStore } from "@/stores/products.js";
 import { useCartStore } from "@/stores/cart.js";
-
-import { useRoute } from "vue-router";
-import ModalContent from "@/components/ui/Modal.vue";
-import { watch } from "vue";
-import { storeToRefs } from "pinia";
 import { FormatToCurrency } from "@/utils/formatter";
+import uiButton from "@/components/ui/Button.vue";
+import ModalContent from "@/components/ui/Modal.vue";
 
 const productStore = useProductStore();
 const cartStore = useCartStore();
@@ -139,23 +122,22 @@ const cartStore = useCartStore();
 const { product } = storeToRefs(productStore);
 const { getProduct } = productStore;
 
+const { counter, counterMsg, discount, isModalOpen, cartTotalPrice } =
+  storeToRefs(cartStore);
+const { decreaseCounter, increaseCounter, updateCounter, addToCart } =
+  cartStore;
+
 const route = useRoute();
 
 watch(
   () => route.params.id,
   () => {
     getProduct(route.params.id);
-    cartStore.updateCounter();
-    cartStore.isModalOpen = false;
+    updateCounter();
+    isModalOpen.value = false;
   },
   { immediate: true, deep: true }
 );
-
-//function updateCounter() {
-//  cartStore.counterMsg = "";
-//  cartStore.counter = 1;
-//  cartStore.isModalOpen = false;
-//}
 </script>
 
 <style lang="scss" scoped>
@@ -167,11 +149,12 @@ watch(
     padding: 24px 0;
     margin-bottom: 16px;
   }
-  &-content {
+  &_container {
     display: grid;
-    align-items: start;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 64px;
+    align-items: start;
+    justify-items: center;
     @media screen and (max-width: 1024px) {
       column-gap: 40px;
     }
@@ -179,59 +162,76 @@ watch(
       grid-template-columns: 1fr;
     }
   }
-  &-image {
+  &_image {
+    max-width: 608px;
     img {
       object-fit: cover;
     }
   }
-  &-name {
+  &_name {
     margin: 0 0 12px 0;
     font-family: var(--second-family);
     font-size: 36px;
     font-weight: 400;
-    line-height: 44px;
+    line-height: 140%;
     @media screen and (max-width: 820px) {
       margin: 40px 0 12px 0;
+      text-align: center;
+    }
+    @media screen and (max-width: 560px) {
+      text-align: left;
     }
   }
-  &-price {
+  &_price {
     display: block;
     font-size: 24px;
     margin-bottom: 40px;
     font-weight: 400;
     line-height: 32px;
+    @media screen and (max-width: 820px) and (min-width: 561px) {
+      text-align: center;
+    }
   }
-  &-block {
+  &_block {
     margin-bottom: 40px;
     &__title {
       display: block;
       font-family: var(--second-family);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     @media screen and (max-width: 768px) {
       margin-bottom: 24px;
     }
   }
-  &-description {
+  &_description {
     border-top: 1px solid var(--border-gray);
     padding-top: 24px;
   }
-  &-param {
+  &_param {
     display: block;
   }
-  &-quantity {
+  &_quantity {
     background: var(--white);
-    width: 145px;
+    width: 146px;
     height: 46px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
-    &-symbol {
+    &__symbol {
       color: var(--border-gray);
+      transition: all 0.3s ease;
       cursor: pointer;
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          color: var(--dark-primary);
+          transform: scale(1.2);
+          transition: all 0.3s ease;
+        }
+      }
     }
-    &-msg {
+    &__msg {
       padding-top: 6px;
       font-style: italic;
       color: var(--color-text);
@@ -240,14 +240,5 @@ watch(
       width: 122px;
     }
   }
-}
-
-.details-content {
-  transition: opacity 0.3s ease;
-}
-
-.details-enter-from .details-content,
-.details-leave-to .details-content {
-  opacity: 0;
 }
 </style>

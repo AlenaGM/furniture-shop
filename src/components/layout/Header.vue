@@ -50,28 +50,28 @@
         {{ element }}
       </router-link>
     </div>
-    <Transition name="dropdown" :duration="1000">
-      <div class="header_dropdown__wrapper" v-if="isMobileMenuOpen">
-        <div class="header_dropdown__overlay" @click="isMobileMenuOpen = false">
-          <div
-            class="header_dropdown__container"
-            @click.stop
-            v-scroll-lock="isMobileMenuOpen"
+  </header>
+  <Transition name="dropdown" :duration="1000">
+    <div class="header_dropdown__wrapper" v-if="isMobileMenuOpen">
+      <div class="header_dropdown__overlay" @click="isMobileMenuOpen = false">
+        <div
+          class="header_dropdown__container"
+          @click.stop
+          v-scroll-lock="isMobileMenuOpen"
+        >
+          <router-link
+            class="header_dropdown__link"
+            :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
+            v-for="(element, i) of menu"
+            :key="i"
+            @click="isMobileMenuOpen = false"
           >
-            <router-link
-              class="header_dropdown__link"
-              :to="`/products/${element.replace(/ .*/, '').toLowerCase()}`"
-              v-for="(element, i) of menu"
-              :key="i"
-              @click="isMobileMenuOpen = false"
-            >
-              {{ element }}
-            </router-link>
-          </div>
+            {{ element }}
+          </router-link>
         </div>
       </div>
-    </Transition>
-  </header>
+    </div>
+  </Transition>
   <teleport to="body">
     <modal-content
       :open="isModalOpen"
@@ -113,12 +113,6 @@ const cartStore = useCartStore();
 .header {
   z-index: 90;
   background: var(--white);
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: 1.5rem 1fr 1.5rem;
-  @media screen and (max-width: 768px) {
-    grid-template-rows: 1fr;
-  }
   &_top {
     grid-column: 2;
     display: grid;
@@ -131,9 +125,6 @@ const cartStore = useCartStore();
     background: var(--white);
     z-index: 100;
     @media screen and (max-width: 768px) {
-      grid-column: 1/4;
-      padding: 0 24px;
-      display: grid;
       grid-template-columns: auto 1fr;
     }
     &-left {
@@ -295,7 +286,9 @@ const cartStore = useCartStore();
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      bottom: 0;
+      right: 0;
+      width: 100%;
       height: 100%;
       display: flex;
       justify-content: flex-end;
@@ -306,7 +299,7 @@ const cartStore = useCartStore();
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      height: 100vh;
+      height: 100%;
       width: 80%;
       max-width: 340px;
       padding: 100px 64px 36px;
@@ -317,7 +310,7 @@ const cartStore = useCartStore();
       @media screen and (min-width: 768px) {
         min-height: auto;
       }
-      @media screen and (max-width: 284px) {
+      @media screen and (max-width: 290px) {
         width: 100%;
         padding: 100px 24px 36px;
       }

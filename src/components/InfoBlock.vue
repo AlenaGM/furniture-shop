@@ -2,17 +2,17 @@
   <div
     class="infoblock"
     :style="{ backgroundColor: background }"
-    :class="{ 'infoblock--mobile-padding': mobilePadding }"
+    :class="{ 'infoblock__mobile-padding': mobilePadding }"
   >
     <div>
-      <h1 class="infoblock__title" :style="{ color: colorTitle }">
+      <h1 class="infoblock_title" :style="{ color: colorTitle }">
         {{ pageTitle }}
       </h1>
-      <h2 class="infoblock__title" :style="{ color: colorTitle }">
+      <h2 class="infoblock_title" :style="{ color: colorTitle }">
         {{ title }}
       </h2>
       <span
-        class="infoblock__description"
+        class="infoblock_description"
         :style="{ color: colorDescription }"
         >{{ description }}</span
       >
@@ -100,7 +100,7 @@ const props = defineProps({
   h1 {
     max-width: 480px;
   }
-  &__description {
+  &_description {
     color: var(--color-text);
     font-family: var(--font-family);
     font-size: 18px;
@@ -109,7 +109,7 @@ const props = defineProps({
       font-size: 16px;
     }
   }
-  &--mobile-padding {
+  &__mobile-padding {
     @media screen and (max-width: 768px) {
       padding: 24px;
     }

@@ -6,9 +6,9 @@
       :description="`Shop the new ${season} ${year} collection today`"
       link="/products"
       colorLink="light-gray"
-      class="hero-info"
+      class="hero_info"
     />
-    <div class="hero-image">
+    <div class="hero_image">
       <img src="/img/hero.jpg" alt="room" />
     </div>
   </div>
@@ -63,7 +63,7 @@ switch (month) {
     min-height: auto;
     margin: 20px 24px 40px;
   }
-  &-info {
+  &_info {
     min-height: 440px;
     max-width: none;
     min-width: 640px;
@@ -81,7 +81,7 @@ switch (month) {
       margin: 0;
     }
   }
-  &-image {
+  &_image {
     img {
       display: none;
       @media screen and (max-width: 1024px) {

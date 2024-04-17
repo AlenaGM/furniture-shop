@@ -1,35 +1,35 @@
 <template>
   <div class="subscribe">
-    <div class="subscribe-content">
-      <h2 class="subscribe-title">Join the club and get the benefits</h2>
-      <span class="subscribe-description text"
+    <div class="subscribe_container">
+      <h2 class="subscribe_title">Join the club and get the benefits</h2>
+      <span class="subscribe_description text"
         >Sign up for our newsletter and receive exclusive offers on new ranges,
         sales, pop up stores and more</span
       >
-      <div class="subscribe-checks">
-        <div class="subscribe-check">
+      <div class="subscribe_checks">
+        <div class="subscribe_check">
           <img
             src="/svg/check.svg"
             alt="checkbox"
-            class="subscribe-check__icon"
+            class="subscribe_check__icon"
           />
-          <span class="subscribe-check__name text-sm">Exclusive offers</span>
+          <span class="subscribe_check__name text-sm">Exclusive offers</span>
         </div>
-        <div class="subscribe-check">
+        <div class="subscribe_check">
           <img
             src="/svg/check.svg"
             alt="checkbox"
-            class="subscribe-check__icon"
+            class="subscribe_check__icon"
           />
-          <span class="subscribe-check__name text-sm">Free events</span>
+          <span class="subscribe_check__name text-sm">Free events</span>
         </div>
-        <div class="subscribe-check">
+        <div class="subscribe_check">
           <img
             src="/svg/check.svg"
             alt="checkbox"
-            class="subscribe-check__icon"
+            class="subscribe_check__icon"
           />
-          <span class="subscribe-check__name text-sm">Large discounts</span>
+          <span class="subscribe_check__name text-sm">Large discounts</span>
         </div>
       </div>
       <SubscribeForm />
@@ -50,7 +50,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     background-image: url("/img/subscribe-mobile.jpg");
     padding: 20px 0;
   }
-  &-content {
+  &_container {
     max-width: 560px;
     margin: auto;
     text-align: center;
@@ -59,11 +59,11 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       text-align: left;
     }
   }
-  &-title {
+  &_title {
     display: block;
     color: var(--white);
   }
-  &-description {
+  &_description {
     display: block;
     color: var(--white);
     margin-bottom: 30px;
@@ -71,7 +71,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       margin-bottom: 20px;
     }
   }
-  &-checks {
+  &_checks {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
@@ -79,7 +79,7 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
       display: block;
     }
   }
-  &-check {
+  &_check {
     display: flex;
     align-items: center;
     &:nth-child(2) {

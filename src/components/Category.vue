@@ -3,26 +3,28 @@
     <div class="category_title">
       <h1>
         {{
-          productStore.category === "new"
-            ? productStore.category + " arrivals"
-            : productStore.category === "popular"
-            ? productStore.category + " products"
-            : productStore.category
+          category === "new"
+            ? category + " arrivals"
+            : category === "popular"
+            ? category + " products"
+            : category
         }}
       </h1>
     </div>
     <div class="products_container">
-      <Products :products="productStore.categoryProducts" />
+      <Products :products="categoryProducts" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import Products from "@/components/Products.vue";
 import { useProductStore } from "../stores/products";
 
 const productStore = useProductStore();
+const { category, categoryProducts } = storeToRefs(productStore);
 
 onMounted(() => {
   productStore.getCategoryProducts();

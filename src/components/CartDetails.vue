@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
     <h1 class="cart_title">Shopping cart</h1>
-    <table class="cart_table table" v-if="cartStore.cart.length">
+    <table class="cart_table table" v-if="cart.length">
       <thead>
         <tr>
           <th>Product</th>
@@ -10,11 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(item, index) in cartStore.cart"
-          :key="item.id"
-          class="cart_item item"
-        >
+        <tr v-for="(item, index) in cart" :key="item.id" class="cart_item item">
           <td>
             <router-link :to="`/products/${item.id}`" class="item_image">
               <img :src="item.img" :alt="item.name" />
@@ -27,16 +23,13 @@
             <div class="item_price price">
               <span
                 class="price__sale"
-                v-if="item.tags.includes('sale') && cartStore.discount"
+                v-if="item.tags.includes('sale') && discount"
               >
-                {{
-                  FormatToCurrency(Math.round(item.price * cartStore.discount))
-                }}</span
+                {{ FormatToCurrency(Math.round(item.price * discount)) }}</span
               >
               <span
                 :class="{
-                  price__strikeout:
-                    item.tags.includes('sale') && cartStore.discount,
+                  price__strikeout: item.tags.includes('sale') && discount,
                 }"
               >
                 {{ FormatToCurrency(item.price) }}</span
@@ -45,23 +38,18 @@
           </td>
           <td>
             <div class="item_quantity">
-              <span
-                class="item_quantity__symbol"
-                @click="cartStore.deleteItem(index)"
-              >
-                -
+              <span class="item_quantity__symbol" @click="deleteItem(index)"
+                >−
               </span>
               <span class="item_quantity__value">{{ item.count }}</span>
               <span
                 class="item_quantity__symbol"
-                @click="cartStore.addItem(index, item.stock)"
+                @click="addItem(index, item.stock)"
               >
                 +
               </span>
             </div>
-            <div class="item_remove" @click="cartStore.deleteFromCart(index)">
-              delete
-            </div>
+            <div class="item_remove" @click="deleteFromCart(index)">delete</div>
           </td>
           <td>
             <span class="item_total">
@@ -69,8 +57,8 @@
                 FormatToCurrency(
                   item.count *
                     Math.round(
-                      item.tags.includes("sale") && cartStore.discount
-                        ? item.price * cartStore.discount
+                      item.tags.includes("sale") && discount
+                        ? item.price * discount
                         : item.price
                     )
                 )
@@ -83,7 +71,7 @@
         <tr>
           <th class="cart_total">
             <span>Subtotal</span>
-            {{ FormatToCurrency(cartStore.cartTotalPrice) }}
+            {{ FormatToCurrency(cartTotalPrice) }}
             <div>Taxes and shipping are calculated at checkout</div>
           </th>
         </tr>
@@ -93,7 +81,7 @@
     <ui-button
       class="cart_order"
       :mobileFullWidth="true"
-      v-if="cartStore.cart.length"
+      v-if="cart.length"
       @click="toCheckout"
     >
       Go to checkout
@@ -138,17 +126,21 @@
 
 <script setup>
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
 import { useCartStore } from "@/stores/cart.js";
 import { FormatToCurrency } from "@/utils/formatter";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 
 const cartStore = useCartStore();
+const { cart, discount, cartTotalPrice } = storeToRefs(cartStore);
+const { deleteItem, addItem, deleteFromCart, emptyCart } = cartStore;
+
 const isModalOpen = ref(false);
 
 const toCheckout = () => {
   isModalOpen.value = true;
-  cartStore.emptyCart();
+  emptyCart();
 };
 </script>
 
@@ -235,6 +227,7 @@ const toCheckout = () => {
     }
     @media screen and (max-width: 540px) {
       grid-template-columns: 1fr;
+      justify-items: center;
     }
   }
   thead {
@@ -270,14 +263,16 @@ const toCheckout = () => {
         display: flex;
         flex-direction: column;
         row-gap: 6px;
+        align-items: baseline;
         @media screen and (max-width: 768px) {
           grid-column: span 1;
           flex-direction: row;
           flex-wrap: wrap;
-          align-items: baseline;
+
           justify-content: space-between;
         }
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 540px) {
+          align-items: center;
           flex-direction: column;
         }
       }
@@ -336,7 +331,7 @@ const toCheckout = () => {
       line-height: 140%;
       margin-right: 6px;
       @media screen and (max-width: 900px) {
-        font-size: 20px;
+        font-size: 18px;
       }
       &::after {
         content: "";
@@ -376,13 +371,25 @@ const toCheckout = () => {
     font-family: var(--font-family);
     &__symbol {
       color: var(--border-gray);
+      transition: all 0.3s ease;
       cursor: pointer;
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          color: var(--dark-primary);
+          transform: scale(1.2);
+          transition: all 0.3s ease;
+        }
+      }
     }
   }
   &_remove {
     display: block;
     font-family: var(--font-family);
     font-size: 16px;
+    @media screen and (max-width: 900px) {
+      font-size: 14px;
+    }
     &::after {
       content: "";
       background: var(--dark-primary);

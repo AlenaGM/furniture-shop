@@ -1,9 +1,9 @@
 <template>
   <div class="contact">
-    <h1 class="contact__title">Get in Touch</h1>
-    <form class="contact__form form" ref="formRef" @submit.prevent="submitForm">
+    <h1 class="contact_title">Get in Touch</h1>
+    <form class="contact_form form" ref="formRef" @submit.prevent="submitForm">
       <div>
-        <div class="form__input">
+        <div class="form_input">
           <input
             class="input"
             type="text"
@@ -14,46 +14,49 @@
             @input="updateValue"
           />
           <Transition v-if="valid.nameField.$error">
-            <span class="form__error">
+            <span class="form_error">
               {{ valid.nameField.$errors[0].$message }}
             </span>
           </Transition>
         </div>
-        <div class="form__input">
+        <div class="form_input">
           <input
             class="input"
             type="email"
             name="user_email"
             maxlength="254"
-            placeholder="E-mail"
+            placeholder="E-mail (optional)"
             v-model="valid.emailField.$model"
             @input="updateValue"
           />
           <Transition v-if="valid.emailField.$error">
-            <span class="form__error">{{
+            <span class="form_error">{{
               valid.emailField.$errors[0].$message
             }}</span>
           </Transition>
         </div>
       </div>
 
-      <div class="form__textarea">
+      <div class="form_textarea">
         <textarea
           class="input"
           name="message"
           maxlength="1001"
-          placeholder="Your message"
+          placeholder="Message"
           v-model="valid.messageField.$model"
           @input="updateValue"
         />
         <Transition v-if="valid.messageField.$error">
-          <span class="form__error">{{
+          <span class="form_error">{{
             valid.messageField.$errors[0].$message
           }}</span>
         </Transition>
       </div>
-      <div class="form__button">
-        <ui-button type="button" class="contact__btn" :mobileFullWidth="true"
+      <div class="form_button">
+        <ui-button
+          type="button"
+          :mobileFullWidth="true"
+          :disabled="isButtonDisabled"
           >Send</ui-button
         >
       </div>
@@ -64,8 +67,9 @@
       :open="isModalOpen"
       @close="isModalOpen = false"
       v-if="isError"
-      title="An error occurred. Please try again later!"
+      title="An error occurred!"
     >
+      Your message hasn't been sent. Please try again later!
     </modal-content>
     <modal-content
       :open="isModalOpen"
@@ -74,7 +78,7 @@
       title="Your message has been sent!"
     >
       <div>
-        <p>Thank you! I will try to answer within 2 hours</p>
+        <p>Thank you! I will try to answer within 2-3 hours</p>
       </div>
     </modal-content>
   </teleport>
@@ -110,17 +114,13 @@ const rules = computed(() => ({
       minLength(2)
     ),
     maxLength: helpers.withMessage(
-      `That was long. Any diminutive?`,
+      `That was a long name. Any diminutive?`,
       maxLength(70)
     ),
   },
   emailField: {
-    required: helpers.withMessage(
-      `Please provide a valid e-mail address, so that I can answer you. I will never share your personal details with anyone`,
-      required
-    ),
     email: helpers.withMessage(
-      `Please provide a valid e-mail address, so that I can answer you. I will never share your personal details with anyone`,
+      `E-mail is optional, but please provide a valid e-mail address, if you want an answer. I will never share your personal details with anyone`,
       email
     ),
   },
@@ -131,7 +131,7 @@ const rules = computed(() => ({
     ),
     minLength: helpers.withMessage(
       `I'm not sure I've got you well. Can you add more details?`,
-      minLength(3)
+      minLength(4)
     ),
     maxLength: helpers.withMessage(
       `That's too long! I've decided that the message couldn't be longer than 1000 characters`,
@@ -149,7 +149,13 @@ const valid = useVuelidate(rules, {
   messageField,
 });
 
-const submitForm = () => {
+const isButtonDisabled = computed(() => {
+  return (
+    nameField.value === "" || messageField.value === "" || valid.value.$error
+  );
+});
+
+const submitForm = async () => {
   valid.value.$touch();
   if (valid.value.$error) return;
   sendEmail();
@@ -191,7 +197,7 @@ const resetForm = () => {
 <style lang="scss" scoped>
 .contact {
   background: var(--light-gray);
-  &__title {
+  &_title {
     grid-column: 2;
     grid-row: 1;
     padding: 80px 0 32px;
@@ -200,9 +206,8 @@ const resetForm = () => {
       padding: 40px 0 16px;
     }
   }
-  &__form {
+  &_form {
     grid-column: 2;
-    padding: 48px 64px;
     grid-row: 2;
     width: 100%;
     font-family: var(--second-family);
@@ -211,20 +216,8 @@ const resetForm = () => {
     line-height: 150%;
     text-decoration: none;
     color: var(--dark-primary);
-    margin: var(--section-gap);
     @media screen and (max-width: 768px) {
       font-size: 16px;
-      padding: 0 24px;
-    }
-  }
-  &__btn {
-    grid-column: 2;
-    grid-row: 3;
-    margin-top: 40px;
-    justify-self: center;
-    align-items: center;
-    @media screen and (max-width: 560px) {
-      margin-top: 20px;
     }
   }
 }
@@ -240,8 +233,8 @@ const resetForm = () => {
       flex-direction: column;
     }
   }
-  &__input,
-  &__textarea {
+  &_input,
+  &_textarea {
     display: flex;
     flex-direction: column;
     input,
@@ -255,9 +248,8 @@ const resetForm = () => {
       }
     }
   }
-  &__textarea {
+  &_textarea {
     margin: 20px 0 0;
-    align-items: center;
     textarea {
       min-height: 240px;
       resize: vertical;
@@ -267,15 +259,17 @@ const resetForm = () => {
       }
     }
   }
-  &__input {
-    @media screen and (max-width: 768px) {
-      width: 100%;
+  &_button {
+    justify-content: center;
+    button {
+      margin: var(--section-gap);
+      //align-items: center;
+      @media screen and (max-width: 560px) {
+        margin: var(--section-gap-mobile);
+      }
     }
   }
-  &__button {
-    justify-content: center;
-  }
-  &__error {
+  &_error {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;
