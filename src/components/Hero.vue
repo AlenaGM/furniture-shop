@@ -84,6 +84,8 @@ switch (month) {
   &_image {
     img {
       display: none;
+      width: 976px;
+      height: 477px;
       @media screen and (max-width: 1024px) {
         display: block;
       }
