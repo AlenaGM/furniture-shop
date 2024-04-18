@@ -21,7 +21,6 @@ _E-commerce website built with VueJS 3 and Pinia._ <br>
 <img width="33%" alt="screen capture" src="../main/src/assets/img/captureweb1.jpeg">
 <img width="33%" alt="screen capture" src="../main/src/assets/img/captureweb3.jpeg">
 <img width="33%" alt="screen capture" src="../main/src/assets/img/captureweb4.jpeg">
-<img width="33%" alt="screen capture" src="../main/src/assets/img/captureweb5.jpeg">
 <br><br>
 
 [Avion Furniture]: https://avion-furniture.netlify.app/
