@@ -31,12 +31,12 @@ onMounted(() => {
   &_title {
     grid-row: 1;
     display: grid;
-    background: url("/img/allproducts.jpg");
+    background: url("/img/allproducts.webp");
     background-size: cover;
     align-items: end;
     padding: 40px 0;
     @media screen and (max-width: 768px) {
-      background: url("/img/allproducts-mobile.jpg");
+      background: url("/img/allproducts-mobile.webp");
       background-size: cover;
       padding: 36px 24px;
       align-items: center;

@@ -3,6 +3,7 @@
   font-weight: 400;
   font-style: normal;
   src: local("Satoshi"), url("/fonts/Satoshi-Regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
@@ -11,6 +12,7 @@
   font-style: normal;
   src: local("Clash Display"),
     url("/fonts/ClashDisplay-Regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
@@ -19,4 +21,5 @@
   font-style: normal;
   src: local("Clash Display"),
     url("/fonts/ClashDisplay-Medium.woff") format("woff");
+  font-display: swap;
 }

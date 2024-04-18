@@ -66,6 +66,8 @@ const props = defineProps({
   &_image {
     position: relative;
     margin: 0px 0px 12px 0px;
+    width: 305px;
+    height: 311.4px;
     img {
       width: 100%;
       height: 100%;

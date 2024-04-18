@@ -11,7 +11,7 @@
       colorDescription="var(--white)"
       :mobilePadding="true"
     />
-    <img src="/img/idea-room.jpg" alt="room" class="idea_image" />
+    <img src="/img/idea-room.webp" alt="room" class="idea_image" />
   </div>
 </template>
 
@@ -33,6 +33,8 @@ import InfoBlock from "@/components/InfoBlock.vue";
   &_image {
     object-fit: cover;
     height: 100%;
+    width: 630px;
+    height: 478px;
     @media screen and (max-width: 768px) {
       margin-top: 24px;
       height: auto;

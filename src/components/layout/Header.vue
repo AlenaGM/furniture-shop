@@ -141,6 +141,8 @@ const cartStore = useCartStore();
           position: absolute;
           top: 0;
           left: 0;
+          width: 28px;
+          height: 28px;
           object-fit: cover;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -216,6 +218,7 @@ const cartStore = useCartStore();
       &__cart a img,
       &__mobile-menu img {
         width: 22px;
+        height: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
         @media (any-pointer: fine) {

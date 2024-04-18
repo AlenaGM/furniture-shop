@@ -43,11 +43,11 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 
 <style lang="scss" scoped>
 .subscribe {
-  background: url("/img/subscribe.jpg");
+  background: url("/img/subscribe.webp");
   background-size: cover;
   padding: 40px 0;
   @media screen and (max-width: 768px) {
-    background-image: url("/img/subscribe-mobile.jpg");
+    background-image: url("/img/subscribe-mobile.webp");
     padding: 20px 0;
   }
   &_container {
@@ -95,6 +95,8 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
     }
     &__icon {
       margin-right: 9px;
+      width: 16px;
+      height: 16px;
     }
     &__name {
       color: var(--white);

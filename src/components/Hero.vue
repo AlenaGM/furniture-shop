@@ -9,7 +9,7 @@
       class="hero_info"
     />
     <div class="hero_image">
-      <img src="/img/hero.jpg" alt="room" />
+      <img src="/img/hero.webp" alt="room" />
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ switch (month) {
 
 <style lang="scss" scoped>
 .hero {
-  background: url("/img/hero.jpg") 0 0 / cover no-repeat;
+  background: url("/img/hero.webp") 0 0 / cover no-repeat;
   min-height: 704px;
   display: grid;
   align-content: space-around;

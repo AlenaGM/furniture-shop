@@ -16,10 +16,10 @@
       :mobilePadding="true"
     />
     <div>
-      <img src="/img/story-studio.jpg" alt="room" class="story_image" />
+      <img src="/img/story-studio.webp" alt="room" class="story_image" />
     </div>
     <div>
-      <img src="/img/story-service.jpg" alt="room" class="story_image" />
+      <img src="/img/story-service.webp" alt="room" class="story_image" />
     </div>
     <InfoBlock
       title="Our service isn’t just personal, it’s actually hyper personally exquisite"

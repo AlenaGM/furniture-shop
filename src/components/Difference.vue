@@ -76,6 +76,8 @@ const usp = [
     &__img {
       display: block;
       margin-bottom: 12px;
+      width: 24px;
+      height: 24px;
     }
     &__description {
       margin-top: 12px;
