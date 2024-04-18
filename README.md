@@ -2,8 +2,6 @@
 
 _E-commerce website built with VueJS 3 and Pinia._ <br>
 
-in making...
-
 ## Tech stack
 
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vue3 + Vite<br>
@@ -12,6 +10,7 @@ in making...
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Axios<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vue Router 4<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Pinia<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vuelidate<br>
 
 ## Demo
 
@@ -19,9 +18,9 @@ in making...
 
 ## Result
 
-<img width="35%" alt="screen capture" src="../main/src/assets/captureweb.jpeg">
+<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb1.jpeg">
+<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb2.jpeg">
+<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb3.jpeg">
+<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb4.jpeg">
 
-<br><br> \* _Project built while following [Frontend Skills' Course]_
-
-[Frontend Skills' Course]: https://www.youtube.com/watch?v=bNeasXdk-_8&list=PL2hgv2vHkQ7CGDm0GsjCahJ2vyJTLjlu1
 [Avion Furniture]: https://avion-furniture.netlify.app/

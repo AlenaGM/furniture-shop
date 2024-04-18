@@ -24,7 +24,7 @@
     <InfoBlock
       title="Our service isn’t just personal, it’s actually hyper personally exquisite"
       description="At Avion, we believe in providing a level of personalized service that goes above and beyond. Our team is dedicated to creating an exquisite shopping experience tailored specifically to your needs and preferences. From helping you select the perfect piece of furniture to ensuring it fits perfectly in your space, we are committed to making your shopping experience truly exceptional."
-      link="/"
+      link="/contact"
       colorLink="dark-primary"
       btnText="Get in touch"
       background="var(--light-gray)"
