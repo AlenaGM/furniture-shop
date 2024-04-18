@@ -18,9 +18,9 @@ _E-commerce website built with VueJS 3 and Pinia._ <br>
 
 ## Result
 
-<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb1.jpeg">
-<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb2.jpeg">
-<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb3.jpeg">
-<img width="35%" alt="screen capture" src="../main/src/assets/img/captureweb4.jpeg">
+<img width="30%" alt="screen capture" src="../main/src/assets/img/captureweb1.jpeg">
+<img width="30%" alt="screen capture" src="../main/src/assets/img/captureweb3.jpeg">
+<img width="30%" alt="screen capture" src="../main/src/assets/img/captureweb4.jpeg">
 
+<br><br>
 [Avion Furniture]: https://avion-furniture.netlify.app/
