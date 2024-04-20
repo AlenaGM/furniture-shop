@@ -49,7 +49,7 @@
                 +
               </span>
             </div>
-            <div class="item_remove" @click="deleteFromCart(index)">delete</div>
+            <div class="item_remove" @click="removeFromCart(index)">delete</div>
           </td>
           <td>
             <span class="item_total">
@@ -134,7 +134,7 @@ import ModalContent from "@/components/ui/Modal.vue";
 
 const cartStore = useCartStore();
 const { cart, discount, cartTotalPrice } = storeToRefs(cartStore);
-const { deleteItem, addItem, deleteFromCart, emptyCart } = cartStore;
+const { deleteItem, addItem, removeFromCart, emptyCart } = cartStore;
 
 const isModalOpen = ref(false);
 
