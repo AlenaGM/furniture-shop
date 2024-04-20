@@ -164,13 +164,15 @@ const submitForm = async () => {
 
 const formRef = ref(null);
 
+const myKey = import.meta.env.VITE_KEY;
+
 const sendEmail = () => {
   emailjs
     .sendForm(
       "contact_service",
-      "template_1guu3ga",
+      "template_fokmhcv",
       formRef.value,
-      "0bqDQvGCW5ceicJh6"
+      myKey
     )
     .then(
       (result) => {

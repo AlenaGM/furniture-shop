@@ -4,8 +4,9 @@
       <router-link :to="`/products/${product.id}`" class="product_image">
         <img :src="product.img" :alt="product.name" />
       </router-link>
-      <router-link :to="`/products/${product.id}`" class="product_name"
-        ><span>{{ product.manufacturer }}</span>
+
+      <router-link :to="`/products/${product.id}`" class="product_name">
+        <span>{{ product.manufacturer }}</span>
         <h4>{{ product.name }}</h4></router-link
       >
       <div class="product_price price">
@@ -45,10 +46,9 @@ const props = defineProps({
 <style lang="scss" scoped>
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(242px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   grid-auto-rows: 1fr;
-  gap: 60px 20px;
-  margin-bottom: 80px;
+  gap: 80px 40px;
   @media screen and (max-width: 1024px) {
     justify-items: center;
   }
@@ -62,12 +62,12 @@ const props = defineProps({
   grid-auto-flow: row;
   grid-template: auto 1fr minmax(24px, auto) / 1fr;
   justify-items: center;
-  max-width: 305px;
+  max-width: 290px;
   &_image {
     position: relative;
-    margin: 0px 0px 12px 0px;
-    width: 305px;
-    height: 311px;
+    margin: 0px auto 12px;
+    width: 250px;
+    height: 256px;
     img {
       width: 100%;
       height: 100%;
