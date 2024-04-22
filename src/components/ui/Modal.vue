@@ -105,7 +105,7 @@ const props = defineProps({
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;
-    line-height: 150%;
+    line-height: 140%;
     color: var(--dark-primary);
     margin-bottom: 40px;
     text-align: left;

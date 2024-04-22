@@ -104,7 +104,7 @@ const props = defineProps({
     color: var(--color-text);
     font-family: var(--font-family);
     font-size: 18px;
-    line-height: 150%;
+    line-height: 140%;
     @media screen and (max-width: 768px) {
       font-size: 16px;
     }

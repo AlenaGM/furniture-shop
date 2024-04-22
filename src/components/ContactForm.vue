@@ -168,12 +168,7 @@ const myKey = import.meta.env.VITE_KEY;
 
 const sendEmail = () => {
   emailjs
-    .sendForm(
-      "contact_service",
-      "template_fokmhcv",
-      formRef.value,
-      myKey
-    )
+    .sendForm("contact_service", "template_fokmhcv", formRef.value, myKey)
     .then(
       (result) => {
         console.log(result.text);
@@ -215,7 +210,7 @@ const resetForm = () => {
     font-family: var(--second-family);
     font-weight: 400;
     font-size: 18px;
-    line-height: 150%;
+    line-height: 140%;
     text-decoration: none;
     color: var(--dark-primary);
     @media screen and (max-width: 768px) {
@@ -275,7 +270,7 @@ const resetForm = () => {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;
-    line-height: 150%;
+    line-height: 140%;
     color: var(--red);
     @media screen and (max-width: 768px) {
       font-size: 14px;

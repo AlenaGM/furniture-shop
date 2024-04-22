@@ -65,13 +65,11 @@ productStore.getProducts();
     font-family: var(--second-family);
     font-size: 36px;
     font-weight: 400;
-    line-height: 140%;
     max-width: 704px;
     @media screen and (max-width: 768px) {
       grid-column: span 1;
       text-align: left;
       font-size: 32px;
-      line-height: 140%;
       padding: 48px 0 36px;
     }
   }

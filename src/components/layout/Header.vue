@@ -166,7 +166,7 @@ const cartStore = useCartStore();
         font-family: var(--second-family);
         font-weight: 400;
         font-size: 24px;
-        line-height: 150%;
+        line-height: 140%;
         color: var(--black);
         &::after {
           content: "";
