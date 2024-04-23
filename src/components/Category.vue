@@ -1,16 +1,14 @@
 <template>
   <div class="category">
-    <div class="category_title">
-      <h1>
-        {{
-          category === "new"
-            ? category + " arrivals"
-            : category === "popular"
-            ? category + " products"
-            : category
-        }}
-      </h1>
-    </div>
+    <h1 class="category_title">
+      {{
+        category === "new"
+          ? category + " arrivals"
+          : category === "popular"
+          ? category + " products"
+          : category
+      }}
+    </h1>
     <div class="products_container">
       <Products :products="categoryProducts" />
     </div>
@@ -20,8 +18,8 @@
 <script setup>
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import Products from "@/components/Products.vue";
 import { useProductStore } from "../stores/products";
+import Products from "@/components/Products.vue";
 
 const productStore = useProductStore();
 const { category, categoryProducts } = storeToRefs(productStore);
@@ -33,46 +31,31 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .category {
-  display: grid;
-  grid-template-rows: minmax(210px, auto) 1fr;
-  @media screen and (max-width: 768px) {
-    grid-template-rows: minmax(146px, auto) 1fr;
-  }
+  background: var(--light-gray);
+  line-height: 140%;
   &_title {
+    grid-column: 2;
     grid-row: 1;
-    display: grid;
-    background: url("/img/allproducts.webp");
-    background-size: cover;
-    align-items: end;
-    padding: 40px 0;
+    padding: 80px 0 32px;
+    text-align: center;
+    text-transform: capitalize;
     @media screen and (max-width: 768px) {
-      background: url("/img/allproducts-mobile.webp");
-      background-size: cover;
-      padding: 36px 24px;
-      align-items: center;
-      justify-content: center;
-    }
-    h1 {
-      grid-column: 2;
-      margin: 0;
-      text-align: left;
-      color: var(--white);
-      padding: 0;
-      text-transform: capitalize;
-      @media screen and (max-width: 768px) {
-        font-size: 32px;
-        text-align: center;
-      }
+      padding: 40px 0 16px;
     }
   }
 }
 
 .products {
   &_container {
+    grid-column: 2;
     grid-row: 2;
-    margin: var(--section-gap);
+    width: 100%;
+    padding: 48px 64px;
+    background-color: var(--white);
+    margin-bottom: 80px;
     @media screen and (max-width: 768px) {
-      margin: var(--section-gap-mobile);
+      padding: 24px;
+      margin-bottom: 40px;
     }
   }
 }

@@ -46,12 +46,10 @@ const props = defineProps({
 <style lang="scss" scoped>
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
   grid-auto-rows: 1fr;
-  gap: 80px 40px;
-  @media screen and (max-width: 1024px) {
-    justify-items: center;
-  }
+  gap: 80px 20px;
+  justify-items: center;
   @media screen and (max-width: 768px) {
     margin-bottom: 40px;
   }
@@ -62,12 +60,12 @@ const props = defineProps({
   grid-auto-flow: row;
   grid-template: auto 1fr minmax(24px, auto) / 1fr;
   justify-items: center;
-  max-width: 290px;
+  max-width: 250px;
   &_image {
     position: relative;
     margin: 0px auto 12px;
-    width: 250px;
-    height: 256px;
+    width: 210px;
+    height: 216px;
     img {
       width: 100%;
       height: 100%;
