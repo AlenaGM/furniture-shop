@@ -11,6 +11,7 @@ _E-commerce website built with VueJS 3 and Pinia._ <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vue Router 4<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Pinia<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; Vuelidate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&check;&nbsp;&nbsp; EmailJS<br>
 
 ## Demo
 
