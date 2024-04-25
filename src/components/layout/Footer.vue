@@ -6,59 +6,21 @@
           <div class="footer_menu__column">
             <span class="footer_menu__title">Menu</span>
             <ul>
-              <li>
-                <router-link to="/products" class="footer_menu__link"
-                  >All products</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/new" class="footer_menu__link"
-                  >New arrivals</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/popular" class="footer_menu__link"
-                  >Best sellers</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/sale" class="footer_menu__link"
-                  >Last chance</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/" class="footer_menu__link"
-                  >Gift cards</router-link
-                >
+              <li v-for="({ name, link }, i) in menu" :key="i">
+                <router-link :to="link" class="footer_menu__link">{{
+                  name
+                }}</router-link>
               </li>
             </ul>
           </div>
           <div class="footer_menu__column">
             <span class="footer_menu__title">Categories</span>
             <ul>
-              <li>
-                <router-link to="/products/furniture" class="footer_menu__link"
-                  >Furniture</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/lighting" class="footer_menu__link"
-                  >Lighting</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/decoration" class="footer_menu__link"
-                  >Decoration</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/tableware" class="footer_menu__link"
-                  >Tableware</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/products/textiles" class="footer_menu__link"
-                  >Textiles</router-link
+              <li v-for="(category, i) in categories" :key="i">
+                <router-link
+                  :to="`/products/${category}`"
+                  class="footer_menu__link"
+                  >{{ category }}</router-link
                 >
               </li>
             </ul>
@@ -66,30 +28,10 @@
           <div class="footer_menu__column">
             <span class="footer_menu__title">About us</span>
             <ul>
-              <li>
-                <router-link to="/about" class="footer_menu__link"
-                  >Our story</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/contact" class="footer_menu__link"
-                  >Get in touch</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/" class="footer_menu__link"
-                  >Shipping information</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/" class="footer_menu__link"
-                  >Returns & exchanges</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/" class="footer_menu__link"
-                  >Privacy policy</router-link
-                >
+              <li v-for="({ name, link }, i) in about" :key="i">
+                <router-link :to="link" class="footer_menu__link">{{
+                  name
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -108,23 +50,8 @@
           >Copyright {{ year }} Avion LTD</span
         >
         <span class="footer_bottom__socials">
-          <a href="#">
-            <img src="/svg/linkedin.svg" alt="linkedin" />
-          </a>
-          <a href="#">
-            <img src="/svg/facebook.svg" alt="facebook" />
-          </a>
-          <a href="#">
-            <img src="/svg/instagram.svg" alt="instagram" />
-          </a>
-          <a href="#">
-            <img src="/svg/skype.svg" alt="skype" />
-          </a>
-          <a href="#">
-            <img src="/svg/twitter.svg" alt="twitter" />
-          </a>
-          <a href="#">
-            <img src="/svg/pinterest.svg" alt="pinterest" />
+          <a href="#" v-for="(icon, i) in socials" :key="i">
+            <img :src="`/svg/${icon}.svg`" :alt="icon" />
           </a>
         </span>
       </div>
@@ -137,6 +64,39 @@ import SubscribeForm from "@/components/SubscribeForm.vue";
 
 const date = new Date();
 const year = date.getFullYear() || "2024";
+
+const menu = [
+  { name: "all products", link: "/products" },
+  { name: "new arrivals", link: "/products/new" },
+  { name: "best sellers", link: "/products/popular" },
+  { name: "last chance", link: "/products/sale" },
+  { name: "gift cards", link: "/" },
+];
+
+const categories = [
+  "furniture",
+  "lighting",
+  "decoration",
+  "tableware",
+  "textiles",
+];
+
+const about = [
+  { name: "our story", link: "/about" },
+  { name: "get in touch", link: "/contact" },
+  { name: "shipping information", link: "/" },
+  { name: "returns & exchanges", link: "/" },
+  { name: "privacy policy", link: "/" },
+];
+
+const socials = [
+  "linkedin",
+  "facebook",
+  "instagram",
+  "skype",
+  "twitter",
+  "pinterest",
+];
 </script>
 
 <style lang="scss" scoped>
@@ -184,6 +144,7 @@ const year = date.getFullYear() || "2024";
       font-weight: 400;
       line-height: 19px;
       text-decoration: none;
+      text-transform: capitalize;
       display: inline-block;
       &::after {
         content: "";

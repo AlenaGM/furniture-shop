@@ -1,10 +1,27 @@
 <template>
   <header class="header">
     <div class="header_top">
-      <div class="header_top-left">
-        <router-link to="/" class="header_top-left__logo">
-          <img src="/favicon/favicon.ico" alt="logo" />
-        </router-link>
+      <div class="header_top-left__search search">
+        <Transition name="search" :duration="300">
+          <form
+            class="search_form"
+            name="searchForm"
+            v-if="isSearchOpen"
+            @submit.prevent="handleSubmit"
+          >
+            <input
+              type="search"
+              placeholder="Search"
+              maxlength="40"
+              class="search_input"
+              name="searchInput"
+              v-model="search"
+              value=""
+            /></form
+        ></Transition>
+        <div class="search_icon" @click="isSearchOpen = !isSearchOpen">
+          <img src="/svg/header-search.svg" alt="user" />
+        </div>
       </div>
       <router-link
         to="/"
@@ -84,11 +101,15 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart.js";
-const isMobileMenuOpen = ref(false);
+import { useProductStore } from "@/stores/products.js";
 import ModalContent from "@/components/ui/Modal.vue";
 
+const isMobileMenuOpen = ref(false);
 const isModalOpen = ref(false);
+const isSearchOpen = ref(false);
+const router = useRouter();
 
 const onUserClick = () => {
   isModalOpen.value = true;
@@ -106,7 +127,15 @@ const menu = [
   "Sale",
 ];
 
+const search = ref("");
+
+const productStore = useProductStore();
 const cartStore = useCartStore();
+
+const handleSubmit = () => {
+  router.push("/search");
+  productStore.getSearchedProducts(search);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -121,29 +150,34 @@ const cartStore = useCartStore();
     min-height: 64px;
     align-items: center;
     justify-items: stretch;
+    padding-top: 8px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background: var(--white);
     z-index: 100;
     @media screen and (max-width: 768px) {
+      grid-template-columns: auto 1fr auto;
+    }
+    @media screen and (max-width: 500px) {
       grid-template-columns: auto 1fr;
     }
-    &-left {
-      display: grid;
+    &-left__search {
+      display: flex;
       align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
       @media screen and (max-width: 768px) {
+        order: 2;
+        justify-content: flex-end;
+      }
+      @media screen and (max-width: 500px) {
         display: none;
       }
-      &__logo {
-        width: 28px;
-        height: 28px;
-        display: block;
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 28px;
-          height: 28px;
-          object-fit: cover;
+      .search {
+        &_icon {
+          position: relative;
+          width: 22px;
+          height: 22px;
           cursor: pointer;
           transition: all 0.3s ease;
           @media (any-pointer: fine) {
@@ -152,13 +186,34 @@ const cartStore = useCartStore();
               transition: all 0.3s ease;
             }
           }
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        &_form {
+          background: var(--light-gray);
+        }
+        &_input {
+          width: 200px;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: var(--color-link);
+          font-family: var(--font-family);
+          font-size: 16px;
+          min-height: 28px;
+          padding: 4px 8px;
         }
       }
     }
     &-center {
       text-align: center;
       @media screen and (max-width: 768px) {
-        margin-right: auto;
+        order: 1;
       }
       div {
         text-decoration: none;
@@ -195,6 +250,12 @@ const cartStore = useCartStore();
       column-gap: 16px;
       align-items: center;
       justify-content: flex-end;
+      @media screen and (max-width: 768px) {
+        order: 3;
+      }
+      @media screen and (max-width: 500px) {
+        order: 2;
+      }
       &__cart {
         position: relative;
         &-count {
@@ -313,8 +374,7 @@ const cartStore = useCartStore();
       @media screen and (min-width: 768px) {
         min-height: auto;
       }
-      @media screen and (max-width: 290px) {
-        width: 100%;
+      @media screen and (max-width: 365px) {
         padding: 100px 24px 36px;
       }
     }
@@ -350,6 +410,17 @@ const cartStore = useCartStore();
 .dropdown-leave-to .header_dropdown__container {
   -webkit-transform: translateX(100px);
   transform: translateX(100px);
+  opacity: 0;
+}
+
+.search-enter-active,
+.search-leave-active {
+  transition: all 0.3s ease;
+}
+
+.search-enter-from,
+.search-leave-to {
+  transform: translateX(-30px);
   opacity: 0;
 }
 </style>

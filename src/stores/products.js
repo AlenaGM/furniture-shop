@@ -18,6 +18,7 @@ export const useProductStore = defineStore("productStore", () => {
   const route = useRoute();
   const category = ref("");
   const categoryProducts = ref([]);
+  const searchedProducts = ref([]);
 
   const getProducts = async () => {
     try {
@@ -27,6 +28,7 @@ export const useProductStore = defineStore("productStore", () => {
         },
       });
       products.value = response.data;
+      console.log("getProducts");
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -66,6 +68,29 @@ export const useProductStore = defineStore("productStore", () => {
     );
   };
 
+  const getSearchedProducts = async (search) => {
+    try {
+      await getProducts();
+      filterBySearchTerm(search);
+    } catch (error) {
+      console.error("Error searching products:", error);
+    }
+  };
+
+  const filterBySearchTerm = (search) => {
+    searchedProducts.value = products.value.filter(
+      (product) =>
+        product.category.toLowerCase() === search.value.trim().toLowerCase() ||
+        product.tags.includes(search.value.trim().toLowerCase())
+    );
+  };
+
+  const queryProducts = computed((search) => {
+    return products.value.filter((product) =>
+      product.tags.includes(search.value.trim().toLowerCase())
+    );
+  });
+
   const popularProducts = computed(() => {
     return products.value
       .filter((product) => product.tags.includes("popular"))
@@ -85,9 +110,12 @@ export const useProductStore = defineStore("productStore", () => {
     productStock,
     category,
     categoryProducts,
+    searchedProducts,
     popularProducts,
     getProducts,
     getProduct,
     getCategoryProducts,
+    getSearchedProducts,
+    queryProducts,
   };
 });

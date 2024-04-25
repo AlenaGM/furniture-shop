@@ -37,10 +37,6 @@
 
 <script setup>
 import InfoBlock from "@/components/InfoBlock.vue";
-import { useProductStore } from "../stores/products";
-
-const productStore = useProductStore();
-productStore.getProducts();
 </script>
 
 <style lang="scss" scoped>
@@ -63,13 +59,10 @@ productStore.getProducts();
     text-align: center;
     color: var(--dark-primary);
     font-family: var(--second-family);
-    font-size: 36px;
-    font-weight: 400;
     max-width: 704px;
     @media screen and (max-width: 768px) {
       grid-column: span 1;
       text-align: left;
-      font-size: 32px;
       padding: 48px 0 36px;
     }
   }

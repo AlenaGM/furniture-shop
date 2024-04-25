@@ -6,6 +6,7 @@ import Category from "@/views/Category.vue";
 import Product from "@/views/Product.vue";
 import Cart from "@/views/Cart.vue";
 import Contact from "@/views/Contact.vue";
+import Search from "@/views/Search.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,6 +50,11 @@ const router = createRouter({
       path: "/contact",
       name: "Contact",
       component: Contact,
+    },
+    {
+      path: "/search",
+      name: "Search",
+      component: Search,
     },
   ],
   scrollBehavior() {

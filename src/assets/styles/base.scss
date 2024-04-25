@@ -80,7 +80,7 @@ h2 {
   font-family: var(--second-family);
   font-weight: 400;
   font-size: 32px;
-  line-height: 140%;
+  line-height: 120%;
   color: var(--dark-primary);
   margin-bottom: 20px;
   @media screen and (max-width: 768px) {
@@ -165,9 +165,9 @@ p:not(:last-of-type) {
 #app {
   display: grid;
   min-height: 100vh;
-  min-width: 290px;
-  margin-left: calc(100vw - 100%);
+  min-width: 364px;
   overflow-x: hidden;
+  margin-left: calc(100vw - 100%);
   justify-content: center;
   grid-template: auto 1fr auto / minmax(auto, 1440px);
   grid-template-areas:
@@ -203,6 +203,7 @@ p:not(:last-of-type) {
 .subscribe,
 .collection,
 .category,
+.search-results,
 .details,
 .cart,
 .contact {
