@@ -33,7 +33,8 @@
 
 <script setup>
 import { useCartStore } from "@/stores/cart.js";
-import { FormatToCurrency } from "@/utils/formatter";
+import { FormatToCurrency } from "@/helpers/formatter";
+
 const cartStore = useCartStore();
 
 const props = defineProps({

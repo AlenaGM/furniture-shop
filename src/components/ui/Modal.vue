@@ -63,9 +63,8 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
     height: 100%;
-    background: rgba(34, 32, 46, 0.8);
+    background: rgba(34, 32, 46, 0.6);
     z-index: 120;
   }
   &_container {

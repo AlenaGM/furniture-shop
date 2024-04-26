@@ -1,6 +1,6 @@
 <template>
   <form
-    class="subscribe-form"
+    class="subscribe_form"
     ref="newsRef"
     id="subscribeForm"
     name="subscribeForm"
@@ -11,7 +11,7 @@
       placeholder="your@email.com"
       name="email"
       maxlength="254"
-      class="input subscribe-form_input"
+      class="subscribe_form__input input"
       v-model="valid.emailField.$model"
       @input="updateValue"
       :style="{ backgroundColor: bgInput, color: colorText }"
@@ -22,7 +22,7 @@
       >Sign Up</ui-button
     >
   </form>
-  <div class="subscribe-form_error">
+  <div class="subscribe_form__error">
     <Transition v-if="valid.emailField.$error">
       <span class="form_error">{{ valid.emailField.$errors[0].$message }}</span>
     </Transition>
@@ -44,6 +44,9 @@ import { helpers, required, email } from "@vuelidate/validators";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 
+const emailField = ref("");
+const isModalOpen = ref(false);
+
 const props = defineProps({
   bgInput: {
     type: String,
@@ -58,9 +61,6 @@ const props = defineProps({
     required: false,
   },
 });
-
-const emailField = ref("");
-const isModalOpen = ref(false);
 
 const rules = computed(() => ({
   emailField: {
@@ -95,10 +95,10 @@ const resetForm = () => {
 </script>
 
 <style lang="scss" scoped>
-.subscribe-form {
+.subscribe_form {
   display: flex;
   max-width: 630px;
-  &_input {
+  &__input {
     flex-grow: 1;
   }
 
@@ -106,12 +106,12 @@ const resetForm = () => {
     flex-direction: column;
   }
 
-  &_input {
+  &__input {
     @media screen and (max-width: 349px) {
       margin-bottom: 12px;
     }
   }
-  &_error {
+  &__error {
     margin-top: 12px;
     color: var(--red);
   }

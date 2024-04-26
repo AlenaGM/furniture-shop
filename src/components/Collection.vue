@@ -1,21 +1,43 @@
 <template>
   <div class="collection">
-    <h1 class="collection_title">All Products</h1>
+    <h1 class="collection_title">{{ title }}</h1>
     <div class="products_container">
-      <Products :products="productStore.products" />
+      <Products :products="categoryProducts" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import Products from "@/components/Products.vue";
-import { useProductStore } from "../stores/products";
+import api from "../api";
 
-const productStore = useProductStore();
+const products = ref([]);
+const route = useRoute();
 
-onMounted(() => {
-  productStore.getProducts();
+onMounted(async () => {
+  products.value = await api.getProducts();
+});
+
+const categoryProducts = computed(() => {
+  return route.params.category
+    ? products.value.filter(
+        (product) =>
+          product.category === route.params.category ||
+          product.tags.includes(route.params.category)
+      )
+    : products.value;
+});
+
+const title = computed(() => {
+  return route.params.category
+    ? route.params.category === "new"
+      ? route.params.category + " arrivals"
+      : route.params.category === "popular"
+      ? route.params.category + " products"
+      : route.params.category
+    : "All Products";
 });
 </script>
 
@@ -46,6 +68,9 @@ onMounted(() => {
     @media screen and (max-width: 768px) {
       padding: 24px;
       margin-bottom: 40px;
+    }
+    @media screen and (max-width: 350px) {
+      padding: 0;
     }
   }
 }

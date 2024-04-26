@@ -128,7 +128,7 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useCartStore } from "@/stores/cart.js";
-import { FormatToCurrency } from "@/utils/formatter";
+import { FormatToCurrency } from "@/helpers/formatter";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 

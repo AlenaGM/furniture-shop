@@ -1,7 +1,7 @@
 <template>
   <div class="products_container">
     <h2>{{ sectionTitle }}</h2>
-    <Products :products="productStore.popularProducts" />
+    <Products :products="popularProducts" />
     <div class="products_link">
       <ui-button
         type="link"
@@ -15,15 +15,15 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import Products from "@/components/Products.vue";
 import uiButton from "@/components/ui/Button.vue";
-import { useProductStore } from "../stores/products";
+import api from "../api";
 
-const productStore = useProductStore();
+const products = ref([]);
 
 onMounted(async () => {
-  productStore.getProducts();
+  products.value = await api.getProducts();
 });
 
 const props = defineProps({
@@ -31,6 +31,12 @@ const props = defineProps({
     type: String,
     default: "Our popular products",
   },
+});
+
+const popularProducts = computed(() => {
+  return products.value
+    .filter((product) => product.tags.includes("popular"))
+    .slice(0, 4);
 });
 </script>
 

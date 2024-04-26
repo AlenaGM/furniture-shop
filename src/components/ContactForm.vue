@@ -95,13 +95,18 @@ import {
   email,
 } from "@vuelidate/validators";
 import emailjs from "@emailjs/browser";
-
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 
 const nameField = ref("");
 const emailField = ref("");
 const messageField = ref("");
+
+const isModalOpen = ref(false);
+const isError = ref(false);
+
+const formRef = ref(null);
+const myKey = import.meta.env.VITE_KEY;
 
 const rules = computed(() => ({
   nameField: {
@@ -140,9 +145,6 @@ const rules = computed(() => ({
   },
 }));
 
-const isModalOpen = ref(false);
-const isError = ref(false);
-
 const valid = useVuelidate(rules, {
   nameField,
   emailField,
@@ -161,10 +163,6 @@ const submitForm = async () => {
   sendEmail();
   resetForm();
 };
-
-const formRef = ref(null);
-
-const myKey = import.meta.env.VITE_KEY;
 
 const sendEmail = () => {
   emailjs

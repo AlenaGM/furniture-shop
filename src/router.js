@@ -1,12 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Index from "@/views/Index.vue";
-import About from "@/views/About.vue";
-import AllProducts from "@/views/AllProducts.vue";
-import Category from "@/views/Category.vue";
-import Product from "@/views/Product.vue";
-import Cart from "@/views/Cart.vue";
-import Contact from "@/views/Contact.vue";
-import Search from "@/views/Search.vue";
+
+import { About, AllProducts, Cart, Contact, Index, Product } from "@/views";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -34,7 +28,7 @@ const router = createRouter({
     {
       path: "/products/:category",
       name: "Category",
-      component: Category,
+      component: AllProducts,
     },
     {
       path: "/about",
@@ -50,11 +44,6 @@ const router = createRouter({
       path: "/contact",
       name: "Contact",
       component: Contact,
-    },
-    {
-      path: "/search",
-      name: "Search",
-      component: Search,
     },
   ],
   scrollBehavior() {
