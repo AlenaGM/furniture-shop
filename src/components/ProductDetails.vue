@@ -107,32 +107,32 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { watch } from "vue";
 import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
+import { useProductStore } from "@/stores/products.js";
 import { useCartStore } from "@/stores/cart.js";
 import { FormatToCurrency } from "@/helpers/formatter";
-import api from "@/api.js";
 import uiButton from "@/components/ui/Button.vue";
 import ModalContent from "@/components/ui/Modal.vue";
 
+const productStore = useProductStore();
 const cartStore = useCartStore();
-const product = ref({});
-const route = useRoute();
 
-onMounted(async () => {
-  product.value = await api.getProduct(route.params.id);
-});
+const { product } = storeToRefs(productStore);
 
 const { counter, counterMsg, discount, isModalOpen, cartTotalPrice } =
   storeToRefs(cartStore);
 const { decreaseCounter, increaseCounter, updateCounter, addToCart } =
   cartStore;
 
+const route = useRoute();
+
 watch(
   () => route.params.id,
   () => {
-    api.getProduct(route.params.id);
+    productStore.getProduct(route.params.id);
+    //productStore.getSuggested();
     updateCounter();
     isModalOpen.value = false;
   },

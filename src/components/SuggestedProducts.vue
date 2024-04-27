@@ -1,7 +1,7 @@
 <template>
   <div class="products_container">
     <h2>{{ sectionTitle }}</h2>
-    <Products :products="popularProducts" />
+    <Products :products="productStore.suggested" />
     <div class="products_link">
       <ui-button
         type="link"
@@ -15,16 +15,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { watch } from "vue";
+import { useRoute } from "vue-router";
+import { useProductStore } from "@/stores/products.js";
 import Products from "@/components/Products.vue";
 import uiButton from "@/components/ui/Button.vue";
-import api from "../api";
 
-const products = ref([]);
+const productStore = useProductStore();
 
-onMounted(async () => {
-  products.value = await api.getProducts();
-});
+const route = useRoute();
 
 const props = defineProps({
   sectionTitle: {
@@ -33,11 +32,13 @@ const props = defineProps({
   },
 });
 
-const popularProducts = computed(() => {
-  return products.value
-    .filter((product) => product.tags.includes("popular"))
-    .slice(0, 4);
-});
+watch(
+  () => route.params.id,
+  () => {
+    productStore.getSuggested();
+  },
+  { immediate: true, deep: true }
+);
 </script>
 
 <style lang="scss" scoped>

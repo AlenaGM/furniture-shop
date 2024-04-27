@@ -8,16 +8,20 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { storeToRefs } from "pinia";
+import { useProductStore } from "@/stores/products.js";
 import Products from "@/components/Products.vue";
-import api from "../api";
 
-const products = ref([]);
+const productStore = useProductStore();
+
+const { products } = storeToRefs(productStore);
+
 const route = useRoute();
 
 onMounted(async () => {
-  products.value = await api.getProducts();
+  productStore.getProducts();
 });
 
 const categoryProducts = computed(() => {
