@@ -17,7 +17,12 @@
                 class="search_form"
                 id="searchForm"
                 name="searchForm"
-                @submit.prevent="onSearch"
+                @submit.prevent="
+                  () => {
+                    productStore.handleSearch(searchField);
+                    $emit('close');
+                  }
+                "
               >
                 <input
                   type="search"
@@ -41,6 +46,7 @@
               <img src="/svg/menu-close.svg" alt="modal-close" />
             </div>
           </div>
+          <!--
           <div class="search_body">
             <h3 class="search_title">
               {{
@@ -59,7 +65,7 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -68,33 +74,35 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useProductStore } from "../../stores/products";
 import api from "@/api.js";
 
-const products = ref([]);
+//const products = ref([]);
 const searchField = ref("");
+const productStore = useProductStore();
 
-onMounted(async () => {
-  products.value = await api.getProducts();
-});
-
+//onMounted(async () => {
+//  products.value = await api.getProducts();
+//});
+//
 const props = defineProps({
   open: {
     type: Boolean,
   },
 });
 
-const searchedProducts = computed(() => {
-  return products.value.filter(
-    (product) =>
-      product.category.toLowerCase() ===
-        searchField.value.trim().toLowerCase() ||
-      product.tags.includes(searchField.value.trim().toLowerCase())
-  );
-});
-
-const clearSearch = () => {
-  searchField.value = "";
-};
+//const searchedProducts = computed(() => {
+//  return products.value.filter(
+//    (product) =>
+//      product.category.toLowerCase() ===
+//        searchField.value.trim().toLowerCase() ||
+//      product.tags.includes(searchField.value.trim().toLowerCase())
+//  );
+//});
+//
+//const clearSearch = () => {
+//  searchField.value = "";
+//};
 </script>
 
 <style lang="scss">

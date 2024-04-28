@@ -15,9 +15,7 @@ import { useProductStore } from "@/stores/products.js";
 import Products from "@/components/Products.vue";
 
 const productStore = useProductStore();
-
 const { products } = storeToRefs(productStore);
-
 const route = useRoute();
 
 onMounted(async () => {
@@ -31,11 +29,19 @@ const categoryProducts = computed(() => {
           product.category === route.params.category ||
           product.tags.includes(route.params.category)
       )
+    : productStore.search
+    ? products.value.filter(
+        (product) =>
+          product.category === productStore.search ||
+          product.tags.includes(productStore.search)
+      )
     : products.value;
 });
 
 const title = computed(() => {
-  return route.params.category
+  return productStore.search
+    ? "Search Results"
+    : route.params.category
     ? route.params.category === "new"
       ? route.params.category + " arrivals"
       : route.params.category === "popular"

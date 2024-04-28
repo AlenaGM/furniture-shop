@@ -70,7 +70,7 @@ const menu = [
   { name: "new arrivals", link: "/products/new" },
   { name: "best sellers", link: "/products/popular" },
   { name: "last chance", link: "/products/sale" },
-  { name: "gift cards", link: "/" },
+  { name: "gift cards", link: "/products/gift cards" },
 ];
 
 const categories = [
@@ -84,9 +84,9 @@ const categories = [
 const about = [
   { name: "our story", link: "/about" },
   { name: "get in touch", link: "/contact" },
-  { name: "shipping information", link: "/" },
-  { name: "returns & exchanges", link: "/" },
-  { name: "privacy policy", link: "/" },
+  { name: "shipping information", link: "/shipping" },
+  { name: "returns & exchanges", link: "/returns" },
+  { name: "privacy policy", link: "/privacy" },
 ];
 
 const socials = [

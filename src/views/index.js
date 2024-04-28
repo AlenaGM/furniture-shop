@@ -4,5 +4,6 @@ import Cart from "./Cart.vue";
 import Contact from "./Contact.vue";
 import Index from "./Index.vue";
 import Product from "./Product.vue";
+import Page404 from "./Page404.vue";
 
-export { About, AllProducts, Cart, Contact, Index, Product };
+export { About, AllProducts, Cart, Contact, Index, Product, Page404 };
