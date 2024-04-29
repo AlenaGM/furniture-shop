@@ -132,7 +132,6 @@ watch(
   () => route.params.id,
   () => {
     productStore.getProduct(route.params.id);
-    //productStore.getSuggested();
     updateCounter();
     isModalOpen.value = false;
   },

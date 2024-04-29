@@ -28,14 +28,14 @@ const router = createRouter({
       component: AllProducts,
     },
     {
-      path: "/products/search",
-      redirect: { name: "AllProducts" },
-      component: AllProducts,
-    },
-    {
       path: "/products/:category",
       name: "Category",
       component: AllProducts,
+    },
+    {
+      path: "/products/:id(\\d+)",
+      name: "Product",
+      component: Product,
     },
     {
       path: "/about",
