@@ -431,7 +431,7 @@ const menu = [
       font-weight: 400;
       font-size: 16px;
       line-height: 140%;
-      padding: 8px 14px 4px;
+      padding: 6px 14px;
       border: none;
       outline: none;
       @media screen and (max-width: 768px) {
@@ -442,11 +442,23 @@ const menu = [
     &__btn {
       background: var(--dark-primary);
       position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 36px;
       width: 36px;
       padding: 6px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      @media (any-pointer: fine) {
+        &:hover {
+          opacity: 0.6;
+          transition: opacity 0.3s ease;
+        }
+      }
       img {
         width: 100%;
-        top: 3px;
       }
     }
   }
@@ -471,6 +483,18 @@ const menu = [
 .dropdown-leave-to .header_dropdown__container {
   -webkit-transform: translateX(100px);
   transform: translateX(100px);
+  opacity: 0;
+}
+
+.search-enter-active,
+.search-leave-active {
+  transition: all 0.7s ease;
+}
+
+.search-enter-from,
+.search-leave-to {
+  -webkit-transform: translateY(-30px);
+  transform: translateY(-30px);
   opacity: 0;
 }
 </style>
