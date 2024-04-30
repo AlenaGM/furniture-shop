@@ -30,7 +30,7 @@
                   name="searchInput"
                   maxlength="64"
                   class="search_form__input input"
-                  v-model="searchField"
+                  v-model.trim="searchField"
                 />
               </form>
             </div>

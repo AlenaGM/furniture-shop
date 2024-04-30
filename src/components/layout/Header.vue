@@ -1,12 +1,23 @@
 <template>
   <header class="header">
     <div class="header_top">
-      <div class="header_top-left__search search">
+      <div
+        class="header_top-left__search search"
+        title="search form open and close"
+      >
         <img
           src="/svg/header-search.svg"
-          alt="user"
+          alt="search"
           class="search_icon"
-          @click="onSearchClick"
+          v-if="!isSearchOpen"
+          @click="onSearchOpen()"
+        />
+        <img
+          src="/svg/menu-close.svg"
+          alt="close"
+          class="search_icon"
+          v-else
+          @click="isSearchOpen = false"
         />
       </div>
       <router-link
@@ -36,12 +47,44 @@
         <div
           class="header_top-right__mobile-menu"
           title="dropdown menu open and close"
-          @click="isMobileMenuOpen = !isMobileMenuOpen"
+          @click="onMobileMenuClick"
         >
-          <img src="/svg/menu-open.svg" alt="menu" v-if="!isMobileMenuOpen" />
-          <img src="/svg/menu-close.svg" alt="menu" v-else />
+          <img
+            src="/svg/menu-open.svg"
+            alt="mobile menu"
+            v-if="!isMobileMenuOpen"
+          />
+          <img src="/svg/menu-close.svg" alt="close" v-else />
         </div>
       </div>
+      <Transition name="search">
+        <div class="header_search__wrapper" v-if="isSearchOpen">
+          <div class="header_search__container">
+            <form
+              class="header_search__form"
+              is="searchForm"
+              name="searchForm"
+              @submit.prevent="handleSearch(searchField)"
+            >
+              <input
+                type="search"
+                placeholder="Find product, designer ..."
+                name="searchInput"
+                maxlength="64"
+                class="header_search__input"
+                v-model.trim="searchField"
+              />
+              <button type="submit" class="header_search__btn">
+                <img
+                  src="/svg/header-search-white.svg"
+                  alt="search"
+                  class="search_icon"
+                />
+              </button>
+            </form>
+          </div>
+        </div>
+      </Transition>
     </div>
     <div class="header_menu" v-if="!isMobileMenuOpen">
       <router-link
@@ -83,33 +126,47 @@
       >The personal account functionality is still in development.
     </modal-content>
   </teleport>
-
-  <teleport to="body">
-    <search-content :open="isSearchOpen" @close="isSearchOpen = false">
-    </search-content>
-  </teleport>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart.js";
 import ModalContent from "@/components/ui/Modal.vue";
-import SearchContent from "@/components/ui/Search.vue";
+import { useProductStore } from "../../stores/products";
 
 const cartStore = useCartStore();
+const productStore = useProductStore();
 
 const isMobileMenuOpen = ref(false);
 const isModalOpen = ref(false);
 const isSearchOpen = ref(false);
 
+const searchField = ref("");
+const router = useRouter();
+
 const onUserClick = () => {
   isModalOpen.value = true;
   isMobileMenuOpen.value = false;
+  isSearchOpen.value = false;
 };
 
-const onSearchClick = () => {
+const onMobileMenuClick = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+  isSearchOpen.value = false;
+  isModalOpen.value = false;
+};
+
+const onSearchOpen = () => {
   isSearchOpen.value = true;
   isMobileMenuOpen.value = false;
+};
+
+const handleSearch = () => {
+  productStore.attributeSearch(searchField);
+  router.push("/products/search");
+  isSearchOpen.value = false;
+  searchField.value = "";
 };
 
 const menu = [
@@ -337,6 +394,59 @@ const menu = [
       text-decoration: none;
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+  }
+  &_search {
+    &__wrapper {
+      width: 100%;
+      max-width: 480px;
+      position: absolute;
+      top: 64px;
+      @media screen and (max-width: 768px) {
+        max-width: none;
+      }
+    }
+    &__container {
+      position: relative;
+      min-height: 64px;
+      background: var(--white);
+      display: flex;
+      padding: 24px;
+      box-shadow: 0 4px 5px -1px rgba(0, 0, 0, 0.1);
+      @media screen and (max-width: 768px) {
+        padding: 18px;
+      }
+    }
+    &__form {
+      display: flex;
+      flex-grow: 1;
+      min-height: 36px;
+    }
+    &__input {
+      display: flex;
+      flex-grow: 1;
+      background-color: var(--light-gray);
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      padding: 8px 14px 4px;
+      border: none;
+      outline: none;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        padding: 0 16px;
+      }
+    }
+    &__btn {
+      background: var(--dark-primary);
+      position: relative;
+      width: 36px;
+      padding: 6px;
+      img {
+        width: 100%;
+        top: 3px;
       }
     }
   }

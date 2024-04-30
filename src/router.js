@@ -6,6 +6,7 @@ import {
   Contact,
   Index,
   Product,
+  Search,
   Page404,
 } from "@/views";
 
@@ -51,6 +52,11 @@ const router = createRouter({
       path: "/contact",
       name: "Contact",
       component: Contact,
+    },
+    {
+      path: "/products/search",
+      name: "Search",
+      component: Search,
     },
     {
       path: "/notfound",

@@ -1,51 +1,55 @@
 <template>
-  <div class="collection">
-    <h1 class="collection_title">{{ title }}</h1>
-    <div class="products_container">
-      <Products :products="selectedProducts" />
+  <div class="search-results">
+    <h1 class="search-results_title">Search Results</h1>
+    <div class="products_container" v-if="searchedProducts.length">
+      <Products :products="searchedProducts" />
+    </div>
+    <div class="fail" v-else>
+      <div class="fail__title">No results found for your search</div>
+      <ui-button
+        class="fail__back"
+        @click="router.back()"
+        :mobileFullWidth="true"
+      >
+        Back
+      </ui-button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { useProductStore } from "@/stores/products.js";
+import { onMounted, computed } from "vue";
 import Products from "@/components/Products.vue";
+import uiButton from "@/components/ui/Button.vue";
+
+const productStore = useProductStore();
+const router = useRouter();
 
 onMounted(async () => {
   productStore.getProducts();
 });
 
-const productStore = useProductStore();
-const route = useRoute();
-
-const selectedProducts = computed(() => {
-  return route.params.category
-    ? filterByCategory(productStore.products, route.params.category)
-    : productStore.products;
+const searchedProducts = computed(() => {
+  return productStore.search
+    ? filterBySearchTerm(productStore.products, productStore.search)
+    : "";
 });
 
-const filterByCategory = (products, category) => {
+const filterBySearchTerm = (products, search) => {
   return products.filter(
     (product) =>
-      product.category === category || product.tags.includes(category)
+      product.category.toLowerCase() === search ||
+      product.tags.includes(search) ||
+      product.manufacturer.toLowerCase().indexOf(search) != -1 ||
+      product.name.toLowerCase().indexOf(search) != -1
   );
 };
-
-const title = computed(() => {
-  return route.params.category
-    ? route.params.category === "new"
-      ? route.params.category + " arrivals"
-      : route.params.category === "popular"
-      ? route.params.category + " products"
-      : route.params.category
-    : "All Products";
-});
 </script>
 
 <style lang="scss" scoped>
-.collection {
+.search-results {
   background: var(--light-gray);
   line-height: 140%;
   grid-template-rows: auto 1fr;
