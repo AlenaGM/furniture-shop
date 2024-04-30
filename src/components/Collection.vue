@@ -14,7 +14,7 @@ import { useProductStore } from "@/stores/products.js";
 import Products from "@/components/Products.vue";
 
 onMounted(async () => {
-  productStore.getProducts();
+  !productStore.products.length && productStore.getProducts();
 });
 
 const productStore = useProductStore();

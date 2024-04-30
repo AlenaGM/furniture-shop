@@ -9,8 +9,8 @@
         btn__secondary: color === 'secondary',
         'btn__light-gray': color === 'light-gray',
         btn__white: color === 'white',
-        btn__fullwidth: mobileFullWidth,
-        btn__disabled: disabled,
+        btn__fullwidth: 'mobileFullWidth',
+        btn__disabled: 'disabled',
       },
     ]"
   >
@@ -27,7 +27,7 @@
         btn__secondary: color === 'secondary',
         'btn__light-gray': color === 'light-gray',
         btn__white: color === 'white',
-        btn__fullwidth: mobileFullWidth,
+        btn__fullwidth: 'mobileFullWidth',
       },
     ]"
   >

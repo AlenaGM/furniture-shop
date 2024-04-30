@@ -132,8 +132,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart.js";
-import ModalContent from "@/components/ui/Modal.vue";
 import { useProductStore } from "../../stores/products";
+import ModalContent from "@/components/ui/Modal.vue";
 
 const cartStore = useCartStore();
 const productStore = useProductStore();
@@ -308,6 +308,71 @@ const menu = [
       }
     }
   }
+  &_search {
+    &__wrapper {
+      width: 100%;
+      max-width: 480px;
+      position: absolute;
+      top: 64px;
+      @media screen and (max-width: 768px) {
+        max-width: none;
+      }
+    }
+    &__container {
+      position: relative;
+      min-height: 64px;
+      background: var(--white);
+      display: flex;
+      padding: 24px;
+      box-shadow: 0 4px 5px -1px rgba(0, 0, 0, 0.1);
+      @media screen and (max-width: 768px) {
+        padding: 18px;
+      }
+    }
+    &__form {
+      display: flex;
+      flex-grow: 1;
+      min-height: 36px;
+    }
+    &__input {
+      display: flex;
+      flex-grow: 1;
+      background-color: var(--light-gray);
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      padding: 6px 14px;
+      border: none;
+      outline: none;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        padding: 0 16px;
+      }
+    }
+    &__btn {
+      background: var(--dark-primary);
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 36px;
+      width: 36px;
+      padding: 6px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      @media (any-pointer: fine) {
+        &:hover {
+          opacity: 0.6;
+          transition: opacity 0.3s ease;
+        }
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
   &_menu {
     grid-column: 2;
     display: flex;
@@ -394,71 +459,6 @@ const menu = [
       text-decoration: none;
       &:last-child {
         margin-bottom: 0;
-      }
-    }
-  }
-  &_search {
-    &__wrapper {
-      width: 100%;
-      max-width: 480px;
-      position: absolute;
-      top: 64px;
-      @media screen and (max-width: 768px) {
-        max-width: none;
-      }
-    }
-    &__container {
-      position: relative;
-      min-height: 64px;
-      background: var(--white);
-      display: flex;
-      padding: 24px;
-      box-shadow: 0 4px 5px -1px rgba(0, 0, 0, 0.1);
-      @media screen and (max-width: 768px) {
-        padding: 18px;
-      }
-    }
-    &__form {
-      display: flex;
-      flex-grow: 1;
-      min-height: 36px;
-    }
-    &__input {
-      display: flex;
-      flex-grow: 1;
-      background-color: var(--light-gray);
-      font-family: var(--font-family);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 140%;
-      padding: 6px 14px;
-      border: none;
-      outline: none;
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-        padding: 0 16px;
-      }
-    }
-    &__btn {
-      background: var(--dark-primary);
-      position: relative;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: 36px;
-      width: 36px;
-      padding: 6px;
-      border: none;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-      @media (any-pointer: fine) {
-        &:hover {
-          opacity: 0.6;
-          transition: opacity 0.3s ease;
-        }
-      }
-      img {
-        width: 100%;
       }
     }
   }

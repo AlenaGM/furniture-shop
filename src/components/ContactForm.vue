@@ -258,7 +258,6 @@ const resetForm = () => {
     justify-content: center;
     button {
       margin: var(--section-gap);
-      //align-items: center;
       @media screen and (max-width: 560px) {
         margin: var(--section-gap-mobile);
       }

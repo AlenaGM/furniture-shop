@@ -83,7 +83,7 @@ const isButtonDisabled = computed(() => {
 const onSubscribe = () => {
   valid.value.$touch();
   if (valid.value.$error) return;
-  console.log("Subscribe - OK!");
+  console.log("Newsletter subscribe - OK!");
   isModalOpen.value = true;
   resetForm();
 };

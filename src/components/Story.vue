@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import InfoBlock from "@/components/InfoBlock.vue";
+import InfoBlock from "@/components/blocks/InfoBlock.vue";
 </script>
 
 <style lang="scss" scoped>

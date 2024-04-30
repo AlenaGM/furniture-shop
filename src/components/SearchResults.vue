@@ -28,7 +28,7 @@ const productStore = useProductStore();
 const router = useRouter();
 
 onMounted(async () => {
-  productStore.getProducts();
+  !productStore.products.length && productStore.getProducts();
 });
 
 const searchedProducts = computed(() => {

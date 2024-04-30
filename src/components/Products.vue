@@ -51,7 +51,7 @@ const props = defineProps({
   grid-auto-rows: 1fr;
   gap: 80px 20px;
   justify-items: center;
-  margin: 20px 0 40px;
+  margin: 20px 0 60px;
   @media screen and (max-width: 768px) {
     margin: 20px 0;
   }

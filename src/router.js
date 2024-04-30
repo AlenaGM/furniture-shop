@@ -7,7 +7,6 @@ import {
   Index,
   Product,
   Search,
-  Page404,
 } from "@/views";
 
 const router = createRouter({
@@ -57,26 +56,6 @@ const router = createRouter({
       path: "/products/search",
       name: "Search",
       component: Search,
-    },
-    {
-      path: "/notfound",
-      name: "Page404",
-      component: Page404,
-    },
-    {
-      path: "/shipping",
-      redirect: { name: "Page404" },
-      component: Page404,
-    },
-    {
-      path: "/returns",
-      redirect: { name: "Page404" },
-      component: Page404,
-    },
-    {
-      path: "/privacy",
-      redirect: { name: "Page404" },
-      component: Page404,
     },
   ],
   scrollBehavior() {
