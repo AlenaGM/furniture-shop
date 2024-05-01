@@ -1,6 +1,6 @@
 <template>
   <button
-    v-if="type === 'button'"
+    v-if="type === 'submit' || 'button'"
     class="btn"
     :class="[
       'btn',
@@ -10,9 +10,9 @@
         'btn__light-gray': color === 'light-gray',
         btn__white: color === 'white',
         btn__fullwidth: 'mobileFullWidth',
-        btn__disabled: 'disabled',
       },
     ]"
+    :disabled="disabled"
   >
     <slot />
   </button>
@@ -59,7 +59,7 @@ const props = defineProps({
   },
   disabled: {
     type: Boolean,
-    default: false,
+    required: false,
   },
 });
 </script>
@@ -111,7 +111,7 @@ const props = defineProps({
       width: 100%;
     }
   }
-  &__disabled {
+  &:disabled {
     opacity: 0.6;
     transition: opacity 0.3s ease;
     pointer-events: none;

@@ -1,7 +1,7 @@
 <template>
   <div class="collection">
     <h1 class="collection_title">{{ title }}</h1>
-    <div class="products_container">
+    <div class="products_container" v-if="selectedProducts.length">
       <Products :products="selectedProducts" />
     </div>
   </div>

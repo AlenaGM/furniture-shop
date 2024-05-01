@@ -166,13 +166,16 @@ p:not(:last-of-type) {
   min-height: 100vh;
   min-width: 290px;
   overflow-x: hidden;
-  margin-left: calc(100vw - 100%);
+
   justify-content: center;
   grid-template: auto 1fr auto / minmax(auto, 1440px);
   grid-template-areas:
     "header"
     "main"
     "footer";
+  @media (any-pointer: fine) {
+    margin-left: calc(100vw - 100%);
+  }
 }
 
 .header {

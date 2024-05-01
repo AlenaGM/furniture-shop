@@ -66,7 +66,9 @@ const props = defineProps({
     height: 100%;
     background: rgba(34, 32, 46, 0.6);
     z-index: 120;
-    margin-left: calc(100vw - 100%);
+    @media (any-pointer: fine) {
+      margin-left: calc(100vw - 100%);
+    }
   }
   &_container {
     position: relative;

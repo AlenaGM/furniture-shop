@@ -84,9 +84,9 @@ const categories = [
 const about = [
   { name: "our story", link: "/about" },
   { name: "get in touch", link: "/contact" },
-  { name: "shipping information", link: "/shipping" },
-  { name: "returns & exchanges", link: "/returns" },
-  { name: "privacy policy", link: "/privacy" },
+  { name: "shipping information", link: "/" },
+  { name: "returns & exchanges", link: "/" },
+  { name: "privacy policy", link: "/" },
 ];
 
 const socials = [
