@@ -54,7 +54,7 @@
       </div>
       <div class="form_button">
         <ui-button
-          type="submit"
+          type="button"
           :mobileFullWidth="true"
           :disabled="isButtonDisabled"
           >Send</ui-button

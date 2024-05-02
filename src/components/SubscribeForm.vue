@@ -17,7 +17,7 @@
       :style="{ backgroundColor: bgInput, color: colorText }"
     />
     <ui-button
-      type="submit"
+      type="button"
       :color="colorButton || 'dark-primary'"
       :disabled="isButtonDisabled"
       >Sign Up</ui-button

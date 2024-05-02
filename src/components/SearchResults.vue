@@ -8,6 +8,7 @@
       <div class="fail__title">No results found for your search</div>
       <ui-button
         class="fail__back"
+        type="button"
         @click="router.back()"
         :mobileFullWidth="true"
       >

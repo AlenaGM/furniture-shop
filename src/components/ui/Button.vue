@@ -1,7 +1,6 @@
 <template>
   <button
-    v-if="type === 'submit' || 'button'"
-    class="btn"
+    v-if="type === 'button'"
     :class="[
       'btn',
       {
@@ -19,7 +18,6 @@
   <router-link
     v-else
     :to="to"
-    class="btn"
     :class="[
       'btn',
       {

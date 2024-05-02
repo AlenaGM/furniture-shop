@@ -55,7 +55,7 @@
             {{ counterMsg }}
           </div>
         </div>
-        <ui-button color="dark-primary" @click="addToCart(product, counter)">
+        <ui-button color="dark-primary" type="button" @click="addToCart(product, counter)">
           Add to Cart
         </ui-button>
       </div>

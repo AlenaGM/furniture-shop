@@ -79,6 +79,7 @@
     </table>
     <div class="cart_emptyMessage" v-else>Your shopping cart is empty</div>
     <ui-button
+      type="button"
       class="cart_order"
       :mobileFullWidth="true"
       v-if="cart.length"
