@@ -82,23 +82,25 @@ const props = defineProps({
       color: var(--color-link);
       text-decoration: none;
     }
-    &::after {
-      content: "";
-      background: var(--dark-primary);
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      height: 1.7px;
-      width: 0;
-      transform: translateX(-50%);
-      transition: width 0.3s ease;
-    }
-    @media (any-pointer: fine) {
-      &:hover {
-        cursor: pointer;
-        &::after {
-          width: 100%;
-          transition: width 0.3s ease;
+    h4 {
+      &::after {
+        content: "";
+        background: var(--dark-primary);
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        height: 1.5px;
+        width: 0;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+      @media (any-pointer: fine) {
+        &:hover {
+          cursor: pointer;
+          &::after {
+            width: 100%;
+            transition: width 0.3s ease;
+          }
         }
       }
     }
