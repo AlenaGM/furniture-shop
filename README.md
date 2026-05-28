@@ -1,6 +1,6 @@
 # Avion Furniture Shop 🛋️
 
-_E-commerce website built with VueJS 3 and Pinia._ <br>
+_E-commerce built with VueJS 3 and Pinia._ <br>
 
 ## Tech stack
 
